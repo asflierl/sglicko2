@@ -31,6 +31,7 @@ import scala.collection.breakOut
 class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[A]]) {
   lazy val idsByRank: Vector[Set[A]] = playersByIdInNoParticularOrder.values.groupBy(_ rating).values.map(ps => ps.map(_ id)(breakOut): Set[A])(breakOut)
   lazy val ranksAndPlayers: Vector[RankedPlayer[A]] = idsByRank.zipWithIndex.flatMap { case (ids, idx) => ids.map(id => RankedPlayer(idx + 1, playersByIdInNoParticularOrder(id))) }
+  lazy val playersInRankOrder: Vector[Player[A]] = idsByRank.flatMap(_ map playersByIdInNoParticularOrder)
 
   def playerIdentifiedBy(id: A): Player[A] = playersByIdInNoParticularOrder.get(id).getOrElse(Player(id))
   
