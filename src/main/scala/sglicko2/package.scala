@@ -27,6 +27,8 @@
 import scala.math.Pi
 
 package object sglicko2 {
+  private[sglicko2] final val glicko2Scalar = 173.7178d
+  private[sglicko2] final val ε = 0.000001d
   private[sglicko2] final val π = Pi
 
   private[sglicko2] implicit class DoubleOps(val n: Double) extends AnyVal {

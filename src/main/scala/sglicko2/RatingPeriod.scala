@@ -26,30 +26,18 @@
 
 package sglicko2
 
-import org.specs2._
+case class RatingPeriod[A, B](games: Map[A, Seq[ScoreAgainstAnotherPlayer[A]]] =
+    Map.empty[A, Seq[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(Vector()))(implicit rules: ScoringRules[B]) {
 
-class Glicko2Spec extends Specification { def is =
-s2"""
-The implementation of the Glicko2 algorithm should calculate sufficiently similar results as the example in Mark Glickman's paper. $ex1
-"""
+  def withGame(player1: A, player2: A, outcome: B): RatingPeriod[A, B] = {
+    require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
+    val (score1, score2) = rules.scoresForTwoPlayers(outcome)
 
-  lazy val system = new Glicko2[Symbol, EitherOnePlayerWinsOrItsADraw](0.5d)
-  import system._
+    val outcomes1 = games(player1) :+ ScoreAgainstAnotherPlayer(player2, score1)
+    val outcomes2 = games(player2) :+ ScoreAgainstAnotherPlayer(player1, score2)
 
-  def ex1 = {
-    val initialBoard = Leaderboard.fromPlayers(Seq(
-      Player('a, 1500d, 200d), Player('b, 1400d, 30d), Player('c, 1550d, 100d), Player('d, 1700d, 300d)
-    ))
-
-    val updatedBoard = updatedLeaderboard(initialBoard,
-      newRatingPeriod.withGame('a, 'b, Player1Wins)
-                     .withGame('a, 'c, Player2Wins)
-                     .withGame('a, 'd, Player2Wins))
-
-    val player = updatedBoard.playerIdentifiedBy('a)
-
-    (player.rating should be ~(1464.06d +/- 0.01d)) and
-    (player.deviation should be ~(151.52d +/- 0.01d)) and
-    (player.volatility should be ~(0.05999d +/- 0.00001d))
+    copy(games.updated(player1, outcomes1).updated(player2, outcomes2))
   }
+
+  def withGames(games: (A, A, B)*): RatingPeriod[A, B] = games.foldLeft(this)((p, g) => p.withGame(g._1, g._2, g._3))
 }

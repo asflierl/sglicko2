@@ -26,30 +26,18 @@
 
 package sglicko2
 
-import org.specs2._
+sealed trait EitherOnePlayerWinsOrItsADraw
 
-class Glicko2Spec extends Specification { def is =
-s2"""
-The implementation of the Glicko2 algorithm should calculate sufficiently similar results as the example in Mark Glickman's paper. $ex1
-"""
-
-  lazy val system = new Glicko2[Symbol, EitherOnePlayerWinsOrItsADraw](0.5d)
-  import system._
-
-  def ex1 = {
-    val initialBoard = Leaderboard.fromPlayers(Seq(
-      Player('a, 1500d, 200d), Player('b, 1400d, 30d), Player('c, 1550d, 100d), Player('d, 1700d, 300d)
-    ))
-
-    val updatedBoard = updatedLeaderboard(initialBoard,
-      newRatingPeriod.withGame('a, 'b, Player1Wins)
-                     .withGame('a, 'c, Player2Wins)
-                     .withGame('a, 'd, Player2Wins))
-
-    val player = updatedBoard.playerIdentifiedBy('a)
-
-    (player.rating should be ~(1464.06d +/- 0.01d)) and
-    (player.deviation should be ~(151.52d +/- 0.01d)) and
-    (player.volatility should be ~(0.05999d +/- 0.00001d))
+object EitherOnePlayerWinsOrItsADraw {
+  implicit val rules: ScoringRules[EitherOnePlayerWinsOrItsADraw] = new ScoringRules[EitherOnePlayerWinsOrItsADraw] {
+    val scoresForTwoPlayers: EitherOnePlayerWinsOrItsADraw => (Double, Double) = {
+      case Player1Wins => (1d, 0d)
+      case Player2Wins => (0d, 1d)
+      case Draw        => (0.5d, 0.5d)
+    }
   }
 }
+
+case object Player1Wins extends EitherOnePlayerWinsOrItsADraw
+case object Player2Wins extends EitherOnePlayerWinsOrItsADraw
+case object Draw extends EitherOnePlayerWinsOrItsADraw
