@@ -13,5 +13,7 @@ scalacOptions in Test += "-Yrangepos"
 
 updateOptions ~= (_ withCachedResolution true)
 resolvers += "bintray" at "http://dl.bintray.com/scalaz/releases"
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "mock", "junit", "scalacheck") map (m => "org.specs2" %% s"specs2-$m" % "2.4.15" % Test)
-libraryDependencies  += "org.scalacheck" %% "scalacheck" % "1.12.1" % Test
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck") map (m => "org.specs2" %% s"specs2-$m" % "2.4.15" % Test)
+libraryDependencies ++= Seq(
+  "org.scalacheck" %% "scalacheck" % "1.12.1" % Test,
+  "com.jsuereth" %% "scala-arm" % "1.4" % Test)

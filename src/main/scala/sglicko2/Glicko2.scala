@@ -26,7 +26,7 @@
 
 package sglicko2
 
-import scala.math.{abs, exp, sqrt, log => ln}
+import scala.math.{abs, exp, sqrt, log => ln, Pi => π}
 import scala.collection.breakOut
 
 // implements the (public domain) Glicko 2 algorithm; see http://www.glicko.net/glicko.html for further details
@@ -34,8 +34,8 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) {
   private final val glicko2Scalar = 173.7178d
   private final val ε = 0.000001d
 
-  private def g(Φ: Double): Double = 1d / sqrt(1d + 3d * Φ.`²` / π.`²`)
-  private def E(µ: Double, µj: Double, Φj: Double): Double = 1d / (1d + exp(-g(Φj) * (µ - µj)))
+  private def g(φ: Double): Double = 1d / sqrt(1d + 3d * φ.`²` / π.`²`)
+  private def E(µ: Double, µj: Double, φj: Double): Double = 1d / (1d + exp(-g(φj) * (µ - µj)))
 
   @inline private final def τ = tau
 

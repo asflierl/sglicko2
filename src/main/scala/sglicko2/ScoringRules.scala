@@ -27,5 +27,5 @@
 package sglicko2
 
 trait ScoringRules[A] {
-  def scoresForTwoPlayers: A => (Double, Double)
+  def scoreForTwoPlayers: A => Score
 }

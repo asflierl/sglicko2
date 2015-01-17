@@ -31,10 +31,10 @@ case class RatingPeriod[A, B](games: Map[A, Seq[ScoreAgainstAnotherPlayer[A]]] =
 
   def withGame(player1: A, player2: A, outcome: B): RatingPeriod[A, B] = {
     require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
-    val (score1, score2) = rules.scoresForTwoPlayers(outcome)
+    val scoring = rules.scoreForTwoPlayers(outcome)
 
-    val outcomes1 = games(player1) :+ ScoreAgainstAnotherPlayer(player2, score1)
-    val outcomes2 = games(player2) :+ ScoreAgainstAnotherPlayer(player1, score2)
+    val outcomes1 = games(player1) :+ ScoreAgainstAnotherPlayer(player2, scoring.asSeenFromPlayer1)
+    val outcomes2 = games(player2) :+ ScoreAgainstAnotherPlayer(player1, scoring.asSeenFromPlayer2)
 
     copy(games.updated(player1, outcomes1).updated(player2, outcomes2))
   }

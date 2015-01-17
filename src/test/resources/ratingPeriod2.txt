@@ -1,0 +1,81 @@
+1st
+2nd
+4th
+  Seafarer's Rest
+  Kodash
+  Jade Sea
+269 657
+196 989
+183 808
+5th
+3rd
+6th
+  Far Shiverpeaks
+  Desolation
+  Elona Reach
+165 553
+270 254
+198 058
+10th
+7th
+13th
+  Piken Square
+  Gandara
+  Augury Rock
+188 233
+255 294
+203 664
+11th
+9th
+8th
+  Abaddon's Mouth
+  Baruch Bay
+  Riverside
+174 734
+177 371
+282 490
+14th
+12th
+15th
+  Drakkar Lake
+  Vizunah Square
+  Aurora Glade
+184 622
+295 788
+166 690
+16th
+18th
+17th
+  Gunnar's Hold
+  Fort Ranik
+  Arborstone
+305 635
+160 382
+165 154
+19th
+21th
+20th
+  Miller's Sound
+  Ruins of Surmia
+  Ring of Fire
+205 974
+247 676
+177 095
+22th
+23th
+25th
+  Dzagonur
+  Whiteside Ridge
+  Blacktide
+158 835
+280 648
+173 863
+24th
+26th
+27th
+  Vabbi
+  Fissure of Woe
+  Underworld
+227 598
+224 189
+160 119
