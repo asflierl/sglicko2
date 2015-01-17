@@ -54,14 +54,12 @@ An updated leaderboard after a rating period should be calculated sufficiently e
   
   def theLeaderboardCalculatedFrom(leaderboardName: String, ratingPeriodName: String): Leaderboard[WorldID] = {
     val currentLeaderboard = leaderboardFromResource(leaderboardName)
-
-    val scores = outcomesFromResource(ratingPeriodName)
-
-    val games = scores.flatMap { score =>
+    val outcomes = outcomesFromResource(ratingPeriodName)
+    val games = outcomes.flatMap { outcome =>
       Vector(
-        (score.green.id, score.blue.id, Pairing(score.green.points, score.blue.points)),
-        (score.green.id, score.red.id, Pairing(score.green.points, score.red.points)),
-        (score.blue.id, score.red.id, Pairing(score.blue.points, score.red.points)))
+        (outcome.green.id, outcome.blue.id, Pairing(outcome.green.points, outcome.blue.points)),
+        (outcome.green.id, outcome.red.id, Pairing(outcome.green.points, outcome.red.points)),
+        (outcome.blue.id, outcome.red.id, Pairing(outcome.blue.points, outcome.red.points)))
     }
 
     updatedLeaderboard(currentLeaderboard, newRatingPeriod.withGames(games:_*))
