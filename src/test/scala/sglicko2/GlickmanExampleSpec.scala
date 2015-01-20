@@ -28,13 +28,13 @@ package sglicko2
 
 import org.specs2._
 
-class Glicko2Spec extends Specification { def is =
+class GlickmanExampleSpec extends Specification { def is =
 s2"""
-The implementation of the Glicko2 algorithm should calculate sufficiently similar results as the example in Mark Glickman's paper. $ex1
+The implementation of the Glicko2 algorithm should calculate sufficiently similar results as the example in [Mark Glickman's paper](http://www.glicko.net/glicko/glicko2.pdf). $ex1
 """
 
-  lazy val system = new Glicko2[Symbol, EitherOnePlayerWinsOrItsADraw](0.5d)
-  import system._
+  lazy val glicko2 = new Glicko2[Symbol, EitherOnePlayerWinsOrItsADraw](0.5d)
+  import glicko2._, EitherOnePlayerWinsOrItsADraw._
 
   def ex1 = {
     val initialBoard = Leaderboard.fromPlayers(Seq(
@@ -46,7 +46,7 @@ The implementation of the Glicko2 algorithm should calculate sufficiently simila
                      .withGame('a, 'c, Player2Wins)
                      .withGame('a, 'd, Player2Wins))
 
-    val player = updatedBoard.playerIdentifiedBy('a)
+    val player = updatedBoard.playerIdentifiedBy('a).orNew
 
     (player.rating should be ~(1464.06d +/- 0.01d)) and
     (player.deviation should be ~(151.52d +/- 0.01d)) and

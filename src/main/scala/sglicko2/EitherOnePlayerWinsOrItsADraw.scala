@@ -29,15 +29,17 @@ package sglicko2
 sealed trait EitherOnePlayerWinsOrItsADraw
 
 object EitherOnePlayerWinsOrItsADraw {
+  case object Player1Wins extends EitherOnePlayerWinsOrItsADraw
+  case object Player2Wins extends EitherOnePlayerWinsOrItsADraw
+  case object Draw extends EitherOnePlayerWinsOrItsADraw
+
   implicit val rules: ScoringRules[EitherOnePlayerWinsOrItsADraw] = new ScoringRules[EitherOnePlayerWinsOrItsADraw] {
     val scoreForTwoPlayers: EitherOnePlayerWinsOrItsADraw => Score = {
       case Player1Wins => Score(1d)
       case Player2Wins => Score(0d)
       case Draw        => Score(0.5d)
     }
+
+    override def toString = "either one player wins or it's a draw"
   }
 }
-
-case object Player1Wins extends EitherOnePlayerWinsOrItsADraw
-case object Player2Wins extends EitherOnePlayerWinsOrItsADraw
-case object Draw extends EitherOnePlayerWinsOrItsADraw

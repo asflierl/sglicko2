@@ -29,11 +29,11 @@ package sglicko2
 import scala.collection.breakOut
 
 class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[A]]) {
-  lazy val idsByRank: Vector[Set[A]] = playersByIdInNoParticularOrder.values.groupBy(_ rating).toVector.sortBy(_._1).map { case (_, ps) => ps.map(_ id)(breakOut): Set[A] }
+  lazy val idsByRank: Vector[Set[A]] = playersByIdInNoParticularOrder.values.groupBy(_ rating).toVector.sortBy(e => - e._1).map { case (_, ps) => ps.map(_ id)(breakOut): Set[A] }
   lazy val rankedPlayers: Vector[RankedPlayer[A]] = idsByRank.zipWithIndex.flatMap { case (ids, idx) => ids.map(id => RankedPlayer(idx + 1, playersByIdInNoParticularOrder(id))) }
   lazy val playersInRankOrder: Vector[Player[A]] = idsByRank.flatMap(_ map playersByIdInNoParticularOrder)
 
-  def playerIdentifiedBy(id: A): Player[A] = playersByIdInNoParticularOrder.get(id).getOrElse(Player(id))
+  def playerIdentifiedBy(id: A): Either[A, Player[A]] = playersByIdInNoParticularOrder.get(id).toRight(id)
   
   def rankOf(id: A): Option[Int] = idsByRank.indexWhere(_ contains id) match {
     case -1 => None
