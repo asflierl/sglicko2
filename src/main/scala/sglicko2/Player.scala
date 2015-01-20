@@ -27,6 +27,12 @@
 package sglicko2
 
 case class Player[A](id: A, rating: Double = 1500d, deviation: Double = 350d, volatility: Double = 0.06d) {
+  require(
+    rating > 0d && rating < Double.PositiveInfinity &&
+    deviation > 0d && deviation < Double.PositiveInfinity &&
+    volatility > 0d && volatility < Double.PositiveInfinity,
+    s"rating ($rating), deviation ($deviation) and volatility ($volatility) must each be a number greater than 0")
+
   // Step 1
   @inline private[sglicko2] final def r = rating
   @inline private[sglicko2] final def rd = deviation

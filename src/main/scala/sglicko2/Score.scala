@@ -27,5 +27,6 @@
 package sglicko2
 
 case class Score(asSeenFromPlayer1: Double) {
+  require(asSeenFromPlayer1 >= 0d && asSeenFromPlayer1 <= 1d, s"score ($asSeenFromPlayer1) must be a number between 0 and 1 (both inclusive)")
   val asSeenFromPlayer2 = 1d - asSeenFromPlayer1
 }

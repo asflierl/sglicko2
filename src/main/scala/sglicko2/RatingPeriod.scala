@@ -26,7 +26,7 @@
 
 package sglicko2
 
-case class RatingPeriod[A, B](games: Map[A, Seq[ScoreAgainstAnotherPlayer[A]]] =
+case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, Seq[ScoreAgainstAnotherPlayer[A]]] =
     Map.empty[A, Seq[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(Vector()))(implicit rules: ScoringRules[B]) {
 
   def withGame(player1: A, player2: A, outcome: B): RatingPeriod[A, B] = {
