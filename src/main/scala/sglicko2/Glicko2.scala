@@ -52,27 +52,27 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) {
     }(breakOut)
 
     val notCompetingPlayers: Vector[Player[A]] =
-      currentLeaderboard.playersByIdInNoParticularOrder.keySet
+      currentLeaderboard.playersByIdInNoParticularOrder.keys.toVector
                         .filterNot(ratingPeriod.games.contains)
-                        .flatMap(id => updatedDeviation(id, currentLeaderboard))(breakOut)
+                        .flatMap(id => updatedDeviation(id, currentLeaderboard))
 
-    Leaderboard.fromPlayers(competingPlayers ++ notCompetingPlayers)
+    currentLeaderboard.updatedWith(competingPlayers ++ notCompetingPlayers)
   }
 
-  private def updatedRatingAndDeviationAndVolatility(playerID: A, matchResults: Traversable[ScoreAgainstAnotherPlayer[A]], leaderboard: Leaderboard[A]): Player[A] = {
+  private def updatedRatingAndDeviationAndVolatility(playerID: A, matchResults: List[ScoreAgainstAnotherPlayer[A]], leaderboard: Leaderboard[A]): Player[A] = {
     val player = leaderboard.playerIdentifiedBy(playerID).orNew
     import player._
 
+    val opponentsAndMatchResults = matchResults.map(s => (leaderboard playerIdentifiedBy s.opponentID orNew, s))
+
     // Step 3
-    val ν = 1d / (matchResults map { matchResult =>
-      val opponent = leaderboard.playerIdentifiedBy(matchResult opponentID).orNew
+    val ν = 1d / (opponentsAndMatchResults map { case (opponent, matchResult) =>
       val Eµ = E(µ, opponent µ, opponent φ)
       g(opponent.φ).`²` * Eµ * (1d - Eµ)
     } sum)
 
     // Step 4
-    val ∆ = ν * (matchResults map { matchResult =>
-      val opponent = leaderboard.playerIdentifiedBy(matchResult opponentID).orNew
+    val ∆ = ν * (opponentsAndMatchResults map { case (opponent, matchResult) =>
       g(opponent φ) * (matchResult.score - E(µ, opponent µ, opponent φ))
     } sum)
 
@@ -113,8 +113,7 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) {
 
     // Step 7
     val `φ'` = 1d / sqrt((1d / `φ*`.`²`) + (1d / ν))
-    val `µ'` = µ + `φ'`.`²` * (matchResults map { matchResult =>
-      val opponent = leaderboard.playerIdentifiedBy(matchResult opponentID).orNew
+    val `µ'` = µ + `φ'`.`²` * (opponentsAndMatchResults map { case (opponent, matchResult) =>
       g(opponent φ) * (matchResult.score - E(µ, opponent µ, opponent φ))
     } sum)
 

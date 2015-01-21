@@ -34,7 +34,10 @@ class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[
   lazy val playersInRankOrder: Vector[Player[A]] = idsByRank.flatMap(_ map playersByIdInNoParticularOrder)
 
   def playerIdentifiedBy(id: A): Either[A, Player[A]] = playersByIdInNoParticularOrder.get(id).toRight(id)
-  
+
+  def updatedWith(players: Traversable[Player[A]]): Leaderboard[A] =
+    new Leaderboard(players.foldLeft(playersByIdInNoParticularOrder)((accu, el) => accu.updated(el id, el)))
+
   def rankOf(id: A): Option[Int] = idsByRank.indexWhere(_ contains id) match {
     case -1 => None
     case other => Some(other + 1)

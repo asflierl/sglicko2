@@ -26,6 +26,8 @@
 
 package sglicko2
 
+import scala.collection.mutable.{HashMap, ListBuffer}
+
 case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainstAnotherPlayer[A]]] =
     Map.empty[A, List[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(Nil))(implicit rules: ScoringRules[B]) {
 
@@ -39,5 +41,30 @@ case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainst
     copy(games.updated(player1, outcomes1).updated(player2, outcomes2))
   }
 
-  def withGames(games: (A, A, B)*): RatingPeriod[A, B] = games.foldLeft(this)((p, g) => p.withGame(g._1, g._2, g._3))
+  def withGames(gamesToAdd: (A, A, B)*): RatingPeriod[A, B] = {
+    val mm = HashMap.empty[A, ListBuffer[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(ListBuffer.empty)
+
+    games.foreach {
+      case (k, v) => mm.put(k, mm(k) ++ v)
+    }
+
+    gamesToAdd.foreach {
+      case (player1, player2, outcome) =>
+        require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
+
+        val score = rules.scoreForTwoPlayers(outcome)
+
+        val outcome1 = ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1)
+        if (! mm.contains(player1)) mm.put(player1, ListBuffer(outcome1))
+        else mm(player1).append(outcome1)
+
+        val outcome2 = ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2)
+        if (! mm.contains(player2)) mm.put(player2, ListBuffer(outcome2))
+        else mm(player2).append(outcome2)
+    }
+
+    val newGames = mm.mapValues(_ toList).toMap
+
+    copy(games = newGames)
+  }
 }
