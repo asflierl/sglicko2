@@ -26,15 +26,15 @@
 
 package sglicko2
 
-case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, Seq[ScoreAgainstAnotherPlayer[A]]] =
-    Map.empty[A, Seq[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(Vector()))(implicit rules: ScoringRules[B]) {
+case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainstAnotherPlayer[A]]] =
+    Map.empty[A, List[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(Nil))(implicit rules: ScoringRules[B]) {
 
   def withGame(player1: A, player2: A, outcome: B): RatingPeriod[A, B] = {
     require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
     val score = rules.scoreForTwoPlayers(outcome)
 
-    val outcomes1 = games(player1) :+ ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1)
-    val outcomes2 = games(player2) :+ ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2)
+    val outcomes1 = ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1) :: games(player1)
+    val outcomes2 = ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2) :: games(player2)
 
     copy(games.updated(player1, outcomes1).updated(player2, outcomes2))
   }
