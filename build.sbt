@@ -11,6 +11,7 @@ javacOptions := Seq("-encoding", "UTF-8", "-g", "-Xlint:all", "-source", "1.7", 
 javaHome := Some(file(sys.props("java.home"))).map(d => if (d.name == "jre" && ! (d.getParentFile / "bin" * "javac*").get.isEmpty) d.getParentFile else d)
 scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-target:jvm-1.7")
 scalacOptions in Test += "-Yrangepos"
+testOptions in Test += Tests.Argument("exclude", "slow")
 
 updateOptions ~= (_ withCachedResolution true)
 resolvers += "bintray" at "http://dl.bintray.com/scalaz/releases"

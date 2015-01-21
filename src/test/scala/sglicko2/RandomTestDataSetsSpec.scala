@@ -40,6 +40,8 @@ s2"""
   The ranking list of a leaderboard contains no duplicates. $ex2
   Rating 100000 players over 100 rating periods with 10000 games each should not blow up the heap or the stack (as configured for the forked test VM). $ex3
   Rating 100000 players over 10000 rating periods with 100 games each should not blow up the heap or the stack (as configured for the forked test VM). $ex4
+  Rating 100000 players over 100 rating periods with 10000 games each should not blow up the heap or the stack (as configured for the forked test VM). $ex3 ${tag("slow")}
+  Rating 100000 players over 10000 rating periods with 100 games each should not blow up the heap or the stack (as configured for the forked test VM). $ex4 ${tag("slow")}
 """
 
   import Generators._
