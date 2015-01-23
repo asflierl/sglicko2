@@ -22,9 +22,9 @@ object Example extends App {
   val glicko2 = new Glicko2[Symbol, EitherOnePlayerWinsOrItsADraw]
 
   val ratingPeriod = glicko2.newRatingPeriod.withGames(
-    ('Anna, 'Becky, Player1Wins),
-    ('Anna, 'Chas, Player1Wins),
-    ('Anna, 'Dave, Player1Wins),
+    ('Abby, 'Becky, Player1Wins),
+    ('Abby, 'Chas, Player1Wins),
+    ('Abby, 'Dave, Player1Wins),
     ('Becky, 'Chas, Player2Wins),
     ('Becky, 'Dave, Draw),
     ('Chas, 'Dave, Player2Wins))
