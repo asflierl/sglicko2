@@ -20,6 +20,7 @@ licenses += ("ISC", url("http://opensource.org/licenses/ISC"))
 bintray.Keys.packageLabels in bintray.Keys.bintray := Seq("glicko 2", "scala", "rating")
 
 updateOptions ~= (_ withCachedResolution true)
+resolvers += "bintray" at "http://dl.bintray.com/scalaz/releases"
 libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "2.4.15" % Test)
 libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.12.1" % Test,
