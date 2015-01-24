@@ -19,6 +19,6 @@ package object sglicko2 {
   private[sglicko2] final val ε = 0.000001d
 
   private[sglicko2] implicit class DoubleOps(val n: Double) extends AnyVal {
-    @inline def `²`: Double = n * n
+    def `²`: Double = n * n
   }
 }
