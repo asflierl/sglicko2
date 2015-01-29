@@ -12,7 +12,7 @@ testOptions in Test += Tests.Argument("exclude", "slow")
 
 bintraySettings
 licenses += ("ISC", url("http://opensource.org/licenses/ISC"))
-bintray.Keys.packageLabels in bintray.Keys.bintray := Seq("glicko 2", "scala", "rating")
+bintray.Keys.packageLabels in bintray.Keys.bintray := Seq("Glicko-2", "Scala", "rating")
 
 updateOptions ~= (_ withCachedResolution true)
 resolvers += "bintray" at "http://dl.bintray.com/scalaz/releases"
