@@ -32,10 +32,15 @@ case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainst
   }
 
   def withGames(gamesToAdd: (A, A, B)*): RatingPeriod[A, B] = {
-    val mm = HashMap.empty[A, ListBuffer[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(ListBuffer.empty)
+    val mm = new HashMap[A, ListBuffer[ScoreAgainstAnotherPlayer[A]]]() {
+      override protected def initialSize = 262144
+    }.withDefaultValue(null)
 
     games.foreach {
-      case (k, v) => mm.put(k, mm(k) ++ v)
+      case (k, v) =>
+        val g = mm(k)
+        if (g eq null) mm.put(k, v.to[ListBuffer])
+        else g ++= v
     }
 
     gamesToAdd.foreach {
@@ -43,17 +48,20 @@ case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainst
         require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
 
         val score = rules.scoreForTwoPlayers(outcome)
-
         val outcome1 = ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1)
-        if (! mm.contains(player1)) mm.put(player1, ListBuffer(outcome1))
-        else mm(player1).append(outcome1)
-
         val outcome2 = ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2)
-        if (! mm.contains(player2)) mm.put(player2, ListBuffer(outcome2))
-        else mm(player2).append(outcome2)
+
+        val g1 = mm(player1)
+        val g2 = mm(player2)
+
+        if (g1 eq null) mm.put(player1, ListBuffer(outcome1))
+        else g1 += outcome1
+
+        if (g2 eq null) mm.put(player2, ListBuffer(outcome2))
+        else g2 += outcome2
     }
 
-    val newGames = mm.mapValues(_ toList).toMap
+    val newGames: Map[A, List[ScoreAgainstAnotherPlayer[A]]] = mm.mapValues(_ toList).toMap
 
     copy(games = newGames)
   }

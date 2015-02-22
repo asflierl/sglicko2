@@ -28,9 +28,8 @@ class RandomTestDataSetsSpec extends Specification with ScalaCheck { def is =
 s2"""
   The number of players on the leaderboard is less than or equal to the number of player IDs. $ex1
   The ranking list of a leaderboard contains no duplicates. $ex2
-  Rating 100000 players over 100 rating periods with 10000 games each should not blow up the heap or the stack (as configured for the forked test VM). $ex3 ${tag("slow")}
-  Rating 100000 players over 10000 rating periods with 100 games each should not blow up the heap or the stack (as configured for the forked test VM). $ex4 ${tag("slow")}
-  Adding games to a rating period via repeating 'withGame' is equivalent to using 'withGames' once. $ex5
+  Adding games to a rating period via repeating 'withGame' is equivalent to using 'withGames' once with the same but aggregated input data. $ex3
+  Adding games to a rating period via repeating 'withGames' is equivalent to using 'withGames' once with the same but aggregated input data. $ex4
 """
 
   import Generators._
@@ -43,20 +42,22 @@ s2"""
     leaderboard.playersInRankOrder.distinct should beEqualTo(leaderboard.playersInRankOrder)
   }
 
-  def ex3 = {
-    genGlicko2System.flatMap(g => genLeaderboard(Config(g, newIDs(100000), 100, 100, 10000, 10000))).sample.get should not(throwAn[Error])
-  }
-
-  def ex4 = {
-    genGlicko2System.flatMap(g => genLeaderboard(Config(g, newIDs(100000), 10000, 10000, 100, 100))).sample.get should not(throwAn[Error])
-  }
-
-  def ex5 = forAll(listOfN(1000, genGame(newIDs(1000)))) { g =>
+  def ex3 = forAll(listOfN(1000, genGame(newIDs(1000)))) { g =>
     val glicko2 = new G
     val empty = glicko2.newRatingPeriod
 
     val method1 = empty.withGames(g:_*)
     val method2 = g.foldLeft(empty)((akku, el) => akku.withGame(el _1, el _2, el _3))
+
+    method1.games.mapValues(_ toSet) should beEqualTo(method2.games.mapValues(_ toSet))
+  }
+
+  def ex4 = forAll(listOfN(1000, genGame(newIDs(1000)))) { g =>
+    val glicko2 = new G
+    val empty = glicko2.newRatingPeriod
+
+    val method1 = empty.withGames(g:_*)
+    val method2 = g.sliding(100, 100).toSeq.foldLeft(empty)((akku, el) => akku.withGames(el:_*))
 
     method1.games.mapValues(_ toSet) should beEqualTo(method2.games.mapValues(_ toSet))
   }

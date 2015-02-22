@@ -36,17 +36,17 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) {
   def newPlayer(id: A): Player[A] = Player(id)
 
   def updatedLeaderboard(currentLeaderboard: Leaderboard[A], ratingPeriod: RatingPeriod[A, B]): Leaderboard[A] = {
-    val competingPlayers: Vector[Player[A]] = ratingPeriod.games.map {
+    val competingPlayers = ratingPeriod.games.toStream.par.map {
       case (id, matchResults) =>
         updatedRatingAndDeviationAndVolatility(id, matchResults, currentLeaderboard)
-    }(breakOut)
+    }
 
-    val notCompetingPlayers: Vector[Player[A]] =
-      currentLeaderboard.playersByIdInNoParticularOrder.keys.toVector
+    val notCompetingPlayers =
+      currentLeaderboard.playersByIdInNoParticularOrder.keys.toStream.par
                         .filterNot(ratingPeriod.games.contains)
                         .flatMap(id => updatedDeviation(id, currentLeaderboard))
 
-    currentLeaderboard.updatedWith(competingPlayers ++ notCompetingPlayers)
+    currentLeaderboard.updatedWith((competingPlayers ++ notCompetingPlayers)(breakOut))
   }
 
   private def updatedRatingAndDeviationAndVolatility(playerID: A, matchResults: List[ScoreAgainstAnotherPlayer[A]], leaderboard: Leaderboard[A]): Player[A] = {
