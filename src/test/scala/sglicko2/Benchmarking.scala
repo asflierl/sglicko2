@@ -17,7 +17,6 @@
 package sglicko2
 
 import org.scalameter.api._
-import spire.syntax.cfor._
 
 import EitherOnePlayerWinsOrItsADraw._
 

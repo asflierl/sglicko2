@@ -18,7 +18,6 @@ package sglicko2
 
 import org.specs2._
 import org.specs2.matcher.Matcher
-import org.specs2.specification.SpecPart
 
 class BattleshipsExampleSpec extends Specification { def is =
 s2"""
