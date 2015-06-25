@@ -17,6 +17,7 @@
 package sglicko2
 
 import org.scalameter.api._
+import org.scalameter.picklers.noPickler._
 
 import EitherOnePlayerWinsOrItsADraw._
 
