@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>sglicko2 – Glicko-2 for Scala by asflierl</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">sglicko2 – Glicko-2 for Scala</h1>
+      <h2 class="project-tagline">A small, simple and self-contained implementation of the Glicko-2 rating algorithm in Scala that also helps the user with maintaining a leaderboard and allows for custom scoring rules.</h2>
+      <a href="https://github.com/asflierl/sglicko2" class="btn">View on GitHub</a>
+      <a href="https://github.com/asflierl/sglicko2/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/asflierl/sglicko2/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="sglicko2---" class="anchor" href="#sglicko2---" aria-hidden="true"><span class="octicon octicon-link"></span></a>sglicko2 <a href="https://travis-ci.org/asflierl/sglicko2"><img src="https://travis-ci.org/asflierl/sglicko2.svg?branch=master" alt="Build Status"></a> <a href="https://bintray.com/asflierl/maven/sglicko2/_latestVersion/"><img src="https://api.bintray.com/packages/asflierl/maven/sglicko2/images/download.svg" alt="Download"></a> <a href="https://bintray.com/asflierl/maven/sglicko2/view?source=watch"><img src="https://www.bintray.com/docs/images/bintray_badge_color.png" alt="Get automatic notifications about new versions of sglicko2"></a>
+</h1>
+
+<p>A small, simple &amp; self-contained implementation of the <a href="http://www.glicko.net/glicko">Glicko-2 rating algorithm</a> in Scala that also helps the user with maintaining a leaderboard and allows for custom scoring rules.</p>
+
+<h3>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h3>
+
+<p>Version 1.2 is currently available for Scala 2.10 and 2.11. To use it in your <a href="http://scala-sbt.org">SBT</a> project, add the following to your build definition:</p>
+
+<div class="highlight highlight-scala"><pre>resolvers <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>jcenter<span class="pl-pds">"</span></span> at <span class="pl-s"><span class="pl-pds">"</span>http://jcenter.bintray.com<span class="pl-pds">"</span></span>
+libraryDependencies <span class="pl-k">+</span><span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>sglicko2<span class="pl-pds">"</span></span> <span class="pl-k">%%</span> <span class="pl-s"><span class="pl-pds">"</span>sglicko2<span class="pl-pds">"</span></span> <span class="pl-k">%</span> <span class="pl-s"><span class="pl-pds">"</span>1.2<span class="pl-pds">"</span></span></pre></div>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>Here's a simple, runnable example on how the library can be used:</p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">import</span> <span class="pl-v">sglicko2.</span><span class="pl-v">_, </span><span class="pl-v">EitherOnePlayerWinsOrItsADraw.</span><span class="pl-v">_</span>
+
+<span class="pl-k">object</span> <span class="pl-en">Example</span> <span class="pl-k">extends</span> <span class="pl-e">App</span> {
+  <span class="pl-k">val</span> <span class="pl-en">glicko2</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Glicko2</span>[<span class="pl-k">Symbol</span>, <span class="pl-en">EitherOnePlayerWinsOrItsADraw</span>]
+
+  <span class="pl-k">val</span> <span class="pl-en">ratingPeriod</span> <span class="pl-k">=</span> glicko2.newRatingPeriod.withGames(
+    (<span class="pl-en">'Abby</span>, <span class="pl-en">'Becky</span>, <span class="pl-en">Player1Wins</span>),
+    (<span class="pl-en">'Abby</span>, <span class="pl-en">'Chas</span>, <span class="pl-en">Player1Wins</span>),
+    (<span class="pl-en">'Abby</span>, <span class="pl-en">'Dave</span>, <span class="pl-en">Player1Wins</span>),
+    (<span class="pl-en">'Becky</span>, <span class="pl-en">'Chas</span>, <span class="pl-en">Player2Wins</span>),
+    (<span class="pl-en">'Becky</span>, <span class="pl-en">'Dave</span>, <span class="pl-en">Draw</span>),
+    (<span class="pl-en">'Chas</span>, <span class="pl-en">'Dave</span>, <span class="pl-en">Player2Wins</span>))
+
+  <span class="pl-k">val</span> <span class="pl-en">leaderboard</span> <span class="pl-k">=</span> glicko2.updatedLeaderboard(glicko2.newLeaderboard, ratingPeriod)
+
+  leaderboard.rankedPlayers foreach println
+}</pre></div>
+
+<p>You can find more example code in the test sources. The main sources should be very easy to understand, too, so don't hesitate to look at those if you have questions.</p>
+
+<p>Also, if you use this library, I'd love to hear from you. Thanks &lt;3</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/asflierl/sglicko2">sglicko2 – Glicko-2 for Scala</a> is maintained by <a href="https://github.com/asflierl">asflierl</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
