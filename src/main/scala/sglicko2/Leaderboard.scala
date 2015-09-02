@@ -18,7 +18,7 @@ package sglicko2
 
 import scala.collection.breakOut
 
-class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[A]]) {
+class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[A]]) extends Serializable {
   lazy val idsByRank: Vector[Set[A]] = playersByIdInNoParticularOrder.values.groupBy(_ rating).toVector.sortBy(e => - e._1).map { case (_, ps) => ps.map(_ id)(breakOut): Set[A] }
   lazy val rankedPlayers: Vector[RankedPlayer[A]] = idsByRank.zipWithIndex.flatMap { case (ids, idx) => ids.map(id => RankedPlayer(idx + 1, playersByIdInNoParticularOrder(id))) }
   lazy val playersInRankOrder: Vector[Player[A]] = idsByRank.flatMap(_ map playersByIdInNoParticularOrder)

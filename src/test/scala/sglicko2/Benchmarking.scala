@@ -17,11 +17,13 @@
 package sglicko2
 
 import org.scalameter.api._
-import org.scalameter.picklers.noPickler._
+import org.scalameter.picklers.Implicits._
 
 import EitherOnePlayerWinsOrItsADraw._
 
-class Benchmarking extends PerformanceTest.Quickbenchmark {
+class Benchmarking extends Bench.OnlineRegressionReport {
+  override def persistor = new JSONSerializationPersistor
+
   val system = new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
   import system._
 
@@ -41,7 +43,7 @@ class Benchmarking extends PerformanceTest.Quickbenchmark {
     }
   }
 
-  lazy val numPlayers: Gen[Int] = Gen.enumeration("number of players")(100, 1000, 10000, 100000)
+  lazy val numPlayers = Gen.enumeration("number of players")(Stream.from(0).map(n => 100d * math.pow(1.5d, n.toDouble)).takeWhile(_ < 100000d).map(_.toInt):_*)
   lazy val numGamesPerPlayer = 35
   lazy val ratingPeriod: Gen[RatingPeriod[String, EitherOnePlayerWinsOrItsADraw]] = games.map(g => newRatingPeriod.withGames(g:_*)).cached
 
