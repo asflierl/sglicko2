@@ -14,19 +14,14 @@ scalacOptions in Test += "-Yrangepos"
 
 configs(Benchmark)
 inConfig(Benchmark)(Defaults.testTasks)
-testFrameworks in Benchmark += ScalaMeter
-testFrameworks in Benchmark -= TestFrameworks.Specs2
+testFrameworks in Benchmark := ((testFrameworks in Benchmark).value :+ ScalaMeter filterNot (TestFrameworks.Specs2.==))
 testOptions in Benchmark += Tests.Argument(ScalaMeter, "-CresultDir", baseDirectory.value / "benchmark" absolutePath)
-javaOptions in Benchmark := Seq("-server", "-Xmx4g", "-Xss1m")
-fork in Benchmark := true
 parallelExecution in Benchmark := false
 
 licenses += ("ISC", url("http://opensource.org/licenses/ISC"))
 bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
 
 updateOptions ~= (_ withCachedResolution true)
-resolvers += "bintray" at "http://dl.bintray.com/scalaz/releases"
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "3.6.4" % Test)
 libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.12.4" % Test,
