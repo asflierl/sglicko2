@@ -1,6 +1,6 @@
 name := "sglicko2"
 organization := "sglicko2"
-version := "1.2"
+version := "1.3"
 
 logBuffered := false
 
