@@ -8,7 +8,7 @@ Version 1.3 is currently available for Scala 2.10, 2.11 and 2.12.0-M3. To use it
 
 ```scala
 resolvers += "jcenter" at "http://jcenter.bintray.com"
-libraryDependencies += "sglicko2" %% "sglicko2" % "1.2"
+libraryDependencies += "sglicko2" %% "sglicko2" % "1.3"
 ```
 
 ### Usage
