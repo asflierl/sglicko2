@@ -1,5 +1,7 @@
 # sglicko2 [![Build Status](https://travis-ci.org/asflierl/sglicko2.svg?branch=master)](https://travis-ci.org/asflierl/sglicko2) [![Download](https://api.bintray.com/packages/asflierl/maven/sglicko2/images/download.svg)](https://bintray.com/asflierl/maven/sglicko2/_latestVersion/) [![Get automatic notifications about new versions of sglicko2](https://www.bintray.com/docs/images/bintray_badge_color.png)](https://bintray.com/asflierl/maven/sglicko2/view?source=watch)
 
+[![Join the chat at https://gitter.im/asflierl/sglicko2](https://badges.gitter.im/asflierl/sglicko2.svg)](https://gitter.im/asflierl/sglicko2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A small, simple & self-contained implementation of the [Glicko-2 rating algorithm](http://www.glicko.net/glicko.html) in Scala that also helps the user with maintaining a leaderboard and allows for custom scoring rules.
 
 ### Setup
