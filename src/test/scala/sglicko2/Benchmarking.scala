@@ -13,7 +13,7 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-
+/*
 package sglicko2
 
 import org.scalameter.api._
@@ -60,3 +60,4 @@ class Benchmarking extends Bench.OnlineRegressionReport {
 
   def id(n: Int) = s"player$n"
 }
+*/
