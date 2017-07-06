@@ -8,7 +8,7 @@ Version 1.4 is currently available for Scala 2.11 and 2.12. The last version to 
 
 ```scala
 resolvers += "jcenter" at "http://jcenter.bintray.com"
-libraryDependencies += "sglicko2" %% "sglicko2" % "1.3"
+libraryDependencies += "sglicko2" %% "sglicko2" % "1.4"
 ```
 
 ### Usage
