@@ -27,7 +27,7 @@ inThisBuild(Seq(
 
 val sglicko2 = project.in(file("."))
 
-version := "1.4"
+version := "1.5"
 
 crossScalaVersions := Seq("2.11.11", scalaVersion.value)
 
@@ -56,4 +56,4 @@ val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
   headerLicense := (headerLicense in ThisBuild).value)
 
-addCommandAlias("benchmark", ";benchmark/jmh:run -rf json -rff target/results.json -o target/results.txt;benchmark/runMain sglicko2.benchmark.EvaluateBenchmarkResults")
+addCommandAlias("runBenchmarks", ";benchmark/jmh:run -rf json -rff target/results.json -o target/results.txt;benchmark/runMain sglicko2.benchmark.EvaluateBenchmarkResults")

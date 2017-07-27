@@ -16,7 +16,8 @@
 
 package sglicko2
 
-import scala.collection.mutable.{HashMap, ListBuffer}
+import scala.collection.mutable.{LinkedHashMap, ListBuffer}
+import scala.math._
 
 case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainstAnotherPlayer[A]]] =
     Map.empty[A, List[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(Nil))(implicit rules: ScoringRules[B]) {
@@ -32,8 +33,8 @@ case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainst
   }
 
   def withGames(gamesToAdd: (A, A, B)*): RatingPeriod[A, B] = {
-    val mm = new HashMap[A, ListBuffer[ScoreAgainstAnotherPlayer[A]]]() {
-      override protected def initialSize = 262144
+    val mm = new LinkedHashMap[A, ListBuffer[ScoreAgainstAnotherPlayer[A]]]() {
+      override protected def initialSize = math.max(1 << (log(gamesToAdd.size) / log(2)).toInt, 256)
     }.withDefaultValue(null)
 
     games.foreach {

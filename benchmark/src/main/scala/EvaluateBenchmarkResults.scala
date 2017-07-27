@@ -27,7 +27,7 @@ import spire.math._
 
 object EvaluateBenchmarkResults {
   def main(args: Array[String]): Unit = {
-    val referenceResults = groups(results(Paths.get(getClass.getResource("/results-v1.4.json").toURI)))
+    val referenceResults = groups(results(Paths.get(getClass.getResource("/results-v1.5.json").toURI)))
     val newResults = groups(results(Paths.get("target", "results.json")))
 
     println("Benchmark results:")

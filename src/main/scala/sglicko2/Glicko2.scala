@@ -17,7 +17,6 @@
 package sglicko2
 
 import scala.math.{abs, exp, sqrt, log => ln, Pi => π}
-import scala.collection.breakOut
 
 // implements the (public domain) Glicko 2 algorithm; see http://www.glicko.net/glicko.html for further details
 class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
@@ -33,17 +32,17 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
   def newPlayer(id: A): Player[A] = Player(id)
 
   def updatedLeaderboard(currentLeaderboard: Leaderboard[A], ratingPeriod: RatingPeriod[A, B]): Leaderboard[A] = {
-    val competingPlayers = ratingPeriod.games.toStream.par.map {
+    val competingPlayers = ratingPeriod.games.iterator.map {
       case (id, matchResults) =>
         updatedRatingAndDeviationAndVolatility(id, matchResults, currentLeaderboard)
     }
 
     val notCompetingPlayers =
-      currentLeaderboard.playersByIdInNoParticularOrder.keys.toStream.par
+      currentLeaderboard.playersByIdInNoParticularOrder.keysIterator
                         .filterNot(ratingPeriod.games.contains)
                         .flatMap(id => updatedDeviation(id, currentLeaderboard))
 
-    currentLeaderboard.updatedWith((competingPlayers ++ notCompetingPlayers)(breakOut))
+    currentLeaderboard.updatedWith(competingPlayers ++ notCompetingPlayers)
   }
 
   private def updatedRatingAndDeviationAndVolatility(playerID: A, matchResults: List[ScoreAgainstAnotherPlayer[A]], leaderboard: Leaderboard[A]): Player[A] = {
