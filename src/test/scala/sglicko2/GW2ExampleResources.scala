@@ -16,27 +16,26 @@
 
 package sglicko2
 
+import java.nio.charset.StandardCharsets.UTF_8
+import java.nio.file.Files.readAllLines
+import java.nio.file.Paths.{get => path}
+
+import scala.collection.JavaConverters._
 import scala.math.{sin, Pi => π}
-import scala.io.Codec.UTF8
-import scala.io.Source
-import resource.managed
 
 object GW2ExampleResources {
   def leaderboardFromResource(name: String): Leaderboard[WorldID] =
-    managed(Source.fromURL(getClass.getClassLoader.getResource(name))(UTF8)).acquireAndGet { file =>
-      Leaderboard.fromPlayers(file.getLines.toStream.map {
+    Leaderboard.fromPlayers(
+      readAllLines(path(getClass.getClassLoader.getResource(name).toURI), UTF_8).asScala.toStream.map {
         case WorldExtractor(n, r, d, v) => Player(WorldID(n trim), r toDouble, d toDouble, v toDouble)
       })
-    }
 
   private val WorldExtractor = "\\d+\\s+([a-zA-Z ']+)(?: \\[(?:DE|FR|SP)\\])?\\s+([0-9.]+)\\s+([0-9.]+)\\s+([0-9.]+).+".r
 
   def outcomesFromResource(name: String): Vector[Outcome] =
-    managed(Source.fromURL(getClass.getClassLoader.getResource(name))(UTF8)).acquireAndGet { file =>
-      file.getLines.drop(3).toVector.sliding(6, 9).map { l =>
-        Outcome(participant(l(0), l(3)), participant(l(1), l(4)), participant(l(2), l(5)))
-      }.toVector
-    }
+    readAllLines(path(getClass.getClassLoader.getResource(name).toURI), UTF_8).asScala.iterator.drop(3).sliding(6, 9).map { l =>
+      Outcome(participant(l(0), l(3)), participant(l(1), l(4)), participant(l(2), l(5)))
+    }.toVector
 
   case class WorldID(name: String)
 

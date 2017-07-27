@@ -1,40 +1,59 @@
-name := "sglicko2"
-organization := "sglicko2"
+inThisBuild(Seq(
+  organization := "sglicko2",
+  scalaVersion := "2.12.2",
+  scalacOptions := {
+    val common = Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import")
+
+    common ++ {
+      if (scalaVersion.value startsWith "2.12.") Seq("-opt:l:project", "-target:jvm-1.8")
+      else Seq("-target:jvm-1.7")
+    }
+  },
+  licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
+  headerLicense := Some(HeaderLicense.Custom(
+    """|Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
+       |
+       |Permission to use, copy, modify, and/or distribute this software for any
+       |purpose with or without fee is hereby granted, provided that the above
+       |copyright notice and this permission notice appear in all copies.
+       |
+       |THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+       |WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+       |MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+       |ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+       |WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+       |ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+       |OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.""".stripMargin))))
+
+val sglicko2 = project.in(file("."))
+
 version := "1.4"
 
+crossScalaVersions := Seq("2.11.11", scalaVersion.value)
+
 logBuffered := false
-
-scalaVersion := "2.12.1"
-crossScalaVersions := Seq("2.11.8", "2.12.1")
-scalacOptions := {
-  val common = Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8")
-
-  common ++ {
-    if (scalaVersion.value startsWith "2.12.") Seq("-opt:l:classpath", "-target:jvm-1.8", "-Ywarn-unused-import")
-    else Seq("-target:jvm-1.7", "-Ywarn-unused-import")
-  }
-}
-
 fork in Test := true
 javaOptions in Test := Seq("-server", "-Xmx4g", "-Xss1m")
 scalacOptions in Test += "-Yrangepos"
 
-//configs(Benchmark)
-//inConfig(Benchmark)(Defaults.testTasks)
-//testFrameworks in Benchmark := ((testFrameworks in Benchmark).value :+ ScalaMeter filterNot (TestFrameworks.Specs2.==))
-//testOptions in Benchmark += Tests.Argument(ScalaMeter, "-CresultDir", baseDirectory.value / "benchmark" absolutePath)
-//parallelExecution in Benchmark := false
-
-licenses += ("ISC", url("http://opensource.org/licenses/ISC"))
 bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
 
 updateOptions ~= (_ withCachedResolution true)
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "3.8.6" % Test)
-libraryDependencies ++= Seq(
-  "org.scalacheck" %% "scalacheck" % "1.13.4" % Test,
-//  "com.storm-enroute" %% "scalameter" % "0.7" % Test,
-  "com.jsuereth" %% "scala-arm" % "2.0" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "3.9.2" % Test)
+libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.13.4" % Test)
 
-//lazy val Benchmark = config("benchmark").extend(Test).hide
-//lazy val ScalaMeter = new TestFramework("org.scalameter.ScalaMeterFramework")
+headerLicense := (headerLicense in ThisBuild).value
+
+val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
+  fork := true,
+  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xmx4g", "-Xss1m"),
+  libraryDependencies ++= Seq(
+    "org.typelevel" %% "spire"         % "0.14.1",
+    "io.circe"      %% "circe-core"    % "0.8.0",
+    "io.circe"      %% "circe-generic" % "0.8.0",
+    "io.circe"      %% "circe-parser"  % "0.8.0"),
+  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+  headerLicense := (headerLicense in ThisBuild).value)
+
+addCommandAlias("benchmark", ";benchmark/jmh:run -rf json -rff target/results.json -o target/results.txt;benchmark/runMain sglicko2.benchmark.EvaluateBenchmarkResults")

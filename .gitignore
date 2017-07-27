@@ -1,15 +1,4 @@
-*.class
-*.log
-
-# sbt specific
-.cache/
-.history/
-.lib/
-dist/*
 target/
-benchmark/
-lib_managed/
-src_managed/
 project/target/
 project/boot/
 project/plugins/project/
