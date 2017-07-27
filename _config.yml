@@ -1,0 +1,8 @@
+title: sglicko2 – Glicko-2 for Scala
+description: A small, simple and self-contained implementation of the Glicko-2 rating algorithm in Scala that also helps the user with maintaining a leaderboard and allows for custom scoring rules.
+google_analytics: UA-66503444-1
+show_downloads: true
+theme: jekyll-theme-modernist
+
+gems:
+  - jekyll-mentions
