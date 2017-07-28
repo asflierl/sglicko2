@@ -1,14 +1,6 @@
 inThisBuild(Seq(
   organization := "sglicko2",
-  scalaVersion := "2.12.2",
-  scalacOptions := {
-    val common = Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import")
-
-    common ++ {
-      if (scalaVersion.value startsWith "2.12.") Seq("-opt:l:project", "-target:jvm-1.8")
-      else Seq("-target:jvm-1.7")
-    }
-  },
+  scalaVersion := "2.12.3",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
@@ -34,6 +26,14 @@ crossScalaVersions := Seq("2.11.11", scalaVersion.value)
 logBuffered := false
 fork in Test := true
 javaOptions in Test := Seq("-server", "-Xmx4g", "-Xss1m")
+scalacOptions := {
+  val common = Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import")
+
+  common ++ {
+    if (scalaVersion.value startsWith "2.12.") Seq("-opt:l:inline", "-opt-inline-from:sglicko2.**", "-Yopt-log-inline", "_", "-target:jvm-1.8")
+    else Seq("-target:jvm-1.7")
+  }
+}
 scalacOptions in Test += "-Yrangepos"
 
 bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
@@ -47,6 +47,7 @@ headerLicense := (headerLicense in ThisBuild).value
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   fork := true,
+  scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import", "-target:jvm-1.8"),
   javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xmx4g", "-Xss1m"),
   libraryDependencies ++= Seq(
     "org.typelevel" %% "spire"         % "0.14.1",
