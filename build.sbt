@@ -19,7 +19,7 @@ inThisBuild(Seq(
 
 val sglicko2 = project.in(file("."))
 
-version := "1.5"
+version := "1.6"
 
 crossScalaVersions := Seq("2.11.11", scalaVersion.value)
 
@@ -40,7 +40,7 @@ bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
 
 updateOptions ~= (_ withCachedResolution true)
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "3.9.2" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "3.9.4" % Test)
 libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.13.4" % Test)
 
 headerLicense := (headerLicense in ThisBuild).value
