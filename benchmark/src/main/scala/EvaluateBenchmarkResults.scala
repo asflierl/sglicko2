@@ -16,7 +16,7 @@
 
 package sglicko2.benchmark
 
-import java.nio.charset.StandardCharsets
+import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files.readAllBytes
 import java.nio.file.{Path, Paths}
 
@@ -25,10 +25,12 @@ import io.circe.parser._
 import spire.implicits._
 import spire.math._
 
+import scala.collection.Iterator.continually
+
 object EvaluateBenchmarkResults {
   def main(args: Array[String]): Unit = {
-    val referenceResults = groups(results(Paths.get(getClass.getResource("/results-v1.5.json").toURI)))
-    val newResults = groups(results(Paths.get("target", "results.json")))
+    val referenceResults = groups(results(readResource("/results-v1.5.json")))
+    val newResults = groups(results(readPath(Paths.get("target", "results.json"))))
 
     println("Benchmark results:")
     newResults.valuesIterator.toVector.sortBy(_.name).foreach { group =>
@@ -48,13 +50,23 @@ object EvaluateBenchmarkResults {
     }
   }
 
-  def results(p: Path): Vector[BenchmarkResult] = decode[Vector[BenchmarkResult]](new String(readAllBytes(p), StandardCharsets.UTF_8)).toTry.get
-
   def groups(rs: Vector[BenchmarkResult]): Map[String, BenchmarkGroup] =
     rs.groupBy(_.groupName).map { case (k, v) =>
       val (baselines, others) = v.partition(_.benchmark endsWith ".baseline")
       k -> BenchmarkGroup(k, baselines.head, others.map(r => r.benchmark -> r).toMap)
     }
+
+  def results(s: String): Vector[BenchmarkResult] = decode[Vector[BenchmarkResult]](s).toTry.get
+
+  def readResource(r: String): String = {
+    val stream = getClass.getResourceAsStream(r)
+    try utf8String(continually(stream.read).takeWhile(-1 !=).map(_.toByte).toArray)
+    finally stream.close
+  }
+
+  def readPath(p: Path): String = utf8String(readAllBytes(p))
+
+  def utf8String(a: Array[Byte]): String = new String(a, UTF_8)
 }
 
 case class BenchmarkGroup(name: String, baseline: BenchmarkResult, others: Map[String, BenchmarkResult])
