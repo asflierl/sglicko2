@@ -29,7 +29,7 @@ import scala.collection.Iterator.continually
 
 object EvaluateBenchmarkResults {
   def main(args: Array[String]): Unit = {
-    val referenceResults = groups(results(readResource("/results-v1.5.json")))
+    val referenceResults = groups(results(readResource("/results-v1.5-jdk9.json")))
     val newResults = groups(results(readPath(Paths.get("target", "results.json"))))
 
     println("Benchmark results:")
@@ -83,4 +83,3 @@ case class BenchmarkResult(benchmark: String, primaryMetric: Metric, params: Opt
   val confidence = Interval(primaryMetric.scoreConfidence._1, primaryMetric.scoreConfidence._2)
 }
 case class Metric(score: Double, scoreConfidence: (Double, Double))
-

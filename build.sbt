@@ -48,7 +48,7 @@ headerLicense := (headerLicense in ThisBuild).value
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   fork := true,
   scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import", "-target:jvm-1.8"),
-  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xmx4g", "-Xss1m"),
+  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=250"),
   libraryDependencies ++= Seq(
     "org.typelevel" %% "spire"         % "0.14.1",
     "io.circe"      %% "circe-core"    % "0.8.0",
