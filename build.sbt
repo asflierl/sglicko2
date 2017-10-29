@@ -1,6 +1,6 @@
 inThisBuild(Seq(
   organization := "sglicko2",
-  scalaVersion := "2.12.3",
+  scalaVersion := "2.12.4",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
@@ -30,7 +30,7 @@ scalacOptions := {
   val common = Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import")
 
   common ++ {
-    if (scalaVersion.value startsWith "2.12.") Seq("-opt:l:inline", "-opt-inline-from:sglicko2.**", "-Yopt-log-inline", "_", "-target:jvm-1.8")
+    if (scalaVersion.value startsWith "2.12.") Seq("-opt:l:inline", "-opt-inline-from:sglicko2.**", "-opt-warnings:_", "-Yopt-log-inline", "_", "-target:jvm-1.8")
     else Seq("-target:jvm-1.7")
   }
 }
