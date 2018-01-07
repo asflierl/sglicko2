@@ -20,12 +20,13 @@ inThisBuild(Seq(
 val sglicko2 = project.in(file("."))
 
 version := "1.6"
-
 crossScalaVersions := Seq("2.11.11", scalaVersion.value)
 
+bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
+headerLicense := (ThisBuild / headerLicense).value
+
+updateOptions ~= (_ withCachedResolution true)
 logBuffered := false
-fork in Test := true
-javaOptions in Test := Seq("-server", "-Xmx4g", "-Xss1m")
 scalacOptions := {
   val common = Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import")
 
@@ -34,17 +35,14 @@ scalacOptions := {
     else Seq("-target:jvm-1.7")
   }
 }
-scalacOptions in Test += "-Yrangepos"
-testOptions in Test += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc")
 
-bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
-
-updateOptions ~= (_ withCachedResolution true)
+Test / fork := true
+Test / javaOptions := Seq("-server", "-Xmx4g", "-Xss1m")
+Test / scalacOptions += "-Yrangepos"
+Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc")
 
 libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.0.2" % Test)
 libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.13.4" % Test)
-
-headerLicense := (headerLicense in ThisBuild).value
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   fork := true,
@@ -56,6 +54,6 @@ val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
     "io.circe"      %% "circe-generic" % "0.8.0",
     "io.circe"      %% "circe-parser"  % "0.8.0"),
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
-  headerLicense := (headerLicense in ThisBuild).value)
+  headerLicense := (ThisBuild / headerLicense).value)
 
 addCommandAlias("runBenchmarks", ";benchmark/jmh:run -rf json -rff target/results.json -o target/results.txt;benchmark/runMain sglicko2.benchmark.EvaluateBenchmarkResults")

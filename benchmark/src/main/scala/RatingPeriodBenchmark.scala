@@ -52,5 +52,3 @@ class RatingPeriodBenchmark {
   @Benchmark
   def createRatingPeriod: RatingPeriod[String, EitherOnePlayerWinsOrItsADraw] = system.newRatingPeriod.withGames(games:_*)
 }
-
-

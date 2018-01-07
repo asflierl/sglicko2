@@ -16,6 +16,7 @@
 
 package sglicko2.benchmark
 
+import sglicko2.EitherOnePlayerWinsOrItsADraw
 import sglicko2.EitherOnePlayerWinsOrItsADraw.{Draw, Player1Wins, Player2Wins}
 
 import scala.util.hashing.MurmurHash3.mix
@@ -28,7 +29,7 @@ class Generator(numberOfPlayers: Int) {
   val oneWins = Set(0, 3, 4)
   val twoWins = Set(1, 2, 6)
 
-  lazy val gameStream = endlessCombinations.zipWithIndex.map {
+  lazy val gameStream: Iterator[(String, String, EitherOnePlayerWinsOrItsADraw)] = endlessCombinations.zipWithIndex.map {
     case ((p1, p2), i) =>
       val d = i % 7
       (p1, p2, if (oneWins(d)) Player1Wins else if (twoWins(d)) Player2Wins else Draw)
