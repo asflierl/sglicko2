@@ -1,6 +1,6 @@
 inThisBuild(Seq(
   organization := "sglicko2",
-  scalaVersion := "2.12.4",
+  scalaVersion := "2.12.5",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
@@ -20,7 +20,7 @@ inThisBuild(Seq(
 val sglicko2 = project.in(file("."))
 
 version := "1.6"
-crossScalaVersions := Seq("2.11.11", scalaVersion.value)
+crossScalaVersions := Seq("2.11.12", scalaVersion.value)
 
 bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
 headerLicense := (ThisBuild / headerLicense).value
@@ -41,7 +41,7 @@ Test / javaOptions := Seq("-server", "-Xmx4g", "-Xss1m")
 Test / scalacOptions += "-Yrangepos"
 Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc")
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.0.2" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.0.3" % Test)
 libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.13.4" % Test)
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
@@ -49,10 +49,10 @@ val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import", "-target:jvm-1.8"),
   javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=250"),
   libraryDependencies ++= Seq(
-    "org.typelevel" %% "spire"         % "0.14.1",
-    "io.circe"      %% "circe-core"    % "0.8.0",
-    "io.circe"      %% "circe-generic" % "0.8.0",
-    "io.circe"      %% "circe-parser"  % "0.8.0"),
+    "org.typelevel" %% "spire"         % "0.15.0",
+    "io.circe"      %% "circe-core"    % "0.9.3",
+    "io.circe"      %% "circe-generic" % "0.9.3",
+    "io.circe"      %% "circe-parser"  % "0.9.3"),
   addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
   headerLicense := (ThisBuild / headerLicense).value)
 
