@@ -1,6 +1,6 @@
 inThisBuild(Seq(
   organization := "sglicko2",
-  scalaVersion := "2.12.5",
+  scalaVersion := "2.12.6",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
@@ -20,28 +20,21 @@ inThisBuild(Seq(
 val sglicko2 = project.in(file("."))
 
 version := "1.6"
-crossScalaVersions := Seq("2.11.12", scalaVersion.value)
 
 bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
 headerLicense := (ThisBuild / headerLicense).value
 
 updateOptions ~= (_ withCachedResolution true)
 logBuffered := false
-scalacOptions := {
-  val common = Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import")
-
-  common ++ {
-    if (scalaVersion.value startsWith "2.12.") Seq("-opt:l:inline", "-opt-inline-from:sglicko2.**", "-opt-warnings:_", "-Yopt-log-inline", "_", "-target:jvm-1.8")
-    else Seq("-target:jvm-1.7")
-  }
-}
+scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import",
+  "-opt:l:inline", "-opt-inline-from:sglicko2.**", "-opt-warnings:_", "-Yopt-log-inline", "_", "-target:jvm-1.8")
 
 Test / fork := true
 Test / javaOptions := Seq("-server", "-Xmx4g", "-Xss1m")
 Test / scalacOptions += "-Yrangepos"
 Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc")
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.0.3" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.1.0" % Test)
 libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.13.4" % Test)
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
