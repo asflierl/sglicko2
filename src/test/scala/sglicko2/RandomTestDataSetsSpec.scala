@@ -16,13 +16,13 @@
 
 package sglicko2
 
-import scala.collection.breakOut
-
+import org.scalacheck.Gen._
+import org.scalacheck.Prop.forAll
+import org.scalacheck._
 import org.specs2._
-import org.scalacheck._, Gen._, Prop.forAll
 import org.specs2.matcher.MatchResult
-
-import sglicko2.{EitherOnePlayerWinsOrItsADraw => S}, S._
+import sglicko2.EitherOnePlayerWinsOrItsADraw._
+import sglicko2.{EitherOnePlayerWinsOrItsADraw => S}
 
 class RandomTestDataSetsSpec extends Specification with ScalaCheck { def is =
 s2"""
@@ -39,7 +39,7 @@ s2"""
   }
 
   def ex2 = leaderboardProperty { case (config, leaderboard) =>
-    leaderboard.playersInRankOrder.distinct should beEqualTo(leaderboard.playersInRankOrder)
+    leaderboard.playersInRankOrder.distinct should_=== leaderboard.playersInRankOrder
   }
 
   def ex3 = forAll(listOfN(1000, genGame(newIDs(1000)))) { g =>
@@ -49,7 +49,7 @@ s2"""
     val method1 = empty.withGames(g:_*)
     val method2 = g.foldLeft(empty)((akku, el) => akku.withGame(el _1, el _2, el _3))
 
-    method1.games.mapValues(_ toSet) should beEqualTo(method2.games.mapValues(_ toSet))
+    method1.games.view.mapValues(_ toSet).toMap should_=== method2.games.view.mapValues(_ toSet).toMap
   }
 
   def ex4 = forAll(listOfN(1000, genGame(newIDs(1000)))) { g =>
@@ -59,9 +59,8 @@ s2"""
     val method1 = empty.withGames(g:_*)
     val method2 = g.sliding(100, 100).toSeq.foldLeft(empty)((akku, el) => akku.withGames(el:_*))
 
-    method1.games.mapValues(_ toSet) should beEqualTo(method2.games.mapValues(_ toSet))
+    method1.games.view.mapValues(_ toSet).toMap should_=== method2.games.view.mapValues(_ toSet).toMap
   }
-
   def leaderboardProperty[A](f: ((Config, Leaderboard[ID])) => MatchResult[A]) = prop(f)
 }
 
@@ -94,7 +93,7 @@ object Generators {
 
   lazy val genGlicko2System: Gen[G] = choose(0.3d, 1.2d) map (new Glicko2(_))
 
-  def newIDs(numberOfIDs: Int): Vector[ID] = (1 to numberOfIDs).map(n => ID(s"player #$n"))(breakOut)
+  def newIDs(numberOfIDs: Int): Vector[ID] = (1 to numberOfIDs).view.map(n => ID(s"player #$n")).toVector
 
   def genRatingPeriod(config: Config): Gen[RatingPeriod[ID, S]] =
     for {

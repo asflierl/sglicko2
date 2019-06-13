@@ -1,6 +1,6 @@
 inThisBuild(Seq(
   organization := "sglicko2",
-  scalaVersion := "2.12.6",
+  scalaVersion := "2.13.0",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
@@ -26,27 +26,24 @@ headerLicense := (ThisBuild / headerLicense).value
 
 updateOptions ~= (_ withCachedResolution true)
 logBuffered := false
-scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import",
-  "-opt:l:inline", "-opt-inline-from:sglicko2.**", "-opt-warnings:_", "-Yopt-log-inline", "_", "-target:jvm-1.8")
+scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8",
+  "-opt:l:inline", "-opt-inline-from:sglicko2.**", "-opt-warnings:_", "-target:jvm-1.8")
 
 Test / fork := true
 Test / javaOptions := Seq("-server", "-Xmx4g", "-Xss1m")
 Test / scalacOptions += "-Yrangepos"
 Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc")
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.1.0" % Test)
-libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.13.4" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.5.1" % Test)
+libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.0" % Test)
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   fork := true,
-  scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ywarn-unused-import", "-target:jvm-1.8"),
+  scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-target:jvm-1.8"),
   javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=250"),
   libraryDependencies ++= Seq(
-    "org.typelevel" %% "spire"         % "0.15.0",
-    "io.circe"      %% "circe-core"    % "0.9.3",
-    "io.circe"      %% "circe-generic" % "0.9.3",
-    "io.circe"      %% "circe-parser"  % "0.9.3"),
-  addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+    "org.json4s"    %% "json4s-native"    % "3.6.6",
+    "org.typelevel"  % "spire_2.13.0-RC1" % "0.16.2"),
   headerLicense := (ThisBuild / headerLicense).value)
 
 addCommandAlias("runBenchmarks", ";benchmark/jmh:run -rf json -rff target/results.json -o target/results.txt;benchmark/runMain sglicko2.benchmark.EvaluateBenchmarkResults")
