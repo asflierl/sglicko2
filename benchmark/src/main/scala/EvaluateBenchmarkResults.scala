@@ -20,16 +20,19 @@ import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files.readAllBytes
 import java.nio.file.{Path, Paths}
 
-import io.circe.generic.auto._
-import io.circe.parser._
+import org.json4s._
+import org.json4s.native.Serialization
+import org.json4s.native.Serialization.read
 import spire.implicits._
 import spire.math._
 
 import scala.collection.Iterator.continually
 
 object EvaluateBenchmarkResults {
+  implicit val formats = Serialization.formats(NoTypeHints)
+
   def main(args: Array[String]): Unit = {
-    val referenceResults = groups(results(readResource("/results-v1.5-jdk9.json")))
+    val referenceResults = groups(results(readResource("/results-v1.6-jdk11.json")))
     val newResults = groups(results(readPath(Paths.get("target", "results.json"))))
 
     println("Benchmark results:")
@@ -56,7 +59,7 @@ object EvaluateBenchmarkResults {
       k -> BenchmarkGroup(k, baselines.head, others.map(r => r.benchmark -> r).toMap)
     }
 
-  def results(s: String): Vector[BenchmarkResult] = decode[Vector[BenchmarkResult]](s).toTry.get
+  def results(s: String): Vector[BenchmarkResult] = read[Vector[BenchmarkResult]](s)
 
   def readResource(r: String): String = {
     val stream = getClass.getResourceAsStream(r)
@@ -80,6 +83,6 @@ case class BenchmarkResult(benchmark: String, primaryMetric: Metric, params: Opt
     s"$baseName$paramsPostfix"
   }
 
-  val confidence = Interval(primaryMetric.scoreConfidence._1, primaryMetric.scoreConfidence._2)
+  val confidence = Interval(primaryMetric.scoreConfidence(0), primaryMetric.scoreConfidence(1))
 }
-case class Metric(score: Double, scoreConfidence: (Double, Double))
+case class Metric(score: Double, scoreConfidence: Vector[Double])

@@ -33,14 +33,12 @@ case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainst
   }
 
   def withGames(gamesToAdd: (A, A, B)*): RatingPeriod[A, B] = {
-    val mm = new LinkedHashMap[A, ListBuffer[ScoreAgainstAnotherPlayer[A]]]() {
-      override protected def initialSize = math.max(1 << (log(gamesToAdd.size) / log(2)).toInt, 256)
-    }.withDefaultValue(null)
+    val mm = new LinkedHashMap[A, ListBuffer[ScoreAgainstAnotherPlayer[A]]]().withDefaultValue(null)
 
     games.foreach {
       case (k, v) =>
         val g = mm(k)
-        if (g eq null) mm.put(k, v.to[ListBuffer])
+        if (g eq null) mm.put(k, v.to(ListBuffer))
         else g ++= v
     }
 
@@ -62,7 +60,7 @@ case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainst
         else g2 += outcome2
     }
 
-    val newGames: Map[A, List[ScoreAgainstAnotherPlayer[A]]] = mm.mapValues(_ toList).toMap
+    val newGames: Map[A, List[ScoreAgainstAnotherPlayer[A]]] = mm.view.mapValues(_ toList).toMap
 
     copy(games = newGames)
   }

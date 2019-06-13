@@ -108,7 +108,7 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
   }
 
   private def updatedDeviation(playerID: A, leaderboard: Leaderboard[A]): Option[Player[A]] =
-    leaderboard.playerIdentifiedBy(playerID).right.toOption.map { player =>
+    leaderboard.playerIdentifiedBy(playerID).toOption.map { player =>
       // Step 7
       val `φ'` = sqrt(player.φ.`²` + player.σ.`²`)
 

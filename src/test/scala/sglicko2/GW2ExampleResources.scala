@@ -20,13 +20,13 @@ import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files.readAllLines
 import java.nio.file.Paths.{get => path}
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 import scala.math.{sin, Pi => π}
 
 object GW2ExampleResources {
   def leaderboardFromResource(name: String): Leaderboard[WorldID] =
     Leaderboard.fromPlayers(
-      readAllLines(path(getClass.getClassLoader.getResource(name).toURI), UTF_8).asScala.toStream.map {
+      readAllLines(path(getClass.getClassLoader.getResource(name).toURI), UTF_8).asScala.iterator.map {
         case WorldExtractor(n, r, d, v) => Player(WorldID(n trim), r toDouble, d toDouble, v toDouble)
       })
 
