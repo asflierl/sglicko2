@@ -1,6 +1,6 @@
 inThisBuild(Seq(
   organization := "sglicko2",
-  scalaVersion := "2.13.0",
+  scalaVersion := "2.13.1",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
@@ -19,7 +19,7 @@ inThisBuild(Seq(
 
 val sglicko2 = project.in(file("."))
 
-version := "1.6"
+version := "1.6.1"
 
 bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
 headerLicense := (ThisBuild / headerLicense).value
@@ -34,16 +34,16 @@ Test / javaOptions := Seq("-server", "-Xmx4g", "-Xss1m")
 Test / scalacOptions += "-Yrangepos"
 Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc")
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.5.1" % Test)
-libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.0" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.7.1" % Test)
+libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.1" % Test)
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   fork := true,
   scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-target:jvm-1.8"),
   javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=250"),
   libraryDependencies ++= Seq(
-    "org.json4s"    %% "json4s-native"    % "3.6.6",
-    "org.typelevel"  % "spire_2.13.0-RC1" % "0.16.2"),
+    "org.json4s"    %% "json4s-native"    % "3.6.7",
+    "org.typelevel" %% "spire" % "0.17.0-M1"),
   headerLicense := (ThisBuild / headerLicense).value)
 
 addCommandAlias("runBenchmarks", ";benchmark/jmh:run -rf json -rff target/results.json -o target/results.txt;benchmark/runMain sglicko2.benchmark.EvaluateBenchmarkResults")

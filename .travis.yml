@@ -1,5 +1,8 @@
 language: scala
 scala:
-  - 2.13.0
+  - 2.13.1
 jdk:
   - openjdk11
+cache:
+  directories:
+  - $HOME/.cache/coursier/v1
