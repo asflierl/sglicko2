@@ -5,4 +5,5 @@ jdk:
   - openjdk11
 cache:
   directories:
+  - $HOME/.ivy2
   - $HOME/.cache/coursier/v1
