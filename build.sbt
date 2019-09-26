@@ -42,7 +42,7 @@ val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-target:jvm-1.8"),
   javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=250"),
   libraryDependencies ++= Seq(
-    "org.json4s"    %% "json4s-native"    % "3.6.7",
+    "org.json4s"    %% "json4s-native" % "3.6.7",
     "org.typelevel" %% "spire" % "0.17.0-M1"),
   headerLicense := (ThisBuild / headerLicense).value)
 
