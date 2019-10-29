@@ -46,4 +46,5 @@ val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
     "org.typelevel" %% "spire" % "0.17.0-M1"),
   headerLicense := (ThisBuild / headerLicense).value)
 
+// benchmarks will run for about 3.5 minutes
 addCommandAlias("runBenchmarks", ";benchmark/jmh:run -rf json -rff target/results.json -o target/results.txt;benchmark/runMain sglicko2.benchmark.EvaluateBenchmarkResults")

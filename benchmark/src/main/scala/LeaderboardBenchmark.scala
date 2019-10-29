@@ -23,8 +23,8 @@ import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, Leaderboard, RatingPeri
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Array(Mode.AverageTime))
-@Warmup(iterations = 10, time = 100, timeUnit = TimeUnit.MILLISECONDS)
-@Measurement(iterations = 20, time = 750, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(iterations = 50, time = 50, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 11, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(1)
 @Threads(3)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)

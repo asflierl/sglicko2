@@ -32,7 +32,7 @@ object EvaluateBenchmarkResults {
   implicit val formats = Serialization.formats(NoTypeHints)
 
   def main(args: Array[String]): Unit = {
-    val referenceResults = groups(results(readResource("/results-v1.6-jdk11.json")))
+    val referenceResults = groups(results(readResource("/results-v1.6.1-jdk12.json")))
     val newResults = groups(results(readPath(Paths.get("target", "results.json"))))
 
     println("Benchmark results:")
