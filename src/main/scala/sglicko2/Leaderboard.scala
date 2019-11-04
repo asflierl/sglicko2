@@ -16,7 +16,7 @@
 
 package sglicko2
 
-class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[A]]) extends Serializable {
+final class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[A]]) extends Serializable {
   import Ordering.Double.TotalOrdering
 
   lazy val idsByRank: Vector[Set[A]] = playersByIdInNoParticularOrder.values.groupBy(_ rating).toVector.sortBy(e => - e._1).map { case (_, ps) => ps.iterator.map(_ id).toSet }
@@ -24,9 +24,6 @@ class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[
   lazy val playersInRankOrder: Vector[Player[A]] = idsByRank.flatMap(_ map playersByIdInNoParticularOrder)
 
   def playerIdentifiedBy(id: A): Either[A, Player[A]] = playersByIdInNoParticularOrder.get(id).toRight(id)
-
-  def updatedWith(players: IterableOnce[Player[A]]): Leaderboard[A] =
-    new Leaderboard(players.iterator.foldLeft(playersByIdInNoParticularOrder)((accu, el) => accu.updated(el id, el)))
 
   def rankOf(id: A): Option[Int] = idsByRank.indexWhere(_ contains id) match {
     case -1 => None
@@ -38,7 +35,7 @@ class Leaderboard[A] private (val playersByIdInNoParticularOrder: Map[A, Player[
     case _ => false
   }
 
-  override def hashCode: Int = playersByIdInNoParticularOrder##
+  override def hashCode: Int = playersByIdInNoParticularOrder.hashCode
 
   override def toString = s"Leaderboard(${rankedPlayers mkString ", "})"
 }

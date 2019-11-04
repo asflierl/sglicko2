@@ -26,7 +26,7 @@ import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, Leaderboard, RatingPeri
 @Warmup(iterations = 50, time = 50, timeUnit = TimeUnit.MILLISECONDS)
 @Measurement(iterations = 11, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(1)
-@Threads(3)
+@Threads(1)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 class LeaderboardBenchmark {
 
@@ -48,9 +48,6 @@ class LeaderboardBenchmark {
     ratingPeriod = system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector:_*)
     prefilledLeaderboard = system.updatedLeaderboard(system.newLeaderboard, system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector:_*))
   }
-
-  @Benchmark
-  def baseline: Vector[Int] = (1 to (numberOfGames + numberOfPlayers)).toVector.zipWithIndex.map { case (x, y) => x + y }
 
   @Benchmark
   def updateFreshLeaderboard: Leaderboard[String] = system.updatedLeaderboard(system.newLeaderboard, ratingPeriod)

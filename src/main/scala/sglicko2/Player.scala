@@ -16,7 +16,7 @@
 
 package sglicko2
 
-case class Player[A](id: A, rating: Double = 1500d, deviation: Double = 350d, volatility: Double = 0.06d) {
+final case class Player[A](id: A, rating: Double = 1500d, deviation: Double = 350d, volatility: Double = 0.06d) {
   require(
     rating > 0d && rating < Double.PositiveInfinity &&
     deviation > 0d && deviation < Double.PositiveInfinity &&
@@ -31,9 +31,4 @@ case class Player[A](id: A, rating: Double = 1500d, deviation: Double = 350d, vo
   // Step 2
   private[sglicko2] lazy val µ = (r - 1500d) / glicko2Scalar
   private[sglicko2] lazy val φ = rd / glicko2Scalar
-}
-object Player {
-  implicit class OptionalPlayer[A](val player: Either[A, Player[A]]) extends AnyVal {
-    def orNew: Player[A] = player.left.map(id => Player(id)).merge
-  }
 }

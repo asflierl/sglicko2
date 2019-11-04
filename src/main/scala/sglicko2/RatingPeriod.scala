@@ -16,51 +16,40 @@
 
 package sglicko2
 
-import scala.collection.mutable.{LinkedHashMap, ListBuffer}
-import scala.math._
+import scala.collection.mutable.{HashMap, ReusableBuilder}
 
-case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, List[ScoreAgainstAnotherPlayer[A]]] =
-    Map.empty[A, List[ScoreAgainstAnotherPlayer[A]]].withDefaultValue(Nil))(implicit rules: ScoringRules[B]) {
+final case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, Vector[ScoreAgainstAnotherPlayer[A]]] =
+    Map.empty[A, Vector[ScoreAgainstAnotherPlayer[A]]])(implicit rules: ScoringRules[B]) {
 
   def withGame(player1: A, player2: A, outcome: B): RatingPeriod[A, B] = {
     require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
     val score = rules.scoreForTwoPlayers(outcome)
 
-    val outcomes1 = ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1) :: games(player1)
-    val outcomes2 = ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2) :: games(player2)
+    val outcomes1 = ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1) +: games.getOrElse(player1, Vector.empty)
+    val outcomes2 = ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2) +: games.getOrElse(player2, Vector.empty)
 
     copy(games.updated(player1, outcomes1).updated(player2, outcomes2))
   }
 
   def withGames(gamesToAdd: (A, A, B)*): RatingPeriod[A, B] = {
-    val mm = new LinkedHashMap[A, ListBuffer[ScoreAgainstAnotherPlayer[A]]]().withDefaultValue(null)
+    val mm = HashMap.empty[A, ReusableBuilder[ScoreAgainstAnotherPlayer[A], Vector[ScoreAgainstAnotherPlayer[A]]]]
 
-    games.foreach {
-      case (k, v) =>
-        val g = mm(k)
-        if (g eq null) mm.put(k, v.to(ListBuffer))
-        else g ++= v
+    games.foreach { case (id, gamesOfPlayer)  => mm.put(id, {
+      val builder = Vector.newBuilder[ScoreAgainstAnotherPlayer[A]]
+      builder ++= gamesOfPlayer
+      builder
+    })}
+
+    gamesToAdd.foreach { case (player1, player2, outcome) =>
+      require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
+
+      val score = rules.scoreForTwoPlayers(outcome)
+
+      mm.getOrElseUpdate(player1, Vector.newBuilder) += ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1)
+      mm.getOrElseUpdate(player2, Vector.newBuilder) += ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2)
     }
 
-    gamesToAdd.foreach {
-      case (player1, player2, outcome) =>
-        require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
-
-        val score = rules.scoreForTwoPlayers(outcome)
-        val outcome1 = ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1)
-        val outcome2 = ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2)
-
-        val g1 = mm(player1)
-        val g2 = mm(player2)
-
-        if (g1 eq null) mm.put(player1, ListBuffer(outcome1))
-        else g1 += outcome1
-
-        if (g2 eq null) mm.put(player2, ListBuffer(outcome2))
-        else g2 += outcome2
-    }
-
-    val newGames: Map[A, List[ScoreAgainstAnotherPlayer[A]]] = mm.view.mapValues(_ toList).toMap
+    val newGames = mm.view.mapValues(_.result).toMap
 
     copy(games = newGames)
   }

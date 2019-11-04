@@ -16,4 +16,4 @@
 
 package sglicko2
 
-case class ScoreAgainstAnotherPlayer[A] private[sglicko2] (opponentID: A, score: Double)
+final case class ScoreAgainstAnotherPlayer[A] private[sglicko2] (opponentID: A, score: Double)
