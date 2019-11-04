@@ -16,6 +16,6 @@
 
 package sglicko2
 
-case class RankedPlayer[A](rank: Int, player: Player[A]) {
+final case class RankedPlayer[A](rank: Int, player: Player[A]) {
   require(rank > 0, s"rank ($rank) must be a number greater than 0")
 }

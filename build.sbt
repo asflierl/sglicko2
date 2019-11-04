@@ -19,7 +19,7 @@ inThisBuild(Seq(
 
 val sglicko2 = project.in(file("."))
 
-version := "1.6.1"
+version := "1.7"
 
 bintrayPackageLabels := Seq("Glicko-2", "Scala", "rating")
 headerLicense := (ThisBuild / headerLicense).value
@@ -40,10 +40,11 @@ libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.1" % Test)
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   fork := true,
   scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-target:jvm-1.8"),
-  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=250"),
+  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=1"),
   libraryDependencies ++= Seq(
     "org.json4s"    %% "json4s-native" % "3.6.7",
     "org.typelevel" %% "spire" % "0.17.0-M1"),
   headerLicense := (ThisBuild / headerLicense).value)
 
+// benchmarks will run for about 2.5 minutes
 addCommandAlias("runBenchmarks", ";benchmark/jmh:run -rf json -rff target/results.json -o target/results.txt;benchmark/runMain sglicko2.benchmark.EvaluateBenchmarkResults")

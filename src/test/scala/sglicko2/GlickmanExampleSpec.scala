@@ -36,7 +36,7 @@ The implementation of the Glicko2 algorithm should calculate sufficiently simila
                      .withGame("a", "c", Player2Wins)
                      .withGame("a", "d", Player2Wins))
 
-    val player = updatedBoard.playerIdentifiedBy("a").orNew
+    val player = updatedBoard.playerIdentifiedBy("a").left.map(Player(_)).merge
 
     (player.rating should be ~(1464.06d +/- 0.01d)) and
     (player.deviation should be ~(151.52d +/- 0.01d)) and

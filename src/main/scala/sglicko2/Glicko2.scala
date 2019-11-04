@@ -40,27 +40,38 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
     val notCompetingPlayers =
       currentLeaderboard.playersByIdInNoParticularOrder.keysIterator
                         .filterNot(ratingPeriod.games.contains)
-                        .flatMap(id => updatedDeviation(id, currentLeaderboard))
+                        .map(id => updatedDeviation(id, currentLeaderboard))
 
-    currentLeaderboard.updatedWith(competingPlayers ++ notCompetingPlayers)
+    Leaderboard.fromPlayers(competingPlayers ++ notCompetingPlayers)
   }
 
-  private def updatedRatingAndDeviationAndVolatility(playerID: A, matchResults: List[ScoreAgainstAnotherPlayer[A]], leaderboard: Leaderboard[A]): Player[A] = {
-    val player = leaderboard.playerIdentifiedBy(playerID).orNew
+  private def updatedRatingAndDeviationAndVolatility(playerID: A, matchResults: Vector[ScoreAgainstAnotherPlayer[A]], leaderboard: Leaderboard[A]): Player[A] = {
+    val default = Player(playerID)
+    val player = leaderboard.playersByIdInNoParticularOrder.getOrElse(playerID, default)
     import player._
 
-    val opponentsAndMatchResults = matchResults.map(s => (leaderboard playerIdentifiedBy s.opponentID orNew, s))
+    val opponents = Array.tabulate(matchResults.size)(n => leaderboard.playersByIdInNoParticularOrder.getOrElse(matchResults(n).opponentID, default))
+
+    def sumOverOpponentsAndMatchResults(f: (Player[A], ScoreAgainstAnotherPlayer[A]) => Double): Double = {
+      var n = 0
+      var s = 0d
+      while (n < matchResults.size) {
+        s += f(opponents(n), matchResults(n))
+        n += 1
+      }
+      s
+    }
 
     // Step 3
-    val ν = 1d / (opponentsAndMatchResults map { case (opponent, matchResult) =>
+    val ν = 1d / (sumOverOpponentsAndMatchResults { (opponent, matchResult) =>
       val Eµ = E(µ, opponent µ, opponent φ)
       g(opponent.φ).`²` * Eµ * (1d - Eµ)
-    } sum)
+    })
 
     // Step 4
-    val ∆ = ν * (opponentsAndMatchResults map { case (opponent, matchResult) =>
+    val ∆ = ν * (sumOverOpponentsAndMatchResults { (opponent, matchResult) =>
       g(opponent φ) * (matchResult.score - E(µ, opponent µ, opponent φ))
-    } sum)
+    })
 
     // Step 5
     val a = ln(σ.`²`)
@@ -99,22 +110,22 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
 
     // Step 7
     val `φ'` = 1d / sqrt((1d / `φ*`.`²`) + (1d / ν))
-    val `µ'` = µ + `φ'`.`²` * (opponentsAndMatchResults map { case (opponent, matchResult) =>
+    val `µ'` = µ + `φ'`.`²` * (sumOverOpponentsAndMatchResults { (opponent, matchResult) =>
       g(opponent φ) * (matchResult.score - E(µ, opponent µ, opponent φ))
-    } sum)
+    })
 
     // Step 8
-    Player(player id, `µ'` * glicko2Scalar + 1500d, `φ'` * glicko2Scalar, `σ'`)
+    Player(playerID, `µ'` * glicko2Scalar + 1500d, `φ'` * glicko2Scalar, `σ'`)
   }
 
-  private def updatedDeviation(playerID: A, leaderboard: Leaderboard[A]): Option[Player[A]] =
-    leaderboard.playerIdentifiedBy(playerID).toOption.map { player =>
-      // Step 7
-      val `φ'` = sqrt(player.φ.`²` + player.σ.`²`)
+  private def updatedDeviation(playerID: A, leaderboard: Leaderboard[A]): Player[A] = {
+    val player = leaderboard.playersByIdInNoParticularOrder(playerID)
+    // Step 7
+    val `φ'` = sqrt(player.φ.`²` + player.σ.`²`)
 
-      // Step 8
-      Player(player id, player rating, `φ'` * glicko2Scalar, player volatility)
-    }
+    // Step 8
+    Player(player id, player rating, `φ'` * glicko2Scalar, player volatility)
+  }
 
   override def toString: String = s"Glicko2(τ = $τ, scoring rules = ${implicitly[ScoringRules[B]]})"
 }
