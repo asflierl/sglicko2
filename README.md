@@ -4,11 +4,11 @@ A small, simple & self-contained implementation of the [Glicko-2 rating algorith
 
 ### Setup
 
-Version 1.6.1 is currently available for Scala 2.13. The last version to support Scala 2.11 and 2.12 was 1.5. The last version to support Scala 2.10 was 1.3. To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
+Version 1.7 is currently available for Scala 2.13. The last version to support Scala 2.11 and 2.12 was 1.5. The last version to support Scala 2.10 was 1.3. To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
 
 ```scala
 resolvers += "jcenter" at "http://jcenter.bintray.com"
-libraryDependencies += "sglicko2" %% "sglicko2" % "1.6.1"
+libraryDependencies += "sglicko2" %% "sglicko2" % "1.7"
 ```
 
 ### Usage
