@@ -19,7 +19,7 @@ package sglicko2
 import scala.math.{abs, exp, sqrt, log => ln, Pi => π}
 
 // implements the (public domain) Glicko 2 algorithm; see http://www.glicko.net/glicko.html for further details
-class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
+final class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
   require(tau > 0d && tau < Double.PositiveInfinity, s"the system constant τ ($tau) must be a number greater than 0")
 
   private def g(φ: Double): Double = 1d / sqrt(1d + 3d * φ.`²` / π.`²`)
@@ -52,7 +52,7 @@ class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
 
     val opponents = Array.tabulate(matchResults.size)(n => leaderboard.playersByIdInNoParticularOrder.getOrElse(matchResults(n).opponentID, default))
 
-    def sumOverOpponentsAndMatchResults(f: (Player[A], ScoreAgainstAnotherPlayer[A]) => Double): Double = {
+    @inline def sumOverOpponentsAndMatchResults(f: (Player[A], ScoreAgainstAnotherPlayer[A]) => Double): Double = {
       var n = 0
       var s = 0d
       while (n < matchResults.size) {

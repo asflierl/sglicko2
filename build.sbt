@@ -34,7 +34,7 @@ Test / javaOptions := Seq("-server", "-Xmx4g", "-Xss1m")
 Test / scalacOptions += "-Yrangepos"
 Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc")
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.7.1" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.8.0" % Test)
 libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.1" % Test)
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
