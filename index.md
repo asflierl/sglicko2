@@ -31,8 +31,18 @@ object Example extends App {
 
   val leaderboard = glicko2.updatedLeaderboard(glicko2.newLeaderboard, ratingPeriod)
 
-  leaderboard.rankedPlayers foreach println
+  def pretty(r: RankedPlayer[String]) = f"${r.rank}%2d ${r.player.id}%5s ${r.player.rating}%4.0f (± ${r.player.deviation}%4.0f)"
+
+  leaderboard.rankedPlayers map pretty foreach println
 }
+```
+
+Output:
+```
+ 1  Abby 1800 (± 228)
+ 2  Dave 1500 (± 228)
+ 3  Chas 1400 (± 228)
+ 4 Becky 1300 (± 228)
 ```
 
 You can find more example code in the test sources. The main sources should be very easy to understand, too, so don't hesitate to look at those if you have questions.
