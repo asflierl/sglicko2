@@ -32,7 +32,7 @@ object EvaluateBenchmarkResults {
   implicit val formats = Serialization.formats(NoTypeHints)
 
   def main(args: Array[String]): Unit = {
-    val referenceGroups = groups(results(readResource("/v1.7/results.json")))
+    val referenceGroups = groups(results(readResource("/v1.7-graalvm-ce-19.3-java11/results.json")))
     val referenceBaseline = referenceGroups("sglicko2.benchmark.BaselineBenchmark").results("sglicko2.benchmark.BaselineBenchmark.baseline")
     val referenceResults = referenceGroups - "sglicko2.benchmark.BaselineBenchmark"
     val newGroups = groups(results(readPath(Paths.get("target", "results.json"))))
