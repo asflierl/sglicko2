@@ -1,0 +1,3351 @@
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 1000 iterations, 10 ms each
+# Measurement: 50 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.BaselineBenchmark.baseline
+
+# Run progress: 0.00% complete, ETA 00:01:52
+# Fork: 1 of 1
+# Warmup Iteration   1: 1.317 us/op
+# Warmup Iteration   2: 1.040 us/op
+# Warmup Iteration   3: 1.013 us/op
+# Warmup Iteration   4: 1.067 us/op
+# Warmup Iteration   5: 1.008 us/op
+# Warmup Iteration   6: 1.027 us/op
+# Warmup Iteration   7: 1.022 us/op
+# Warmup Iteration   8: 1.055 us/op
+# Warmup Iteration   9: 1.002 us/op
+# Warmup Iteration  10: 1.032 us/op
+# Warmup Iteration  11: 1.000 us/op
+# Warmup Iteration  12: 1.151 us/op
+# Warmup Iteration  13: 1.125 us/op
+# Warmup Iteration  14: 1.019 us/op
+# Warmup Iteration  15: 0.975 us/op
+# Warmup Iteration  16: 0.974 us/op
+# Warmup Iteration  17: 0.963 us/op
+# Warmup Iteration  18: 0.953 us/op
+# Warmup Iteration  19: 0.947 us/op
+# Warmup Iteration  20: 0.953 us/op
+# Warmup Iteration  21: 0.969 us/op
+# Warmup Iteration  22: 0.940 us/op
+# Warmup Iteration  23: 1.090 us/op
+# Warmup Iteration  24: 0.983 us/op
+# Warmup Iteration  25: 0.990 us/op
+# Warmup Iteration  26: 1.118 us/op
+# Warmup Iteration  27: 1.105 us/op
+# Warmup Iteration  28: 1.071 us/op
+# Warmup Iteration  29: 1.068 us/op
+# Warmup Iteration  30: 1.070 us/op
+# Warmup Iteration  31: 1.067 us/op
+# Warmup Iteration  32: 1.042 us/op
+# Warmup Iteration  33: 1.098 us/op
+# Warmup Iteration  34: 1.116 us/op
+# Warmup Iteration  35: 1.032 us/op
+# Warmup Iteration  36: 1.059 us/op
+# Warmup Iteration  37: 1.032 us/op
+# Warmup Iteration  38: 0.989 us/op
+# Warmup Iteration  39: 0.972 us/op
+# Warmup Iteration  40: 0.971 us/op
+# Warmup Iteration  41: 0.971 us/op
+# Warmup Iteration  42: 0.964 us/op
+# Warmup Iteration  43: 0.984 us/op
+# Warmup Iteration  44: 0.958 us/op
+# Warmup Iteration  45: 0.913 us/op
+# Warmup Iteration  46: 0.907 us/op
+# Warmup Iteration  47: 0.906 us/op
+# Warmup Iteration  48: 0.944 us/op
+# Warmup Iteration  49: 0.978 us/op
+# Warmup Iteration  50: 1.082 us/op
+# Warmup Iteration  51: 0.952 us/op
+# Warmup Iteration  52: 0.952 us/op
+# Warmup Iteration  53: 0.961 us/op
+# Warmup Iteration  54: 0.922 us/op
+# Warmup Iteration  55: 0.906 us/op
+# Warmup Iteration  56: 0.946 us/op
+# Warmup Iteration  57: 1.023 us/op
+# Warmup Iteration  58: 0.959 us/op
+# Warmup Iteration  59: 0.926 us/op
+# Warmup Iteration  60: 0.964 us/op
+# Warmup Iteration  61: 0.962 us/op
+# Warmup Iteration  62: 0.947 us/op
+# Warmup Iteration  63: 0.910 us/op
+# Warmup Iteration  64: 0.944 us/op
+# Warmup Iteration  65: 0.961 us/op
+# Warmup Iteration  66: 0.909 us/op
+# Warmup Iteration  67: 0.913 us/op
+# Warmup Iteration  68: 1.059 us/op
+# Warmup Iteration  69: 1.084 us/op
+# Warmup Iteration  70: 1.029 us/op
+# Warmup Iteration  71: 1.054 us/op
+# Warmup Iteration  72: 1.014 us/op
+# Warmup Iteration  73: 0.999 us/op
+# Warmup Iteration  74: 1.431 us/op
+# Warmup Iteration  75: 1.065 us/op
+# Warmup Iteration  76: 1.175 us/op
+# Warmup Iteration  77: 1.190 us/op
+# Warmup Iteration  78: 1.063 us/op
+# Warmup Iteration  79: 1.054 us/op
+# Warmup Iteration  80: 1.015 us/op
+# Warmup Iteration  81: 1.013 us/op
+# Warmup Iteration  82: 1.038 us/op
+# Warmup Iteration  83: 0.980 us/op
+# Warmup Iteration  84: 1.000 us/op
+# Warmup Iteration  85: 1.033 us/op
+# Warmup Iteration  86: 0.984 us/op
+# Warmup Iteration  87: 1.007 us/op
+# Warmup Iteration  88: 1.025 us/op
+# Warmup Iteration  89: 0.997 us/op
+# Warmup Iteration  90: 0.989 us/op
+# Warmup Iteration  91: 1.020 us/op
+# Warmup Iteration  92: 1.039 us/op
+# Warmup Iteration  93: 0.971 us/op
+# Warmup Iteration  94: 1.014 us/op
+# Warmup Iteration  95: 1.007 us/op
+# Warmup Iteration  96: 0.989 us/op
+# Warmup Iteration  97: 0.992 us/op
+# Warmup Iteration  98: 1.011 us/op
+# Warmup Iteration  99: 1.045 us/op
+# Warmup Iteration 100: 0.989 us/op
+# Warmup Iteration 101: 0.997 us/op
+# Warmup Iteration 102: 1.019 us/op
+# Warmup Iteration 103: 0.987 us/op
+# Warmup Iteration 104: 1.013 us/op
+# Warmup Iteration 105: 1.020 us/op
+# Warmup Iteration 106: 1.006 us/op
+# Warmup Iteration 107: 0.990 us/op
+# Warmup Iteration 108: 1.047 us/op
+# Warmup Iteration 109: 0.990 us/op
+# Warmup Iteration 110: 0.992 us/op
+# Warmup Iteration 111: 1.017 us/op
+# Warmup Iteration 112: 1.022 us/op
+# Warmup Iteration 113: 0.991 us/op
+# Warmup Iteration 114: 1.011 us/op
+# Warmup Iteration 115: 1.019 us/op
+# Warmup Iteration 116: 0.987 us/op
+# Warmup Iteration 117: 1.040 us/op
+# Warmup Iteration 118: 1.026 us/op
+# Warmup Iteration 119: 0.977 us/op
+# Warmup Iteration 120: 1.013 us/op
+# Warmup Iteration 121: 1.038 us/op
+# Warmup Iteration 122: 0.990 us/op
+# Warmup Iteration 123: 0.993 us/op
+# Warmup Iteration 124: 1.019 us/op
+# Warmup Iteration 125: 1.004 us/op
+# Warmup Iteration 126: 0.990 us/op
+# Warmup Iteration 127: 1.045 us/op
+# Warmup Iteration 128: 0.996 us/op
+# Warmup Iteration 129: 1.011 us/op
+# Warmup Iteration 130: 1.030 us/op
+# Warmup Iteration 131: 1.000 us/op
+# Warmup Iteration 132: 0.987 us/op
+# Warmup Iteration 133: 1.016 us/op
+# Warmup Iteration 134: 1.063 us/op
+# Warmup Iteration 135: 1.016 us/op
+# Warmup Iteration 136: 1.041 us/op
+# Warmup Iteration 137: 1.016 us/op
+# Warmup Iteration 138: 1.058 us/op
+# Warmup Iteration 139: 1.010 us/op
+# Warmup Iteration 140: 0.997 us/op
+# Warmup Iteration 141: 0.960 us/op
+# Warmup Iteration 142: 0.976 us/op
+# Warmup Iteration 143: 1.046 us/op
+# Warmup Iteration 144: 0.947 us/op
+# Warmup Iteration 145: 0.938 us/op
+# Warmup Iteration 146: 0.980 us/op
+# Warmup Iteration 147: 0.954 us/op
+# Warmup Iteration 148: 0.928 us/op
+# Warmup Iteration 149: 0.916 us/op
+# Warmup Iteration 150: 0.917 us/op
+# Warmup Iteration 151: 0.923 us/op
+# Warmup Iteration 152: 0.926 us/op
+# Warmup Iteration 153: 0.929 us/op
+# Warmup Iteration 154: 0.941 us/op
+# Warmup Iteration 155: 0.947 us/op
+# Warmup Iteration 156: 0.910 us/op
+# Warmup Iteration 157: 0.912 us/op
+# Warmup Iteration 158: 0.908 us/op
+# Warmup Iteration 159: 0.907 us/op
+# Warmup Iteration 160: 0.924 us/op
+# Warmup Iteration 161: 0.910 us/op
+# Warmup Iteration 162: 0.914 us/op
+# Warmup Iteration 163: 0.917 us/op
+# Warmup Iteration 164: 0.919 us/op
+# Warmup Iteration 165: 0.908 us/op
+# Warmup Iteration 166: 0.904 us/op
+# Warmup Iteration 167: 0.911 us/op
+# Warmup Iteration 168: 0.908 us/op
+# Warmup Iteration 169: 0.918 us/op
+# Warmup Iteration 170: 0.907 us/op
+# Warmup Iteration 171: 0.957 us/op
+# Warmup Iteration 172: 0.955 us/op
+# Warmup Iteration 173: 0.915 us/op
+# Warmup Iteration 174: 0.906 us/op
+# Warmup Iteration 175: 0.924 us/op
+# Warmup Iteration 176: 0.965 us/op
+# Warmup Iteration 177: 0.999 us/op
+# Warmup Iteration 178: 1.069 us/op
+# Warmup Iteration 179: 0.978 us/op
+# Warmup Iteration 180: 1.025 us/op
+# Warmup Iteration 181: 0.982 us/op
+# Warmup Iteration 182: 0.973 us/op
+# Warmup Iteration 183: 0.961 us/op
+# Warmup Iteration 184: 0.936 us/op
+# Warmup Iteration 185: 0.917 us/op
+# Warmup Iteration 186: 1.001 us/op
+# Warmup Iteration 187: 0.983 us/op
+# Warmup Iteration 188: 0.964 us/op
+# Warmup Iteration 189: 0.955 us/op
+# Warmup Iteration 190: 0.962 us/op
+# Warmup Iteration 191: 0.943 us/op
+# Warmup Iteration 192: 1.143 us/op
+# Warmup Iteration 193: 1.026 us/op
+# Warmup Iteration 194: 1.054 us/op
+# Warmup Iteration 195: 0.976 us/op
+# Warmup Iteration 196: 0.962 us/op
+# Warmup Iteration 197: 0.989 us/op
+# Warmup Iteration 198: 0.976 us/op
+# Warmup Iteration 199: 0.955 us/op
+# Warmup Iteration 200: 0.959 us/op
+# Warmup Iteration 201: 0.919 us/op
+# Warmup Iteration 202: 0.916 us/op
+# Warmup Iteration 203: 1.059 us/op
+# Warmup Iteration 204: 1.009 us/op
+# Warmup Iteration 205: 1.008 us/op
+# Warmup Iteration 206: 0.983 us/op
+# Warmup Iteration 207: 0.986 us/op
+# Warmup Iteration 208: 0.944 us/op
+# Warmup Iteration 209: 0.956 us/op
+# Warmup Iteration 210: 0.963 us/op
+# Warmup Iteration 211: 1.128 us/op
+# Warmup Iteration 212: 1.064 us/op
+# Warmup Iteration 213: 1.114 us/op
+# Warmup Iteration 214: 1.283 us/op
+# Warmup Iteration 215: 1.376 us/op
+# Warmup Iteration 216: 1.379 us/op
+# Warmup Iteration 217: 1.410 us/op
+# Warmup Iteration 218: 1.376 us/op
+# Warmup Iteration 219: 1.345 us/op
+# Warmup Iteration 220: 1.317 us/op
+# Warmup Iteration 221: 1.319 us/op
+# Warmup Iteration 222: 1.320 us/op
+# Warmup Iteration 223: 1.269 us/op
+# Warmup Iteration 224: 1.265 us/op
+# Warmup Iteration 225: 1.183 us/op
+# Warmup Iteration 226: 1.133 us/op
+# Warmup Iteration 227: 1.127 us/op
+# Warmup Iteration 228: 1.070 us/op
+# Warmup Iteration 229: 1.049 us/op
+# Warmup Iteration 230: 0.989 us/op
+# Warmup Iteration 231: 0.985 us/op
+# Warmup Iteration 232: 0.961 us/op
+# Warmup Iteration 233: 0.959 us/op
+# Warmup Iteration 234: 0.954 us/op
+# Warmup Iteration 235: 0.952 us/op
+# Warmup Iteration 236: 0.950 us/op
+# Warmup Iteration 237: 0.995 us/op
+# Warmup Iteration 238: 0.965 us/op
+# Warmup Iteration 239: 0.924 us/op
+# Warmup Iteration 240: 0.924 us/op
+# Warmup Iteration 241: 0.927 us/op
+# Warmup Iteration 242: 1.003 us/op
+# Warmup Iteration 243: 1.099 us/op
+# Warmup Iteration 244: 1.086 us/op
+# Warmup Iteration 245: 1.001 us/op
+# Warmup Iteration 246: 1.002 us/op
+# Warmup Iteration 247: 0.995 us/op
+# Warmup Iteration 248: 0.988 us/op
+# Warmup Iteration 249: 0.974 us/op
+# Warmup Iteration 250: 0.963 us/op
+# Warmup Iteration 251: 0.964 us/op
+# Warmup Iteration 252: 0.917 us/op
+# Warmup Iteration 253: 0.948 us/op
+# Warmup Iteration 254: 0.961 us/op
+# Warmup Iteration 255: 0.966 us/op
+# Warmup Iteration 256: 0.975 us/op
+# Warmup Iteration 257: 0.966 us/op
+# Warmup Iteration 258: 0.960 us/op
+# Warmup Iteration 259: 0.960 us/op
+# Warmup Iteration 260: 0.924 us/op
+# Warmup Iteration 261: 0.946 us/op
+# Warmup Iteration 262: 0.944 us/op
+# Warmup Iteration 263: 0.923 us/op
+# Warmup Iteration 264: 0.921 us/op
+# Warmup Iteration 265: 0.963 us/op
+# Warmup Iteration 266: 0.992 us/op
+# Warmup Iteration 267: 0.947 us/op
+# Warmup Iteration 268: 0.972 us/op
+# Warmup Iteration 269: 0.965 us/op
+# Warmup Iteration 270: 0.919 us/op
+# Warmup Iteration 271: 0.917 us/op
+# Warmup Iteration 272: 0.954 us/op
+# Warmup Iteration 273: 0.985 us/op
+# Warmup Iteration 274: 0.966 us/op
+# Warmup Iteration 275: 0.970 us/op
+# Warmup Iteration 276: 0.978 us/op
+# Warmup Iteration 277: 0.956 us/op
+# Warmup Iteration 278: 0.975 us/op
+# Warmup Iteration 279: 0.928 us/op
+# Warmup Iteration 280: 0.920 us/op
+# Warmup Iteration 281: 0.912 us/op
+# Warmup Iteration 282: 0.913 us/op
+# Warmup Iteration 283: 0.908 us/op
+# Warmup Iteration 284: 0.940 us/op
+# Warmup Iteration 285: 0.925 us/op
+# Warmup Iteration 286: 0.943 us/op
+# Warmup Iteration 287: 0.944 us/op
+# Warmup Iteration 288: 1.053 us/op
+# Warmup Iteration 289: 1.024 us/op
+# Warmup Iteration 290: 0.978 us/op
+# Warmup Iteration 291: 0.979 us/op
+# Warmup Iteration 292: 0.998 us/op
+# Warmup Iteration 293: 0.992 us/op
+# Warmup Iteration 294: 0.972 us/op
+# Warmup Iteration 295: 0.958 us/op
+# Warmup Iteration 296: 0.941 us/op
+# Warmup Iteration 297: 0.918 us/op
+# Warmup Iteration 298: 0.906 us/op
+# Warmup Iteration 299: 0.919 us/op
+# Warmup Iteration 300: 0.921 us/op
+# Warmup Iteration 301: 0.901 us/op
+# Warmup Iteration 302: 0.917 us/op
+# Warmup Iteration 303: 0.958 us/op
+# Warmup Iteration 304: 1.051 us/op
+# Warmup Iteration 305: 0.953 us/op
+# Warmup Iteration 306: 0.951 us/op
+# Warmup Iteration 307: 0.961 us/op
+# Warmup Iteration 308: 0.943 us/op
+# Warmup Iteration 309: 0.915 us/op
+# Warmup Iteration 310: 0.953 us/op
+# Warmup Iteration 311: 1.018 us/op
+# Warmup Iteration 312: 0.951 us/op
+# Warmup Iteration 313: 0.947 us/op
+# Warmup Iteration 314: 0.946 us/op
+# Warmup Iteration 315: 0.956 us/op
+# Warmup Iteration 316: 0.923 us/op
+# Warmup Iteration 317: 0.940 us/op
+# Warmup Iteration 318: 0.926 us/op
+# Warmup Iteration 319: 0.909 us/op
+# Warmup Iteration 320: 0.920 us/op
+# Warmup Iteration 321: 0.955 us/op
+# Warmup Iteration 322: 0.929 us/op
+# Warmup Iteration 323: 0.905 us/op
+# Warmup Iteration 324: 0.916 us/op
+# Warmup Iteration 325: 0.933 us/op
+# Warmup Iteration 326: 0.910 us/op
+# Warmup Iteration 327: 0.905 us/op
+# Warmup Iteration 328: 0.921 us/op
+# Warmup Iteration 329: 0.909 us/op
+# Warmup Iteration 330: 0.911 us/op
+# Warmup Iteration 331: 0.909 us/op
+# Warmup Iteration 332: 0.914 us/op
+# Warmup Iteration 333: 0.908 us/op
+# Warmup Iteration 334: 0.919 us/op
+# Warmup Iteration 335: 0.901 us/op
+# Warmup Iteration 336: 0.904 us/op
+# Warmup Iteration 337: 0.918 us/op
+# Warmup Iteration 338: 0.907 us/op
+# Warmup Iteration 339: 0.910 us/op
+# Warmup Iteration 340: 0.911 us/op
+# Warmup Iteration 341: 0.905 us/op
+# Warmup Iteration 342: 0.917 us/op
+# Warmup Iteration 343: 0.929 us/op
+# Warmup Iteration 344: 0.901 us/op
+# Warmup Iteration 345: 0.923 us/op
+# Warmup Iteration 346: 0.903 us/op
+# Warmup Iteration 347: 0.930 us/op
+# Warmup Iteration 348: 0.908 us/op
+# Warmup Iteration 349: 0.914 us/op
+# Warmup Iteration 350: 0.920 us/op
+# Warmup Iteration 351: 0.902 us/op
+# Warmup Iteration 352: 0.907 us/op
+# Warmup Iteration 353: 0.916 us/op
+# Warmup Iteration 354: 0.903 us/op
+# Warmup Iteration 355: 0.904 us/op
+# Warmup Iteration 356: 0.970 us/op
+# Warmup Iteration 357: 0.956 us/op
+# Warmup Iteration 358: 0.928 us/op
+# Warmup Iteration 359: 0.932 us/op
+# Warmup Iteration 360: 0.908 us/op
+# Warmup Iteration 361: 0.916 us/op
+# Warmup Iteration 362: 0.905 us/op
+# Warmup Iteration 363: 0.915 us/op
+# Warmup Iteration 364: 0.908 us/op
+# Warmup Iteration 365: 0.906 us/op
+# Warmup Iteration 366: 0.919 us/op
+# Warmup Iteration 367: 0.906 us/op
+# Warmup Iteration 368: 0.920 us/op
+# Warmup Iteration 369: 0.952 us/op
+# Warmup Iteration 370: 0.947 us/op
+# Warmup Iteration 371: 0.918 us/op
+# Warmup Iteration 372: 0.931 us/op
+# Warmup Iteration 373: 0.937 us/op
+# Warmup Iteration 374: 0.940 us/op
+# Warmup Iteration 375: 0.914 us/op
+# Warmup Iteration 376: 0.945 us/op
+# Warmup Iteration 377: 1.118 us/op
+# Warmup Iteration 378: 1.049 us/op
+# Warmup Iteration 379: 1.037 us/op
+# Warmup Iteration 380: 0.978 us/op
+# Warmup Iteration 381: 0.942 us/op
+# Warmup Iteration 382: 0.922 us/op
+# Warmup Iteration 383: 0.904 us/op
+# Warmup Iteration 384: 0.933 us/op
+# Warmup Iteration 385: 0.928 us/op
+# Warmup Iteration 386: 0.954 us/op
+# Warmup Iteration 387: 0.973 us/op
+# Warmup Iteration 388: 0.945 us/op
+# Warmup Iteration 389: 0.920 us/op
+# Warmup Iteration 390: 0.919 us/op
+# Warmup Iteration 391: 0.920 us/op
+# Warmup Iteration 392: 0.912 us/op
+# Warmup Iteration 393: 0.964 us/op
+# Warmup Iteration 394: 1.015 us/op
+# Warmup Iteration 395: 0.956 us/op
+# Warmup Iteration 396: 0.940 us/op
+# Warmup Iteration 397: 0.945 us/op
+# Warmup Iteration 398: 0.944 us/op
+# Warmup Iteration 399: 0.909 us/op
+# Warmup Iteration 400: 0.943 us/op
+# Warmup Iteration 401: 0.907 us/op
+# Warmup Iteration 402: 0.912 us/op
+# Warmup Iteration 403: 0.947 us/op
+# Warmup Iteration 404: 0.954 us/op
+# Warmup Iteration 405: 0.921 us/op
+# Warmup Iteration 406: 0.907 us/op
+# Warmup Iteration 407: 0.919 us/op
+# Warmup Iteration 408: 0.928 us/op
+# Warmup Iteration 409: 0.923 us/op
+# Warmup Iteration 410: 0.921 us/op
+# Warmup Iteration 411: 0.940 us/op
+# Warmup Iteration 412: 0.944 us/op
+# Warmup Iteration 413: 0.923 us/op
+# Warmup Iteration 414: 0.933 us/op
+# Warmup Iteration 415: 0.905 us/op
+# Warmup Iteration 416: 0.915 us/op
+# Warmup Iteration 417: 0.922 us/op
+# Warmup Iteration 418: 0.905 us/op
+# Warmup Iteration 419: 0.928 us/op
+# Warmup Iteration 420: 0.922 us/op
+# Warmup Iteration 421: 0.912 us/op
+# Warmup Iteration 422: 0.901 us/op
+# Warmup Iteration 423: 0.977 us/op
+# Warmup Iteration 424: 0.946 us/op
+# Warmup Iteration 425: 0.941 us/op
+# Warmup Iteration 426: 0.907 us/op
+# Warmup Iteration 427: 0.901 us/op
+# Warmup Iteration 428: 0.912 us/op
+# Warmup Iteration 429: 0.912 us/op
+# Warmup Iteration 430: 0.908 us/op
+# Warmup Iteration 431: 0.914 us/op
+# Warmup Iteration 432: 0.903 us/op
+# Warmup Iteration 433: 0.908 us/op
+# Warmup Iteration 434: 0.929 us/op
+# Warmup Iteration 435: 0.929 us/op
+# Warmup Iteration 436: 0.910 us/op
+# Warmup Iteration 437: 0.902 us/op
+# Warmup Iteration 438: 0.908 us/op
+# Warmup Iteration 439: 0.913 us/op
+# Warmup Iteration 440: 0.910 us/op
+# Warmup Iteration 441: 0.913 us/op
+# Warmup Iteration 442: 0.923 us/op
+# Warmup Iteration 443: 0.905 us/op
+# Warmup Iteration 444: 0.917 us/op
+# Warmup Iteration 445: 0.902 us/op
+# Warmup Iteration 446: 0.911 us/op
+# Warmup Iteration 447: 0.906 us/op
+# Warmup Iteration 448: 0.907 us/op
+# Warmup Iteration 449: 0.913 us/op
+# Warmup Iteration 450: 0.908 us/op
+# Warmup Iteration 451: 0.905 us/op
+# Warmup Iteration 452: 0.927 us/op
+# Warmup Iteration 453: 0.905 us/op
+# Warmup Iteration 454: 0.919 us/op
+# Warmup Iteration 455: 0.913 us/op
+# Warmup Iteration 456: 0.903 us/op
+# Warmup Iteration 457: 0.958 us/op
+# Warmup Iteration 458: 0.955 us/op
+# Warmup Iteration 459: 0.913 us/op
+# Warmup Iteration 460: 0.920 us/op
+# Warmup Iteration 461: 0.920 us/op
+# Warmup Iteration 462: 0.953 us/op
+# Warmup Iteration 463: 0.902 us/op
+# Warmup Iteration 464: 0.916 us/op
+# Warmup Iteration 465: 0.912 us/op
+# Warmup Iteration 466: 0.915 us/op
+# Warmup Iteration 467: 1.065 us/op
+# Warmup Iteration 468: 1.026 us/op
+# Warmup Iteration 469: 1.014 us/op
+# Warmup Iteration 470: 1.006 us/op
+# Warmup Iteration 471: 1.005 us/op
+# Warmup Iteration 472: 0.977 us/op
+# Warmup Iteration 473: 0.968 us/op
+# Warmup Iteration 474: 0.929 us/op
+# Warmup Iteration 475: 0.964 us/op
+# Warmup Iteration 476: 1.028 us/op
+# Warmup Iteration 477: 1.003 us/op
+# Warmup Iteration 478: 0.966 us/op
+# Warmup Iteration 479: 1.011 us/op
+# Warmup Iteration 480: 0.954 us/op
+# Warmup Iteration 481: 0.930 us/op
+# Warmup Iteration 482: 0.926 us/op
+# Warmup Iteration 483: 0.933 us/op
+# Warmup Iteration 484: 0.926 us/op
+# Warmup Iteration 485: 0.907 us/op
+# Warmup Iteration 486: 0.918 us/op
+# Warmup Iteration 487: 0.971 us/op
+# Warmup Iteration 488: 0.940 us/op
+# Warmup Iteration 489: 0.943 us/op
+# Warmup Iteration 490: 0.907 us/op
+# Warmup Iteration 491: 0.905 us/op
+# Warmup Iteration 492: 0.915 us/op
+# Warmup Iteration 493: 0.904 us/op
+# Warmup Iteration 494: 0.925 us/op
+# Warmup Iteration 495: 0.907 us/op
+# Warmup Iteration 496: 0.976 us/op
+# Warmup Iteration 497: 0.956 us/op
+# Warmup Iteration 498: 0.903 us/op
+# Warmup Iteration 499: 0.916 us/op
+# Warmup Iteration 500: 0.905 us/op
+# Warmup Iteration 501: 0.905 us/op
+# Warmup Iteration 502: 0.924 us/op
+# Warmup Iteration 503: 0.967 us/op
+# Warmup Iteration 504: 0.938 us/op
+# Warmup Iteration 505: 0.913 us/op
+# Warmup Iteration 506: 0.905 us/op
+# Warmup Iteration 507: 0.925 us/op
+# Warmup Iteration 508: 0.903 us/op
+# Warmup Iteration 509: 0.918 us/op
+# Warmup Iteration 510: 0.924 us/op
+# Warmup Iteration 511: 0.971 us/op
+# Warmup Iteration 512: 0.986 us/op
+# Warmup Iteration 513: 0.988 us/op
+# Warmup Iteration 514: 1.048 us/op
+# Warmup Iteration 515: 1.207 us/op
+# Warmup Iteration 516: 1.311 us/op
+# Warmup Iteration 517: 1.361 us/op
+# Warmup Iteration 518: 1.362 us/op
+# Warmup Iteration 519: 1.321 us/op
+# Warmup Iteration 520: 1.128 us/op
+# Warmup Iteration 521: 1.053 us/op
+# Warmup Iteration 522: 1.044 us/op
+# Warmup Iteration 523: 0.930 us/op
+# Warmup Iteration 524: 0.983 us/op
+# Warmup Iteration 525: 0.939 us/op
+# Warmup Iteration 526: 0.908 us/op
+# Warmup Iteration 527: 0.913 us/op
+# Warmup Iteration 528: 0.957 us/op
+# Warmup Iteration 529: 0.918 us/op
+# Warmup Iteration 530: 0.907 us/op
+# Warmup Iteration 531: 0.916 us/op
+# Warmup Iteration 532: 0.907 us/op
+# Warmup Iteration 533: 0.918 us/op
+# Warmup Iteration 534: 0.913 us/op
+# Warmup Iteration 535: 0.937 us/op
+# Warmup Iteration 536: 0.927 us/op
+# Warmup Iteration 537: 0.905 us/op
+# Warmup Iteration 538: 0.915 us/op
+# Warmup Iteration 539: 0.904 us/op
+# Warmup Iteration 540: 0.916 us/op
+# Warmup Iteration 541: 0.920 us/op
+# Warmup Iteration 542: 0.912 us/op
+# Warmup Iteration 543: 0.909 us/op
+# Warmup Iteration 544: 0.948 us/op
+# Warmup Iteration 545: 0.906 us/op
+# Warmup Iteration 546: 0.912 us/op
+# Warmup Iteration 547: 0.914 us/op
+# Warmup Iteration 548: 0.901 us/op
+# Warmup Iteration 549: 0.945 us/op
+# Warmup Iteration 550: 0.908 us/op
+# Warmup Iteration 551: 1.022 us/op
+# Warmup Iteration 552: 0.947 us/op
+# Warmup Iteration 553: 0.921 us/op
+# Warmup Iteration 554: 0.916 us/op
+# Warmup Iteration 555: 0.949 us/op
+# Warmup Iteration 556: 0.918 us/op
+# Warmup Iteration 557: 0.967 us/op
+# Warmup Iteration 558: 1.007 us/op
+# Warmup Iteration 559: 0.948 us/op
+# Warmup Iteration 560: 0.910 us/op
+# Warmup Iteration 561: 0.952 us/op
+# Warmup Iteration 562: 0.952 us/op
+# Warmup Iteration 563: 0.941 us/op
+# Warmup Iteration 564: 0.913 us/op
+# Warmup Iteration 565: 0.908 us/op
+# Warmup Iteration 566: 0.913 us/op
+# Warmup Iteration 567: 0.949 us/op
+# Warmup Iteration 568: 0.945 us/op
+# Warmup Iteration 569: 0.904 us/op
+# Warmup Iteration 570: 0.910 us/op
+# Warmup Iteration 571: 1.022 us/op
+# Warmup Iteration 572: 1.027 us/op
+# Warmup Iteration 573: 1.071 us/op
+# Warmup Iteration 574: 1.041 us/op
+# Warmup Iteration 575: 1.006 us/op
+# Warmup Iteration 576: 1.003 us/op
+# Warmup Iteration 577: 0.993 us/op
+# Warmup Iteration 578: 0.968 us/op
+# Warmup Iteration 579: 0.949 us/op
+# Warmup Iteration 580: 0.932 us/op
+# Warmup Iteration 581: 0.941 us/op
+# Warmup Iteration 582: 0.914 us/op
+# Warmup Iteration 583: 0.924 us/op
+# Warmup Iteration 584: 0.953 us/op
+# Warmup Iteration 585: 0.910 us/op
+# Warmup Iteration 586: 0.911 us/op
+# Warmup Iteration 587: 0.912 us/op
+# Warmup Iteration 588: 0.902 us/op
+# Warmup Iteration 589: 0.916 us/op
+# Warmup Iteration 590: 0.910 us/op
+# Warmup Iteration 591: 0.904 us/op
+# Warmup Iteration 592: 0.965 us/op
+# Warmup Iteration 593: 0.966 us/op
+# Warmup Iteration 594: 0.906 us/op
+# Warmup Iteration 595: 0.907 us/op
+# Warmup Iteration 596: 0.907 us/op
+# Warmup Iteration 597: 0.921 us/op
+# Warmup Iteration 598: 0.921 us/op
+# Warmup Iteration 599: 0.906 us/op
+# Warmup Iteration 600: 0.911 us/op
+# Warmup Iteration 601: 0.902 us/op
+# Warmup Iteration 602: 0.909 us/op
+# Warmup Iteration 603: 0.914 us/op
+# Warmup Iteration 604: 0.909 us/op
+# Warmup Iteration 605: 0.966 us/op
+# Warmup Iteration 606: 0.951 us/op
+# Warmup Iteration 607: 0.910 us/op
+# Warmup Iteration 608: 0.911 us/op
+# Warmup Iteration 609: 0.920 us/op
+# Warmup Iteration 610: 0.908 us/op
+# Warmup Iteration 611: 0.915 us/op
+# Warmup Iteration 612: 0.932 us/op
+# Warmup Iteration 613: 0.954 us/op
+# Warmup Iteration 614: 0.925 us/op
+# Warmup Iteration 615: 0.909 us/op
+# Warmup Iteration 616: 0.915 us/op
+# Warmup Iteration 617: 0.916 us/op
+# Warmup Iteration 618: 0.914 us/op
+# Warmup Iteration 619: 0.912 us/op
+# Warmup Iteration 620: 0.905 us/op
+# Warmup Iteration 621: 0.911 us/op
+# Warmup Iteration 622: 0.913 us/op
+# Warmup Iteration 623: 0.914 us/op
+# Warmup Iteration 624: 0.903 us/op
+# Warmup Iteration 625: 0.927 us/op
+# Warmup Iteration 626: 0.939 us/op
+# Warmup Iteration 627: 0.914 us/op
+# Warmup Iteration 628: 0.919 us/op
+# Warmup Iteration 629: 0.905 us/op
+# Warmup Iteration 630: 0.916 us/op
+# Warmup Iteration 631: 0.971 us/op
+# Warmup Iteration 632: 1.014 us/op
+# Warmup Iteration 633: 0.952 us/op
+# Warmup Iteration 634: 0.925 us/op
+# Warmup Iteration 635: 0.911 us/op
+# Warmup Iteration 636: 0.918 us/op
+# Warmup Iteration 637: 0.905 us/op
+# Warmup Iteration 638: 0.961 us/op
+# Warmup Iteration 639: 1.025 us/op
+# Warmup Iteration 640: 0.973 us/op
+# Warmup Iteration 641: 0.944 us/op
+# Warmup Iteration 642: 0.953 us/op
+# Warmup Iteration 643: 0.937 us/op
+# Warmup Iteration 644: 0.916 us/op
+# Warmup Iteration 645: 0.918 us/op
+# Warmup Iteration 646: 0.911 us/op
+# Warmup Iteration 647: 0.907 us/op
+# Warmup Iteration 648: 0.926 us/op
+# Warmup Iteration 649: 0.914 us/op
+# Warmup Iteration 650: 0.915 us/op
+# Warmup Iteration 651: 0.915 us/op
+# Warmup Iteration 652: 0.912 us/op
+# Warmup Iteration 653: 0.927 us/op
+# Warmup Iteration 654: 0.912 us/op
+# Warmup Iteration 655: 0.913 us/op
+# Warmup Iteration 656: 0.916 us/op
+# Warmup Iteration 657: 0.913 us/op
+# Warmup Iteration 658: 0.918 us/op
+# Warmup Iteration 659: 0.905 us/op
+# Warmup Iteration 660: 0.909 us/op
+# Warmup Iteration 661: 0.922 us/op
+# Warmup Iteration 662: 0.917 us/op
+# Warmup Iteration 663: 0.904 us/op
+# Warmup Iteration 664: 0.920 us/op
+# Warmup Iteration 665: 0.918 us/op
+# Warmup Iteration 666: 0.911 us/op
+# Warmup Iteration 667: 0.901 us/op
+# Warmup Iteration 668: 0.913 us/op
+# Warmup Iteration 669: 0.906 us/op
+# Warmup Iteration 670: 0.915 us/op
+# Warmup Iteration 671: 0.908 us/op
+# Warmup Iteration 672: 0.904 us/op
+# Warmup Iteration 673: 0.906 us/op
+# Warmup Iteration 674: 0.909 us/op
+# Warmup Iteration 675: 0.932 us/op
+# Warmup Iteration 676: 0.953 us/op
+# Warmup Iteration 677: 0.928 us/op
+# Warmup Iteration 678: 0.911 us/op
+# Warmup Iteration 679: 0.914 us/op
+# Warmup Iteration 680: 0.908 us/op
+# Warmup Iteration 681: 0.945 us/op
+# Warmup Iteration 682: 0.917 us/op
+# Warmup Iteration 683: 0.903 us/op
+# Warmup Iteration 684: 0.911 us/op
+# Warmup Iteration 685: 0.904 us/op
+# Warmup Iteration 686: 0.914 us/op
+# Warmup Iteration 687: 0.917 us/op
+# Warmup Iteration 688: 0.907 us/op
+# Warmup Iteration 689: 0.911 us/op
+# Warmup Iteration 690: 0.904 us/op
+# Warmup Iteration 691: 0.932 us/op
+# Warmup Iteration 692: 0.912 us/op
+# Warmup Iteration 693: 0.921 us/op
+# Warmup Iteration 694: 0.918 us/op
+# Warmup Iteration 695: 0.906 us/op
+# Warmup Iteration 696: 0.916 us/op
+# Warmup Iteration 697: 0.911 us/op
+# Warmup Iteration 698: 0.911 us/op
+# Warmup Iteration 699: 0.910 us/op
+# Warmup Iteration 700: 0.908 us/op
+# Warmup Iteration 701: 0.914 us/op
+# Warmup Iteration 702: 0.902 us/op
+# Warmup Iteration 703: 0.919 us/op
+# Warmup Iteration 704: 0.915 us/op
+# Warmup Iteration 705: 0.915 us/op
+# Warmup Iteration 706: 0.918 us/op
+# Warmup Iteration 707: 1.322 us/op
+# Warmup Iteration 708: 1.005 us/op
+# Warmup Iteration 709: 0.906 us/op
+# Warmup Iteration 710: 0.917 us/op
+# Warmup Iteration 711: 0.914 us/op
+# Warmup Iteration 712: 0.960 us/op
+# Warmup Iteration 713: 0.997 us/op
+# Warmup Iteration 714: 0.953 us/op
+# Warmup Iteration 715: 0.979 us/op
+# Warmup Iteration 716: 0.916 us/op
+# Warmup Iteration 717: 0.924 us/op
+# Warmup Iteration 718: 0.905 us/op
+# Warmup Iteration 719: 0.931 us/op
+# Warmup Iteration 720: 0.925 us/op
+# Warmup Iteration 721: 0.986 us/op
+# Warmup Iteration 722: 0.953 us/op
+# Warmup Iteration 723: 0.964 us/op
+# Warmup Iteration 724: 0.946 us/op
+# Warmup Iteration 725: 0.924 us/op
+# Warmup Iteration 726: 0.914 us/op
+# Warmup Iteration 727: 0.915 us/op
+# Warmup Iteration 728: 0.910 us/op
+# Warmup Iteration 729: 0.910 us/op
+# Warmup Iteration 730: 0.910 us/op
+# Warmup Iteration 731: 0.912 us/op
+# Warmup Iteration 732: 0.950 us/op
+# Warmup Iteration 733: 0.939 us/op
+# Warmup Iteration 734: 0.916 us/op
+# Warmup Iteration 735: 0.929 us/op
+# Warmup Iteration 736: 0.908 us/op
+# Warmup Iteration 737: 0.915 us/op
+# Warmup Iteration 738: 0.903 us/op
+# Warmup Iteration 739: 0.912 us/op
+# Warmup Iteration 740: 0.910 us/op
+# Warmup Iteration 741: 0.911 us/op
+# Warmup Iteration 742: 0.910 us/op
+# Warmup Iteration 743: 0.934 us/op
+# Warmup Iteration 744: 0.932 us/op
+# Warmup Iteration 745: 0.909 us/op
+# Warmup Iteration 746: 0.910 us/op
+# Warmup Iteration 747: 0.928 us/op
+# Warmup Iteration 748: 0.912 us/op
+# Warmup Iteration 749: 0.912 us/op
+# Warmup Iteration 750: 0.949 us/op
+# Warmup Iteration 751: 0.907 us/op
+# Warmup Iteration 752: 0.916 us/op
+# Warmup Iteration 753: 0.971 us/op
+# Warmup Iteration 754: 0.948 us/op
+# Warmup Iteration 755: 0.903 us/op
+# Warmup Iteration 756: 0.918 us/op
+# Warmup Iteration 757: 0.905 us/op
+# Warmup Iteration 758: 0.906 us/op
+# Warmup Iteration 759: 0.911 us/op
+# Warmup Iteration 760: 0.906 us/op
+# Warmup Iteration 761: 0.911 us/op
+# Warmup Iteration 762: 0.913 us/op
+# Warmup Iteration 763: 0.912 us/op
+# Warmup Iteration 764: 0.903 us/op
+# Warmup Iteration 765: 0.918 us/op
+# Warmup Iteration 766: 0.953 us/op
+# Warmup Iteration 767: 0.956 us/op
+# Warmup Iteration 768: 0.938 us/op
+# Warmup Iteration 769: 0.961 us/op
+# Warmup Iteration 770: 0.919 us/op
+# Warmup Iteration 771: 0.907 us/op
+# Warmup Iteration 772: 0.907 us/op
+# Warmup Iteration 773: 0.941 us/op
+# Warmup Iteration 774: 0.903 us/op
+# Warmup Iteration 775: 0.907 us/op
+# Warmup Iteration 776: 0.911 us/op
+# Warmup Iteration 777: 0.914 us/op
+# Warmup Iteration 778: 0.938 us/op
+# Warmup Iteration 779: 0.923 us/op
+# Warmup Iteration 780: 0.906 us/op
+# Warmup Iteration 781: 0.906 us/op
+# Warmup Iteration 782: 0.908 us/op
+# Warmup Iteration 783: 0.902 us/op
+# Warmup Iteration 784: 0.914 us/op
+# Warmup Iteration 785: 0.905 us/op
+# Warmup Iteration 786: 0.921 us/op
+# Warmup Iteration 787: 0.938 us/op
+# Warmup Iteration 788: 0.910 us/op
+# Warmup Iteration 789: 0.915 us/op
+# Warmup Iteration 790: 0.902 us/op
+# Warmup Iteration 791: 0.901 us/op
+# Warmup Iteration 792: 0.911 us/op
+# Warmup Iteration 793: 0.910 us/op
+# Warmup Iteration 794: 1.051 us/op
+# Warmup Iteration 795: 0.955 us/op
+# Warmup Iteration 796: 0.947 us/op
+# Warmup Iteration 797: 0.907 us/op
+# Warmup Iteration 798: 0.912 us/op
+# Warmup Iteration 799: 0.920 us/op
+# Warmup Iteration 800: 0.903 us/op
+# Warmup Iteration 801: 0.949 us/op
+# Warmup Iteration 802: 1.024 us/op
+# Warmup Iteration 803: 0.933 us/op
+# Warmup Iteration 804: 0.948 us/op
+# Warmup Iteration 805: 0.928 us/op
+# Warmup Iteration 806: 0.911 us/op
+# Warmup Iteration 807: 0.914 us/op
+# Warmup Iteration 808: 0.911 us/op
+# Warmup Iteration 809: 0.916 us/op
+# Warmup Iteration 810: 0.909 us/op
+# Warmup Iteration 811: 0.933 us/op
+# Warmup Iteration 812: 0.935 us/op
+# Warmup Iteration 813: 0.948 us/op
+# Warmup Iteration 814: 0.914 us/op
+# Warmup Iteration 815: 0.922 us/op
+# Warmup Iteration 816: 0.910 us/op
+# Warmup Iteration 817: 0.943 us/op
+# Warmup Iteration 818: 0.933 us/op
+# Warmup Iteration 819: 0.910 us/op
+# Warmup Iteration 820: 0.919 us/op
+# Warmup Iteration 821: 0.914 us/op
+# Warmup Iteration 822: 0.913 us/op
+# Warmup Iteration 823: 0.907 us/op
+# Warmup Iteration 824: 0.904 us/op
+# Warmup Iteration 825: 0.920 us/op
+# Warmup Iteration 826: 0.903 us/op
+# Warmup Iteration 827: 0.912 us/op
+# Warmup Iteration 828: 0.923 us/op
+# Warmup Iteration 829: 0.904 us/op
+# Warmup Iteration 830: 0.910 us/op
+# Warmup Iteration 831: 0.921 us/op
+# Warmup Iteration 832: 0.903 us/op
+# Warmup Iteration 833: 0.906 us/op
+# Warmup Iteration 834: 0.912 us/op
+# Warmup Iteration 835: 0.917 us/op
+# Warmup Iteration 836: 0.918 us/op
+# Warmup Iteration 837: 0.947 us/op
+# Warmup Iteration 838: 0.924 us/op
+# Warmup Iteration 839: 0.903 us/op
+# Warmup Iteration 840: 0.903 us/op
+# Warmup Iteration 841: 0.919 us/op
+# Warmup Iteration 842: 0.903 us/op
+# Warmup Iteration 843: 0.902 us/op
+# Warmup Iteration 844: 0.925 us/op
+# Warmup Iteration 845: 0.914 us/op
+# Warmup Iteration 846: 0.912 us/op
+# Warmup Iteration 847: 0.918 us/op
+# Warmup Iteration 848: 0.913 us/op
+# Warmup Iteration 849: 0.907 us/op
+# Warmup Iteration 850: 0.900 us/op
+# Warmup Iteration 851: 0.926 us/op
+# Warmup Iteration 852: 0.913 us/op
+# Warmup Iteration 853: 0.907 us/op
+# Warmup Iteration 854: 0.908 us/op
+# Warmup Iteration 855: 0.908 us/op
+# Warmup Iteration 856: 0.906 us/op
+# Warmup Iteration 857: 0.930 us/op
+# Warmup Iteration 858: 0.902 us/op
+# Warmup Iteration 859: 0.907 us/op
+# Warmup Iteration 860: 0.914 us/op
+# Warmup Iteration 861: 0.909 us/op
+# Warmup Iteration 862: 0.915 us/op
+# Warmup Iteration 863: 0.904 us/op
+# Warmup Iteration 864: 0.916 us/op
+# Warmup Iteration 865: 0.907 us/op
+# Warmup Iteration 866: 0.905 us/op
+# Warmup Iteration 867: 0.918 us/op
+# Warmup Iteration 868: 0.942 us/op
+# Warmup Iteration 869: 0.917 us/op
+# Warmup Iteration 870: 0.916 us/op
+# Warmup Iteration 871: 0.924 us/op
+# Warmup Iteration 872: 0.910 us/op
+# Warmup Iteration 873: 0.900 us/op
+# Warmup Iteration 874: 0.908 us/op
+# Warmup Iteration 875: 0.917 us/op
+# Warmup Iteration 876: 1.025 us/op
+# Warmup Iteration 877: 0.963 us/op
+# Warmup Iteration 878: 0.957 us/op
+# Warmup Iteration 879: 0.940 us/op
+# Warmup Iteration 880: 0.912 us/op
+# Warmup Iteration 881: 0.916 us/op
+# Warmup Iteration 882: 0.905 us/op
+# Warmup Iteration 883: 0.935 us/op
+# Warmup Iteration 884: 0.924 us/op
+# Warmup Iteration 885: 0.995 us/op
+# Warmup Iteration 886: 0.954 us/op
+# Warmup Iteration 887: 0.959 us/op
+# Warmup Iteration 888: 0.955 us/op
+# Warmup Iteration 889: 0.929 us/op
+# Warmup Iteration 890: 0.905 us/op
+# Warmup Iteration 891: 0.904 us/op
+# Warmup Iteration 892: 0.909 us/op
+# Warmup Iteration 893: 0.912 us/op
+# Warmup Iteration 894: 0.920 us/op
+# Warmup Iteration 895: 0.908 us/op
+# Warmup Iteration 896: 0.939 us/op
+# Warmup Iteration 897: 0.907 us/op
+# Warmup Iteration 898: 0.909 us/op
+# Warmup Iteration 899: 1.059 us/op
+# Warmup Iteration 900: 1.061 us/op
+# Warmup Iteration 901: 1.070 us/op
+# Warmup Iteration 902: 1.000 us/op
+# Warmup Iteration 903: 1.036 us/op
+# Warmup Iteration 904: 1.016 us/op
+# Warmup Iteration 905: 0.998 us/op
+# Warmup Iteration 906: 0.998 us/op
+# Warmup Iteration 907: 0.948 us/op
+# Warmup Iteration 908: 0.942 us/op
+# Warmup Iteration 909: 0.917 us/op
+# Warmup Iteration 910: 0.906 us/op
+# Warmup Iteration 911: 0.916 us/op
+# Warmup Iteration 912: 0.930 us/op
+# Warmup Iteration 913: 0.920 us/op
+# Warmup Iteration 914: 0.911 us/op
+# Warmup Iteration 915: 0.915 us/op
+# Warmup Iteration 916: 0.907 us/op
+# Warmup Iteration 917: 0.903 us/op
+# Warmup Iteration 918: 0.909 us/op
+# Warmup Iteration 919: 0.974 us/op
+# Warmup Iteration 920: 0.978 us/op
+# Warmup Iteration 921: 0.962 us/op
+# Warmup Iteration 922: 0.952 us/op
+# Warmup Iteration 923: 0.952 us/op
+# Warmup Iteration 924: 0.952 us/op
+# Warmup Iteration 925: 0.950 us/op
+# Warmup Iteration 926: 0.968 us/op
+# Warmup Iteration 927: 0.957 us/op
+# Warmup Iteration 928: 0.952 us/op
+# Warmup Iteration 929: 0.941 us/op
+# Warmup Iteration 930: 0.911 us/op
+# Warmup Iteration 931: 0.910 us/op
+# Warmup Iteration 932: 0.901 us/op
+# Warmup Iteration 933: 0.915 us/op
+# Warmup Iteration 934: 0.929 us/op
+# Warmup Iteration 935: 0.903 us/op
+# Warmup Iteration 936: 0.943 us/op
+# Warmup Iteration 937: 0.928 us/op
+# Warmup Iteration 938: 0.946 us/op
+# Warmup Iteration 939: 0.964 us/op
+# Warmup Iteration 940: 0.955 us/op
+# Warmup Iteration 941: 0.954 us/op
+# Warmup Iteration 942: 0.913 us/op
+# Warmup Iteration 943: 0.905 us/op
+# Warmup Iteration 944: 0.912 us/op
+# Warmup Iteration 945: 0.910 us/op
+# Warmup Iteration 946: 0.918 us/op
+# Warmup Iteration 947: 0.921 us/op
+# Warmup Iteration 948: 0.902 us/op
+# Warmup Iteration 949: 0.901 us/op
+# Warmup Iteration 950: 0.919 us/op
+# Warmup Iteration 951: 0.950 us/op
+# Warmup Iteration 952: 0.911 us/op
+# Warmup Iteration 953: 0.921 us/op
+# Warmup Iteration 954: 0.933 us/op
+# Warmup Iteration 955: 0.921 us/op
+# Warmup Iteration 956: 0.906 us/op
+# Warmup Iteration 957: 0.908 us/op
+# Warmup Iteration 958: 0.912 us/op
+# Warmup Iteration 959: 1.026 us/op
+# Warmup Iteration 960: 0.957 us/op
+# Warmup Iteration 961: 0.936 us/op
+# Warmup Iteration 962: 0.923 us/op
+# Warmup Iteration 963: 0.922 us/op
+# Warmup Iteration 964: 0.950 us/op
+# Warmup Iteration 965: 0.912 us/op
+# Warmup Iteration 966: 0.940 us/op
+# Warmup Iteration 967: 0.977 us/op
+# Warmup Iteration 968: 0.991 us/op
+# Warmup Iteration 969: 0.954 us/op
+# Warmup Iteration 970: 0.942 us/op
+# Warmup Iteration 971: 0.948 us/op
+# Warmup Iteration 972: 0.926 us/op
+# Warmup Iteration 973: 0.910 us/op
+# Warmup Iteration 974: 0.901 us/op
+# Warmup Iteration 975: 0.908 us/op
+# Warmup Iteration 976: 0.908 us/op
+# Warmup Iteration 977: 0.909 us/op
+# Warmup Iteration 978: 0.945 us/op
+# Warmup Iteration 979: 0.943 us/op
+# Warmup Iteration 980: 0.920 us/op
+# Warmup Iteration 981: 0.950 us/op
+# Warmup Iteration 982: 0.904 us/op
+# Warmup Iteration 983: 0.927 us/op
+# Warmup Iteration 984: 0.906 us/op
+# Warmup Iteration 985: 0.903 us/op
+# Warmup Iteration 986: 0.911 us/op
+# Warmup Iteration 987: 0.912 us/op
+# Warmup Iteration 988: 0.919 us/op
+# Warmup Iteration 989: 0.949 us/op
+# Warmup Iteration 990: 0.912 us/op
+# Warmup Iteration 991: 0.911 us/op
+# Warmup Iteration 992: 0.902 us/op
+# Warmup Iteration 993: 0.923 us/op
+# Warmup Iteration 994: 0.959 us/op
+# Warmup Iteration 995: 0.909 us/op
+# Warmup Iteration 996: 0.923 us/op
+# Warmup Iteration 997: 0.910 us/op
+# Warmup Iteration 998: 0.910 us/op
+# Warmup Iteration 999: 0.914 us/op
+# Warmup Iteration 1000: 0.903 us/op
+Iteration   1: 0.905 us/op
+Iteration   2: 0.907 us/op
+Iteration   3: 0.914 us/op
+Iteration   4: 0.908 us/op
+Iteration   5: 0.925 us/op
+Iteration   6: 0.930 us/op
+Iteration   7: 0.914 us/op
+Iteration   8: 0.911 us/op
+Iteration   9: 0.934 us/op
+Iteration  10: 0.992 us/op
+Iteration  11: 0.912 us/op
+Iteration  12: 0.909 us/op
+Iteration  13: 0.910 us/op
+Iteration  14: 0.927 us/op
+Iteration  15: 0.930 us/op
+Iteration  16: 0.937 us/op
+Iteration  17: 0.907 us/op
+Iteration  18: 0.907 us/op
+Iteration  19: 0.906 us/op
+Iteration  20: 0.904 us/op
+Iteration  21: 0.904 us/op
+Iteration  22: 0.905 us/op
+Iteration  23: 0.910 us/op
+Iteration  24: 0.979 us/op
+Iteration  25: 0.951 us/op
+Iteration  26: 0.927 us/op
+Iteration  27: 0.967 us/op
+Iteration  28: 0.954 us/op
+Iteration  29: 0.912 us/op
+Iteration  30: 0.905 us/op
+Iteration  31: 0.906 us/op
+Iteration  32: 0.914 us/op
+Iteration  33: 0.911 us/op
+Iteration  34: 0.927 us/op
+Iteration  35: 0.933 us/op
+Iteration  36: 0.917 us/op
+Iteration  37: 0.909 us/op
+Iteration  38: 0.916 us/op
+Iteration  39: 0.908 us/op
+Iteration  40: 0.906 us/op
+Iteration  41: 0.917 us/op
+Iteration  42: 0.908 us/op
+Iteration  43: 0.921 us/op
+Iteration  44: 0.933 us/op
+Iteration  45: 0.929 us/op
+Iteration  46: 0.920 us/op
+Iteration  47: 0.909 us/op
+Iteration  48: 0.912 us/op
+Iteration  49: 0.908 us/op
+Iteration  50: 0.906 us/op
+
+
+Result "sglicko2.benchmark.BaselineBenchmark.baseline":
+  0.920 ±(99.9%) 0.010 us/op [Average]
+  (min, avg, max) = (0.904, 0.920, 0.992), stdev = 0.019
+  CI (99.9%): [0.911, 0.930] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 10, numberOfPlayers = 5)
+
+# Run progress: 13.37% complete, ETA 00:01:54
+# Fork: 1 of 1
+# Warmup Iteration   1: 44.963 us/op
+# Warmup Iteration   2: 12.775 us/op
+# Warmup Iteration   3: 9.475 us/op
+# Warmup Iteration   4: 7.265 us/op
+# Warmup Iteration   5: 7.194 us/op
+# Warmup Iteration   6: 7.218 us/op
+# Warmup Iteration   7: 7.073 us/op
+# Warmup Iteration   8: 6.887 us/op
+# Warmup Iteration   9: 7.043 us/op
+# Warmup Iteration  10: 7.002 us/op
+# Warmup Iteration  11: 6.906 us/op
+# Warmup Iteration  12: 6.851 us/op
+# Warmup Iteration  13: 6.970 us/op
+# Warmup Iteration  14: 7.475 us/op
+# Warmup Iteration  15: 6.868 us/op
+# Warmup Iteration  16: 6.553 us/op
+# Warmup Iteration  17: 6.215 us/op
+# Warmup Iteration  18: 6.484 us/op
+# Warmup Iteration  19: 6.178 us/op
+# Warmup Iteration  20: 6.146 us/op
+# Warmup Iteration  21: 6.859 us/op
+# Warmup Iteration  22: 6.772 us/op
+# Warmup Iteration  23: 6.199 us/op
+# Warmup Iteration  24: 6.190 us/op
+# Warmup Iteration  25: 6.132 us/op
+# Warmup Iteration  26: 6.598 us/op
+# Warmup Iteration  27: 6.140 us/op
+# Warmup Iteration  28: 6.054 us/op
+# Warmup Iteration  29: 6.186 us/op
+# Warmup Iteration  30: 6.083 us/op
+# Warmup Iteration  31: 6.208 us/op
+# Warmup Iteration  32: 6.098 us/op
+# Warmup Iteration  33: 6.138 us/op
+# Warmup Iteration  34: 6.318 us/op
+# Warmup Iteration  35: 6.153 us/op
+# Warmup Iteration  36: 6.367 us/op
+# Warmup Iteration  37: 6.646 us/op
+# Warmup Iteration  38: 6.153 us/op
+# Warmup Iteration  39: 6.345 us/op
+# Warmup Iteration  40: 6.210 us/op
+# Warmup Iteration  41: 6.173 us/op
+# Warmup Iteration  42: 6.173 us/op
+# Warmup Iteration  43: 6.114 us/op
+# Warmup Iteration  44: 6.096 us/op
+# Warmup Iteration  45: 6.086 us/op
+# Warmup Iteration  46: 6.081 us/op
+# Warmup Iteration  47: 6.083 us/op
+# Warmup Iteration  48: 6.153 us/op
+# Warmup Iteration  49: 6.670 us/op
+# Warmup Iteration  50: 6.094 us/op
+Iteration   1: 6.133 us/op
+Iteration   2: 6.337 us/op
+Iteration   3: 6.149 us/op
+Iteration   4: 6.117 us/op
+Iteration   5: 6.300 us/op
+Iteration   6: 6.187 us/op
+Iteration   7: 6.096 us/op
+Iteration   8: 6.108 us/op
+Iteration   9: 6.095 us/op
+Iteration  10: 6.037 us/op
+Iteration  11: 6.413 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  6.179 ±(99.9%) 0.164 us/op [Average]
+  (min, avg, max) = (6.037, 6.179, 6.413), stdev = 0.118
+  CI (99.9%): [6.016, 6.343] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 10, numberOfPlayers = 50)
+
+# Run progress: 16.58% complete, ETA 00:01:50
+# Fork: 1 of 1
+# Warmup Iteration   1: 52.350 us/op
+# Warmup Iteration   2: 18.225 us/op
+# Warmup Iteration   3: 13.614 us/op
+# Warmup Iteration   4: 10.834 us/op
+# Warmup Iteration   5: 10.446 us/op
+# Warmup Iteration   6: 10.589 us/op
+# Warmup Iteration   7: 10.539 us/op
+# Warmup Iteration   8: 10.514 us/op
+# Warmup Iteration   9: 10.548 us/op
+# Warmup Iteration  10: 11.158 us/op
+# Warmup Iteration  11: 10.688 us/op
+# Warmup Iteration  12: 9.349 us/op
+# Warmup Iteration  13: 9.395 us/op
+# Warmup Iteration  14: 9.245 us/op
+# Warmup Iteration  15: 10.086 us/op
+# Warmup Iteration  16: 9.758 us/op
+# Warmup Iteration  17: 9.183 us/op
+# Warmup Iteration  18: 9.096 us/op
+# Warmup Iteration  19: 9.854 us/op
+# Warmup Iteration  20: 9.537 us/op
+# Warmup Iteration  21: 9.076 us/op
+# Warmup Iteration  22: 9.001 us/op
+# Warmup Iteration  23: 8.884 us/op
+# Warmup Iteration  24: 8.845 us/op
+# Warmup Iteration  25: 8.920 us/op
+# Warmup Iteration  26: 8.829 us/op
+# Warmup Iteration  27: 8.985 us/op
+# Warmup Iteration  28: 9.538 us/op
+# Warmup Iteration  29: 9.150 us/op
+# Warmup Iteration  30: 9.191 us/op
+# Warmup Iteration  31: 9.002 us/op
+# Warmup Iteration  32: 8.884 us/op
+# Warmup Iteration  33: 8.989 us/op
+# Warmup Iteration  34: 8.876 us/op
+# Warmup Iteration  35: 8.968 us/op
+# Warmup Iteration  36: 9.457 us/op
+# Warmup Iteration  37: 9.049 us/op
+# Warmup Iteration  38: 9.063 us/op
+# Warmup Iteration  39: 8.949 us/op
+# Warmup Iteration  40: 8.850 us/op
+# Warmup Iteration  41: 8.992 us/op
+# Warmup Iteration  42: 10.118 us/op
+# Warmup Iteration  43: 9.589 us/op
+# Warmup Iteration  44: 8.925 us/op
+# Warmup Iteration  45: 9.841 us/op
+# Warmup Iteration  46: 10.004 us/op
+# Warmup Iteration  47: 9.356 us/op
+# Warmup Iteration  48: 9.101 us/op
+# Warmup Iteration  49: 9.294 us/op
+# Warmup Iteration  50: 9.069 us/op
+Iteration   1: 9.240 us/op
+Iteration   2: 9.296 us/op
+Iteration   3: 8.884 us/op
+Iteration   4: 8.883 us/op
+Iteration   5: 8.820 us/op
+Iteration   6: 8.842 us/op
+Iteration   7: 9.185 us/op
+Iteration   8: 8.900 us/op
+Iteration   9: 9.184 us/op
+Iteration  10: 8.881 us/op
+Iteration  11: 9.126 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  9.022 ±(99.9%) 0.252 us/op [Average]
+  (min, avg, max) = (8.820, 9.022, 9.296), stdev = 0.182
+  CI (99.9%): [8.769, 9.274] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 10, numberOfPlayers = 5000)
+
+# Run progress: 19.79% complete, ETA 00:01:46
+# Fork: 1 of 1
+# Warmup Iteration   1: 58.857 us/op
+# Warmup Iteration   2: 18.023 us/op
+# Warmup Iteration   3: 13.114 us/op
+# Warmup Iteration   4: 10.938 us/op
+# Warmup Iteration   5: 10.632 us/op
+# Warmup Iteration   6: 10.858 us/op
+# Warmup Iteration   7: 10.557 us/op
+# Warmup Iteration   8: 10.449 us/op
+# Warmup Iteration   9: 11.120 us/op
+# Warmup Iteration  10: 11.923 us/op
+# Warmup Iteration  11: 11.170 us/op
+# Warmup Iteration  12: 9.060 us/op
+# Warmup Iteration  13: 8.930 us/op
+# Warmup Iteration  14: 9.246 us/op
+# Warmup Iteration  15: 8.945 us/op
+# Warmup Iteration  16: 8.985 us/op
+# Warmup Iteration  17: 8.929 us/op
+# Warmup Iteration  18: 8.997 us/op
+# Warmup Iteration  19: 9.492 us/op
+# Warmup Iteration  20: 8.982 us/op
+# Warmup Iteration  21: 8.977 us/op
+# Warmup Iteration  22: 9.116 us/op
+# Warmup Iteration  23: 9.406 us/op
+# Warmup Iteration  24: 8.911 us/op
+# Warmup Iteration  25: 9.286 us/op
+# Warmup Iteration  26: 8.969 us/op
+# Warmup Iteration  27: 9.536 us/op
+# Warmup Iteration  28: 9.005 us/op
+# Warmup Iteration  29: 8.886 us/op
+# Warmup Iteration  30: 8.894 us/op
+# Warmup Iteration  31: 8.861 us/op
+# Warmup Iteration  32: 8.893 us/op
+# Warmup Iteration  33: 8.917 us/op
+# Warmup Iteration  34: 8.860 us/op
+# Warmup Iteration  35: 8.830 us/op
+# Warmup Iteration  36: 9.442 us/op
+# Warmup Iteration  37: 8.928 us/op
+# Warmup Iteration  38: 8.935 us/op
+# Warmup Iteration  39: 8.969 us/op
+# Warmup Iteration  40: 8.876 us/op
+# Warmup Iteration  41: 9.850 us/op
+# Warmup Iteration  42: 9.211 us/op
+# Warmup Iteration  43: 9.180 us/op
+# Warmup Iteration  44: 9.560 us/op
+# Warmup Iteration  45: 8.998 us/op
+# Warmup Iteration  46: 8.930 us/op
+# Warmup Iteration  47: 8.858 us/op
+# Warmup Iteration  48: 8.966 us/op
+# Warmup Iteration  49: 8.864 us/op
+# Warmup Iteration  50: 8.881 us/op
+Iteration   1: 8.840 us/op
+Iteration   2: 9.156 us/op
+Iteration   3: 8.850 us/op
+Iteration   4: 8.870 us/op
+Iteration   5: 9.057 us/op
+Iteration   6: 9.446 us/op
+Iteration   7: 8.914 us/op
+Iteration   8: 8.862 us/op
+Iteration   9: 8.883 us/op
+Iteration  10: 9.136 us/op
+Iteration  11: 8.692 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  8.973 ±(99.9%) 0.289 us/op [Average]
+  (min, avg, max) = (8.692, 8.973, 9.446), stdev = 0.209
+  CI (99.9%): [8.684, 9.262] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 5)
+
+# Run progress: 22.99% complete, ETA 00:01:42
+# Fork: 1 of 1
+# Warmup Iteration   1: 880.415 us/op
+# Warmup Iteration   2: 757.035 us/op
+# Warmup Iteration   3: 685.490 us/op
+# Warmup Iteration   4: 425.906 us/op
+# Warmup Iteration   5: 404.528 us/op
+# Warmup Iteration   6: 386.617 us/op
+# Warmup Iteration   7: 379.749 us/op
+# Warmup Iteration   8: 373.756 us/op
+# Warmup Iteration   9: 372.072 us/op
+# Warmup Iteration  10: 390.716 us/op
+# Warmup Iteration  11: 373.296 us/op
+# Warmup Iteration  12: 371.458 us/op
+# Warmup Iteration  13: 370.609 us/op
+# Warmup Iteration  14: 367.567 us/op
+# Warmup Iteration  15: 369.164 us/op
+# Warmup Iteration  16: 376.839 us/op
+# Warmup Iteration  17: 385.091 us/op
+# Warmup Iteration  18: 382.804 us/op
+# Warmup Iteration  19: 377.547 us/op
+# Warmup Iteration  20: 369.858 us/op
+# Warmup Iteration  21: 378.342 us/op
+# Warmup Iteration  22: 370.089 us/op
+# Warmup Iteration  23: 368.123 us/op
+# Warmup Iteration  24: 366.875 us/op
+# Warmup Iteration  25: 388.272 us/op
+# Warmup Iteration  26: 387.313 us/op
+# Warmup Iteration  27: 384.210 us/op
+# Warmup Iteration  28: 389.916 us/op
+# Warmup Iteration  29: 384.288 us/op
+# Warmup Iteration  30: 366.337 us/op
+# Warmup Iteration  31: 366.278 us/op
+# Warmup Iteration  32: 365.644 us/op
+# Warmup Iteration  33: 366.258 us/op
+# Warmup Iteration  34: 371.177 us/op
+# Warmup Iteration  35: 384.854 us/op
+# Warmup Iteration  36: 375.859 us/op
+# Warmup Iteration  37: 385.650 us/op
+# Warmup Iteration  38: 369.699 us/op
+# Warmup Iteration  39: 367.317 us/op
+# Warmup Iteration  40: 380.714 us/op
+# Warmup Iteration  41: 383.836 us/op
+# Warmup Iteration  42: 371.609 us/op
+# Warmup Iteration  43: 419.363 us/op
+# Warmup Iteration  44: 355.670 us/op
+# Warmup Iteration  45: 354.812 us/op
+# Warmup Iteration  46: 351.410 us/op
+# Warmup Iteration  47: 351.077 us/op
+# Warmup Iteration  48: 356.778 us/op
+# Warmup Iteration  49: 355.265 us/op
+# Warmup Iteration  50: 362.054 us/op
+Iteration   1: 354.809 us/op
+Iteration   2: 365.715 us/op
+Iteration   3: 359.012 us/op
+Iteration   4: 365.694 us/op
+Iteration   5: 354.872 us/op
+Iteration   6: 354.238 us/op
+Iteration   7: 352.795 us/op
+Iteration   8: 350.005 us/op
+Iteration   9: 351.594 us/op
+Iteration  10: 352.342 us/op
+Iteration  11: 382.030 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  358.464 ±(99.9%) 13.069 us/op [Average]
+  (min, avg, max) = (350.005, 358.464, 382.030), stdev = 9.450
+  CI (99.9%): [345.395, 371.533] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 50)
+
+# Run progress: 26.20% complete, ETA 00:01:38
+# Fork: 1 of 1
+# Warmup Iteration   1: 861.616 us/op
+# Warmup Iteration   2: 685.004 us/op
+# Warmup Iteration   3: 443.602 us/op
+# Warmup Iteration   4: 445.116 us/op
+# Warmup Iteration   5: 417.843 us/op
+# Warmup Iteration   6: 415.648 us/op
+# Warmup Iteration   7: 407.740 us/op
+# Warmup Iteration   8: 402.083 us/op
+# Warmup Iteration   9: 393.629 us/op
+# Warmup Iteration  10: 421.558 us/op
+# Warmup Iteration  11: 398.590 us/op
+# Warmup Iteration  12: 418.937 us/op
+# Warmup Iteration  13: 395.975 us/op
+# Warmup Iteration  14: 394.022 us/op
+# Warmup Iteration  15: 398.940 us/op
+# Warmup Iteration  16: 397.769 us/op
+# Warmup Iteration  17: 400.173 us/op
+# Warmup Iteration  18: 398.721 us/op
+# Warmup Iteration  19: 397.676 us/op
+# Warmup Iteration  20: 429.726 us/op
+# Warmup Iteration  21: 578.632 us/op
+# Warmup Iteration  22: 465.381 us/op
+# Warmup Iteration  23: 393.578 us/op
+# Warmup Iteration  24: 392.269 us/op
+# Warmup Iteration  25: 397.480 us/op
+# Warmup Iteration  26: 392.948 us/op
+# Warmup Iteration  27: 393.555 us/op
+# Warmup Iteration  28: 410.265 us/op
+# Warmup Iteration  29: 400.551 us/op
+# Warmup Iteration  30: 409.583 us/op
+# Warmup Iteration  31: 396.404 us/op
+# Warmup Iteration  32: 391.936 us/op
+# Warmup Iteration  33: 393.785 us/op
+# Warmup Iteration  34: 396.348 us/op
+# Warmup Iteration  35: 394.906 us/op
+# Warmup Iteration  36: 398.389 us/op
+# Warmup Iteration  37: 393.440 us/op
+# Warmup Iteration  38: 398.694 us/op
+# Warmup Iteration  39: 391.833 us/op
+# Warmup Iteration  40: 400.212 us/op
+# Warmup Iteration  41: 393.013 us/op
+# Warmup Iteration  42: 405.299 us/op
+# Warmup Iteration  43: 396.989 us/op
+# Warmup Iteration  44: 410.546 us/op
+# Warmup Iteration  45: 406.159 us/op
+# Warmup Iteration  46: 392.008 us/op
+# Warmup Iteration  47: 418.287 us/op
+# Warmup Iteration  48: 436.279 us/op
+# Warmup Iteration  49: 399.436 us/op
+# Warmup Iteration  50: 379.625 us/op
+Iteration   1: 383.459 us/op
+Iteration   2: 382.177 us/op
+Iteration   3: 379.171 us/op
+Iteration   4: 378.691 us/op
+Iteration   5: 378.885 us/op
+Iteration   6: 377.964 us/op
+Iteration   7: 378.536 us/op
+Iteration   8: 389.963 us/op
+Iteration   9: 388.243 us/op
+Iteration  10: 382.208 us/op
+Iteration  11: 420.599 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  385.445 ±(99.9%) 17.055 us/op [Average]
+  (min, avg, max) = (377.964, 385.445, 420.599), stdev = 12.332
+  CI (99.9%): [368.390, 402.501] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 5000)
+
+# Run progress: 29.41% complete, ETA 00:01:34
+# Fork: 1 of 1
+# Warmup Iteration   1: 2185.461 us/op
+# Warmup Iteration   2: 1476.705 us/op
+# Warmup Iteration   3: 1143.080 us/op
+# Warmup Iteration   4: 940.023 us/op
+# Warmup Iteration   5: 906.983 us/op
+# Warmup Iteration   6: 937.150 us/op
+# Warmup Iteration   7: 897.419 us/op
+# Warmup Iteration   8: 917.398 us/op
+# Warmup Iteration   9: 979.770 us/op
+# Warmup Iteration  10: 914.909 us/op
+# Warmup Iteration  11: 903.194 us/op
+# Warmup Iteration  12: 885.226 us/op
+# Warmup Iteration  13: 873.234 us/op
+# Warmup Iteration  14: 875.096 us/op
+# Warmup Iteration  15: 873.573 us/op
+# Warmup Iteration  16: 875.322 us/op
+# Warmup Iteration  17: 939.531 us/op
+# Warmup Iteration  18: 887.504 us/op
+# Warmup Iteration  19: 911.479 us/op
+# Warmup Iteration  20: 891.802 us/op
+# Warmup Iteration  21: 921.686 us/op
+# Warmup Iteration  22: 892.495 us/op
+# Warmup Iteration  23: 880.972 us/op
+# Warmup Iteration  24: 886.335 us/op
+# Warmup Iteration  25: 943.700 us/op
+# Warmup Iteration  26: 888.521 us/op
+# Warmup Iteration  27: 873.443 us/op
+# Warmup Iteration  28: 883.630 us/op
+# Warmup Iteration  29: 878.527 us/op
+# Warmup Iteration  30: 876.958 us/op
+# Warmup Iteration  31: 879.984 us/op
+# Warmup Iteration  32: 927.380 us/op
+# Warmup Iteration  33: 883.757 us/op
+# Warmup Iteration  34: 880.309 us/op
+# Warmup Iteration  35: 877.836 us/op
+# Warmup Iteration  36: 879.018 us/op
+# Warmup Iteration  37: 896.492 us/op
+# Warmup Iteration  38: 913.209 us/op
+# Warmup Iteration  39: 915.318 us/op
+# Warmup Iteration  40: 935.805 us/op
+# Warmup Iteration  41: 892.735 us/op
+# Warmup Iteration  42: 875.966 us/op
+# Warmup Iteration  43: 883.788 us/op
+# Warmup Iteration  44: 872.280 us/op
+# Warmup Iteration  45: 878.485 us/op
+# Warmup Iteration  46: 889.379 us/op
+# Warmup Iteration  47: 901.279 us/op
+# Warmup Iteration  48: 930.271 us/op
+# Warmup Iteration  49: 888.310 us/op
+# Warmup Iteration  50: 872.584 us/op
+Iteration   1: 876.388 us/op
+Iteration   2: 877.286 us/op
+Iteration   3: 923.575 us/op
+Iteration   4: 908.520 us/op
+Iteration   5: 879.445 us/op
+Iteration   6: 969.153 us/op
+Iteration   7: 892.995 us/op
+Iteration   8: 917.080 us/op
+Iteration   9: 865.273 us/op
+Iteration  10: 856.776 us/op
+Iteration  11: 861.663 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  893.469 ±(99.9%) 46.535 us/op [Average]
+  (min, avg, max) = (856.776, 893.469, 969.153), stdev = 33.648
+  CI (99.9%): [846.933, 940.004] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 5)
+
+# Run progress: 32.62% complete, ETA 00:01:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 7604.143 us/op
+# Warmup Iteration   2: 6688.270 us/op
+# Warmup Iteration   3: 6760.638 us/op
+# Warmup Iteration   4: 6547.774 us/op
+# Warmup Iteration   5: 6656.816 us/op
+# Warmup Iteration   6: 6750.970 us/op
+# Warmup Iteration   7: 6655.452 us/op
+# Warmup Iteration   8: 6549.654 us/op
+# Warmup Iteration   9: 6887.231 us/op
+# Warmup Iteration  10: 7101.939 us/op
+# Warmup Iteration  11: 6759.045 us/op
+# Warmup Iteration  12: 6685.821 us/op
+# Warmup Iteration  13: 6722.789 us/op
+# Warmup Iteration  14: 6743.806 us/op
+# Warmup Iteration  15: 6960.459 us/op
+# Warmup Iteration  16: 4058.531 us/op
+# Warmup Iteration  17: 3708.501 us/op
+# Warmup Iteration  18: 3840.351 us/op
+# Warmup Iteration  19: 3735.272 us/op
+# Warmup Iteration  20: 3739.690 us/op
+# Warmup Iteration  21: 3891.821 us/op
+# Warmup Iteration  22: 3729.042 us/op
+# Warmup Iteration  23: 3724.204 us/op
+# Warmup Iteration  24: 3775.016 us/op
+# Warmup Iteration  25: 3767.340 us/op
+# Warmup Iteration  26: 3741.661 us/op
+# Warmup Iteration  27: 3736.329 us/op
+# Warmup Iteration  28: 3831.307 us/op
+# Warmup Iteration  29: 3910.944 us/op
+# Warmup Iteration  30: 3811.539 us/op
+# Warmup Iteration  31: 3894.330 us/op
+# Warmup Iteration  32: 3702.967 us/op
+# Warmup Iteration  33: 3795.698 us/op
+# Warmup Iteration  34: 3763.483 us/op
+# Warmup Iteration  35: 3704.277 us/op
+# Warmup Iteration  36: 3717.701 us/op
+# Warmup Iteration  37: 4149.575 us/op
+# Warmup Iteration  38: 3556.494 us/op
+# Warmup Iteration  39: 3564.333 us/op
+# Warmup Iteration  40: 3590.840 us/op
+# Warmup Iteration  41: 3592.087 us/op
+# Warmup Iteration  42: 3572.307 us/op
+# Warmup Iteration  43: 3546.951 us/op
+# Warmup Iteration  44: 3649.830 us/op
+# Warmup Iteration  45: 3516.471 us/op
+# Warmup Iteration  46: 3536.763 us/op
+# Warmup Iteration  47: 3710.718 us/op
+# Warmup Iteration  48: 3635.531 us/op
+# Warmup Iteration  49: 3600.759 us/op
+# Warmup Iteration  50: 3539.713 us/op
+Iteration   1: 3790.499 us/op
+Iteration   2: 3677.779 us/op
+Iteration   3: 3523.207 us/op
+Iteration   4: 3537.246 us/op
+Iteration   5: 3517.150 us/op
+Iteration   6: 3545.344 us/op
+Iteration   7: 3507.316 us/op
+Iteration   8: 3660.977 us/op
+Iteration   9: 3633.080 us/op
+Iteration  10: 3512.247 us/op
+Iteration  11: 3687.990 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  3599.349 ±(99.9%) 131.833 us/op [Average]
+  (min, avg, max) = (3507.316, 3599.349, 3790.499), stdev = 95.324
+  CI (99.9%): [3467.515, 3731.182] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 50)
+
+# Run progress: 35.83% complete, ETA 00:01:26
+# Fork: 1 of 1
+# Warmup Iteration   1: 8234.710 us/op
+# Warmup Iteration   2: 7377.640 us/op
+# Warmup Iteration   3: 4469.334 us/op
+# Warmup Iteration   4: 3943.246 us/op
+# Warmup Iteration   5: 3831.929 us/op
+# Warmup Iteration   6: 3797.926 us/op
+# Warmup Iteration   7: 3803.043 us/op
+# Warmup Iteration   8: 3862.097 us/op
+# Warmup Iteration   9: 3946.897 us/op
+# Warmup Iteration  10: 3910.828 us/op
+# Warmup Iteration  11: 3760.471 us/op
+# Warmup Iteration  12: 3786.227 us/op
+# Warmup Iteration  13: 3724.995 us/op
+# Warmup Iteration  14: 3685.306 us/op
+# Warmup Iteration  15: 3693.698 us/op
+# Warmup Iteration  16: 3719.756 us/op
+# Warmup Iteration  17: 3751.792 us/op
+# Warmup Iteration  18: 3743.071 us/op
+# Warmup Iteration  19: 3878.228 us/op
+# Warmup Iteration  20: 3864.839 us/op
+# Warmup Iteration  21: 3791.295 us/op
+# Warmup Iteration  22: 3898.973 us/op
+# Warmup Iteration  23: 3801.020 us/op
+# Warmup Iteration  24: 3835.612 us/op
+# Warmup Iteration  25: 3720.727 us/op
+# Warmup Iteration  26: 3683.259 us/op
+# Warmup Iteration  27: 3717.238 us/op
+# Warmup Iteration  28: 3815.528 us/op
+# Warmup Iteration  29: 3720.804 us/op
+# Warmup Iteration  30: 3684.434 us/op
+# Warmup Iteration  31: 3881.056 us/op
+# Warmup Iteration  32: 3739.324 us/op
+# Warmup Iteration  33: 3669.777 us/op
+# Warmup Iteration  34: 3710.260 us/op
+# Warmup Iteration  35: 3675.213 us/op
+# Warmup Iteration  36: 3721.083 us/op
+# Warmup Iteration  37: 3756.518 us/op
+# Warmup Iteration  38: 3748.491 us/op
+# Warmup Iteration  39: 4224.973 us/op
+# Warmup Iteration  40: 3763.524 us/op
+# Warmup Iteration  41: 3577.498 us/op
+# Warmup Iteration  42: 3547.929 us/op
+# Warmup Iteration  43: 3820.839 us/op
+# Warmup Iteration  44: 3978.278 us/op
+# Warmup Iteration  45: 3596.337 us/op
+# Warmup Iteration  46: 3541.998 us/op
+# Warmup Iteration  47: 3551.118 us/op
+# Warmup Iteration  48: 3559.998 us/op
+# Warmup Iteration  49: 3532.602 us/op
+# Warmup Iteration  50: 3667.228 us/op
+Iteration   1: 3535.274 us/op
+Iteration   2: 3541.259 us/op
+Iteration   3: 3604.271 us/op
+Iteration   4: 3688.841 us/op
+Iteration   5: 3578.596 us/op
+Iteration   6: 3544.807 us/op
+Iteration   7: 3509.467 us/op
+Iteration   8: 3801.299 us/op
+Iteration   9: 3526.589 us/op
+Iteration  10: 3519.458 us/op
+Iteration  11: 3517.554 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  3578.856 ±(99.9%) 124.876 us/op [Average]
+  (min, avg, max) = (3509.467, 3578.856, 3801.299), stdev = 90.293
+  CI (99.9%): [3453.980, 3703.732] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 5000)
+
+# Run progress: 39.04% complete, ETA 00:01:22
+# Fork: 1 of 1
+# Warmup Iteration   1: 14884.017 us/op
+# Warmup Iteration   2: 12648.819 us/op
+# Warmup Iteration   3: 9592.182 us/op
+# Warmup Iteration   4: 9224.751 us/op
+# Warmup Iteration   5: 9191.147 us/op
+# Warmup Iteration   6: 9028.660 us/op
+# Warmup Iteration   7: 9578.099 us/op
+# Warmup Iteration   8: 11085.497 us/op
+# Warmup Iteration   9: 8561.415 us/op
+# Warmup Iteration  10: 8153.620 us/op
+# Warmup Iteration  11: 7963.966 us/op
+# Warmup Iteration  12: 7865.729 us/op
+# Warmup Iteration  13: 7869.417 us/op
+# Warmup Iteration  14: 7889.095 us/op
+# Warmup Iteration  15: 7929.867 us/op
+# Warmup Iteration  16: 8002.750 us/op
+# Warmup Iteration  17: 7909.490 us/op
+# Warmup Iteration  18: 7781.405 us/op
+# Warmup Iteration  19: 7878.165 us/op
+# Warmup Iteration  20: 7976.189 us/op
+# Warmup Iteration  21: 7767.086 us/op
+# Warmup Iteration  22: 7874.567 us/op
+# Warmup Iteration  23: 9285.708 us/op
+# Warmup Iteration  24: 8333.394 us/op
+# Warmup Iteration  25: 8280.910 us/op
+# Warmup Iteration  26: 8048.545 us/op
+# Warmup Iteration  27: 8083.741 us/op
+# Warmup Iteration  28: 7874.210 us/op
+# Warmup Iteration  29: 7960.570 us/op
+# Warmup Iteration  30: 9358.815 us/op
+# Warmup Iteration  31: 8262.324 us/op
+# Warmup Iteration  32: 8059.919 us/op
+# Warmup Iteration  33: 7757.821 us/op
+# Warmup Iteration  34: 7930.651 us/op
+# Warmup Iteration  35: 7823.638 us/op
+# Warmup Iteration  36: 7812.111 us/op
+# Warmup Iteration  37: 7769.022 us/op
+# Warmup Iteration  38: 8683.890 us/op
+# Warmup Iteration  39: 7786.441 us/op
+# Warmup Iteration  40: 7782.587 us/op
+# Warmup Iteration  41: 7789.994 us/op
+# Warmup Iteration  42: 8208.626 us/op
+# Warmup Iteration  43: 7914.580 us/op
+# Warmup Iteration  44: 8267.259 us/op
+# Warmup Iteration  45: 7829.399 us/op
+# Warmup Iteration  46: 7776.178 us/op
+# Warmup Iteration  47: 7857.233 us/op
+# Warmup Iteration  48: 7776.147 us/op
+# Warmup Iteration  49: 7875.295 us/op
+# Warmup Iteration  50: 7830.342 us/op
+Iteration   1: 8210.431 us/op
+Iteration   2: 8152.426 us/op
+Iteration   3: 7866.471 us/op
+Iteration   4: 7782.650 us/op
+Iteration   5: 7951.547 us/op
+Iteration   6: 8001.412 us/op
+Iteration   7: 7756.429 us/op
+Iteration   8: 7722.189 us/op
+Iteration   9: 8227.434 us/op
+Iteration  10: 7721.569 us/op
+Iteration  11: 7658.070 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard":
+  7913.693 ±(99.9%) 288.670 us/op [Average]
+  (min, avg, max) = (7658.070, 7913.693, 8227.434), stdev = 208.727
+  CI (99.9%): [7625.023, 8202.364] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 10, numberOfPlayers = 5)
+
+# Run progress: 42.25% complete, ETA 00:01:18
+# Fork: 1 of 1
+# Warmup Iteration   1: 40.370 us/op
+# Warmup Iteration   2: 12.521 us/op
+# Warmup Iteration   3: 8.228 us/op
+# Warmup Iteration   4: 7.213 us/op
+# Warmup Iteration   5: 6.942 us/op
+# Warmup Iteration   6: 6.998 us/op
+# Warmup Iteration   7: 6.899 us/op
+# Warmup Iteration   8: 7.490 us/op
+# Warmup Iteration   9: 6.945 us/op
+# Warmup Iteration  10: 6.875 us/op
+# Warmup Iteration  11: 6.796 us/op
+# Warmup Iteration  12: 6.753 us/op
+# Warmup Iteration  13: 6.844 us/op
+# Warmup Iteration  14: 7.116 us/op
+# Warmup Iteration  15: 6.092 us/op
+# Warmup Iteration  16: 6.199 us/op
+# Warmup Iteration  17: 6.278 us/op
+# Warmup Iteration  18: 6.252 us/op
+# Warmup Iteration  19: 6.213 us/op
+# Warmup Iteration  20: 6.125 us/op
+# Warmup Iteration  21: 6.272 us/op
+# Warmup Iteration  22: 6.908 us/op
+# Warmup Iteration  23: 6.345 us/op
+# Warmup Iteration  24: 6.101 us/op
+# Warmup Iteration  25: 6.410 us/op
+# Warmup Iteration  26: 6.158 us/op
+# Warmup Iteration  27: 6.286 us/op
+# Warmup Iteration  28: 6.362 us/op
+# Warmup Iteration  29: 6.158 us/op
+# Warmup Iteration  30: 6.046 us/op
+# Warmup Iteration  31: 6.375 us/op
+# Warmup Iteration  32: 6.102 us/op
+# Warmup Iteration  33: 6.099 us/op
+# Warmup Iteration  34: 6.129 us/op
+# Warmup Iteration  35: 6.488 us/op
+# Warmup Iteration  36: 6.113 us/op
+# Warmup Iteration  37: 6.818 us/op
+# Warmup Iteration  38: 6.279 us/op
+# Warmup Iteration  39: 6.115 us/op
+# Warmup Iteration  40: 6.102 us/op
+# Warmup Iteration  41: 6.070 us/op
+# Warmup Iteration  42: 6.300 us/op
+# Warmup Iteration  43: 6.169 us/op
+# Warmup Iteration  44: 6.130 us/op
+# Warmup Iteration  45: 6.155 us/op
+# Warmup Iteration  46: 6.079 us/op
+# Warmup Iteration  47: 6.044 us/op
+# Warmup Iteration  48: 6.432 us/op
+# Warmup Iteration  49: 6.112 us/op
+# Warmup Iteration  50: 6.035 us/op
+Iteration   1: 6.387 us/op
+Iteration   2: 6.228 us/op
+Iteration   3: 6.235 us/op
+Iteration   4: 6.088 us/op
+Iteration   5: 6.086 us/op
+Iteration   6: 6.346 us/op
+Iteration   7: 6.075 us/op
+Iteration   8: 6.144 us/op
+Iteration   9: 6.079 us/op
+Iteration  10: 6.161 us/op
+Iteration  11: 6.205 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  6.185 ±(99.9%) 0.149 us/op [Average]
+  (min, avg, max) = (6.075, 6.185, 6.387), stdev = 0.108
+  CI (99.9%): [6.036, 6.334] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 10, numberOfPlayers = 50)
+
+# Run progress: 45.45% complete, ETA 00:01:14
+# Fork: 1 of 1
+# Warmup Iteration   1: 110.588 us/op
+# Warmup Iteration   2: 29.332 us/op
+# Warmup Iteration   3: 19.906 us/op
+# Warmup Iteration   4: 17.623 us/op
+# Warmup Iteration   5: 14.783 us/op
+# Warmup Iteration   6: 13.684 us/op
+# Warmup Iteration   7: 13.386 us/op
+# Warmup Iteration   8: 14.749 us/op
+# Warmup Iteration   9: 11.080 us/op
+# Warmup Iteration  10: 10.648 us/op
+# Warmup Iteration  11: 11.132 us/op
+# Warmup Iteration  12: 10.933 us/op
+# Warmup Iteration  13: 11.211 us/op
+# Warmup Iteration  14: 11.616 us/op
+# Warmup Iteration  15: 10.822 us/op
+# Warmup Iteration  16: 12.203 us/op
+# Warmup Iteration  17: 11.582 us/op
+# Warmup Iteration  18: 10.738 us/op
+# Warmup Iteration  19: 10.868 us/op
+# Warmup Iteration  20: 11.525 us/op
+# Warmup Iteration  21: 10.761 us/op
+# Warmup Iteration  22: 10.713 us/op
+# Warmup Iteration  23: 10.665 us/op
+# Warmup Iteration  24: 10.615 us/op
+# Warmup Iteration  25: 11.492 us/op
+# Warmup Iteration  26: 10.690 us/op
+# Warmup Iteration  27: 10.737 us/op
+# Warmup Iteration  28: 10.613 us/op
+# Warmup Iteration  29: 10.943 us/op
+# Warmup Iteration  30: 10.911 us/op
+# Warmup Iteration  31: 11.893 us/op
+# Warmup Iteration  32: 10.748 us/op
+# Warmup Iteration  33: 10.780 us/op
+# Warmup Iteration  34: 10.847 us/op
+# Warmup Iteration  35: 10.594 us/op
+# Warmup Iteration  36: 11.388 us/op
+# Warmup Iteration  37: 10.737 us/op
+# Warmup Iteration  38: 10.611 us/op
+# Warmup Iteration  39: 10.617 us/op
+# Warmup Iteration  40: 10.661 us/op
+# Warmup Iteration  41: 10.651 us/op
+# Warmup Iteration  42: 11.551 us/op
+# Warmup Iteration  43: 10.594 us/op
+# Warmup Iteration  44: 10.717 us/op
+# Warmup Iteration  45: 10.636 us/op
+# Warmup Iteration  46: 11.676 us/op
+# Warmup Iteration  47: 12.053 us/op
+# Warmup Iteration  48: 11.990 us/op
+# Warmup Iteration  49: 10.958 us/op
+# Warmup Iteration  50: 11.015 us/op
+Iteration   1: 10.712 us/op
+Iteration   2: 11.107 us/op
+Iteration   3: 10.641 us/op
+Iteration   4: 10.912 us/op
+Iteration   5: 10.721 us/op
+Iteration   6: 10.640 us/op
+Iteration   7: 11.010 us/op
+Iteration   8: 10.740 us/op
+Iteration   9: 10.927 us/op
+Iteration  10: 11.432 us/op
+Iteration  11: 10.532 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  10.852 ±(99.9%) 0.360 us/op [Average]
+  (min, avg, max) = (10.532, 10.852, 11.432), stdev = 0.260
+  CI (99.9%): [10.492, 11.212] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 10, numberOfPlayers = 5000)
+
+# Run progress: 48.66% complete, ETA 00:01:09
+# Fork: 1 of 1
+# Warmup Iteration   1: 99.370 us/op
+# Warmup Iteration   2: 30.068 us/op
+# Warmup Iteration   3: 20.196 us/op
+# Warmup Iteration   4: 16.796 us/op
+# Warmup Iteration   5: 15.172 us/op
+# Warmup Iteration   6: 14.263 us/op
+# Warmup Iteration   7: 13.590 us/op
+# Warmup Iteration   8: 15.031 us/op
+# Warmup Iteration   9: 11.556 us/op
+# Warmup Iteration  10: 11.938 us/op
+# Warmup Iteration  11: 11.118 us/op
+# Warmup Iteration  12: 10.719 us/op
+# Warmup Iteration  13: 10.657 us/op
+# Warmup Iteration  14: 11.443 us/op
+# Warmup Iteration  15: 10.605 us/op
+# Warmup Iteration  16: 10.708 us/op
+# Warmup Iteration  17: 10.736 us/op
+# Warmup Iteration  18: 10.575 us/op
+# Warmup Iteration  19: 11.348 us/op
+# Warmup Iteration  20: 10.817 us/op
+# Warmup Iteration  21: 10.636 us/op
+# Warmup Iteration  22: 10.679 us/op
+# Warmup Iteration  23: 11.621 us/op
+# Warmup Iteration  24: 10.977 us/op
+# Warmup Iteration  25: 11.691 us/op
+# Warmup Iteration  26: 11.244 us/op
+# Warmup Iteration  27: 10.703 us/op
+# Warmup Iteration  28: 10.815 us/op
+# Warmup Iteration  29: 10.629 us/op
+# Warmup Iteration  30: 11.048 us/op
+# Warmup Iteration  31: 11.451 us/op
+# Warmup Iteration  32: 10.715 us/op
+# Warmup Iteration  33: 10.629 us/op
+# Warmup Iteration  34: 10.769 us/op
+# Warmup Iteration  35: 10.688 us/op
+# Warmup Iteration  36: 11.372 us/op
+# Warmup Iteration  37: 10.755 us/op
+# Warmup Iteration  38: 10.559 us/op
+# Warmup Iteration  39: 10.620 us/op
+# Warmup Iteration  40: 10.579 us/op
+# Warmup Iteration  41: 10.892 us/op
+# Warmup Iteration  42: 11.531 us/op
+# Warmup Iteration  43: 11.035 us/op
+# Warmup Iteration  44: 10.857 us/op
+# Warmup Iteration  45: 11.026 us/op
+# Warmup Iteration  46: 10.644 us/op
+# Warmup Iteration  47: 11.306 us/op
+# Warmup Iteration  48: 10.756 us/op
+# Warmup Iteration  49: 10.762 us/op
+# Warmup Iteration  50: 10.598 us/op
+Iteration   1: 10.871 us/op
+Iteration   2: 11.081 us/op
+Iteration   3: 10.825 us/op
+Iteration   4: 10.954 us/op
+Iteration   5: 10.780 us/op
+Iteration   6: 10.969 us/op
+Iteration   7: 11.077 us/op
+Iteration   8: 10.731 us/op
+Iteration   9: 11.285 us/op
+Iteration  10: 10.992 us/op
+Iteration  11: 10.562 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  10.921 ±(99.9%) 0.272 us/op [Average]
+  (min, avg, max) = (10.562, 10.921, 11.285), stdev = 0.197
+  CI (99.9%): [10.648, 11.193] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 5)
+
+# Run progress: 51.87% complete, ETA 00:01:05
+# Fork: 1 of 1
+# Warmup Iteration   1: 896.633 us/op
+# Warmup Iteration   2: 757.390 us/op
+# Warmup Iteration   3: 744.429 us/op
+# Warmup Iteration   4: 435.988 us/op
+# Warmup Iteration   5: 394.223 us/op
+# Warmup Iteration   6: 383.074 us/op
+# Warmup Iteration   7: 370.217 us/op
+# Warmup Iteration   8: 363.782 us/op
+# Warmup Iteration   9: 373.035 us/op
+# Warmup Iteration  10: 383.305 us/op
+# Warmup Iteration  11: 388.553 us/op
+# Warmup Iteration  12: 371.953 us/op
+# Warmup Iteration  13: 362.440 us/op
+# Warmup Iteration  14: 360.561 us/op
+# Warmup Iteration  15: 365.283 us/op
+# Warmup Iteration  16: 367.359 us/op
+# Warmup Iteration  17: 373.755 us/op
+# Warmup Iteration  18: 362.952 us/op
+# Warmup Iteration  19: 373.587 us/op
+# Warmup Iteration  20: 364.318 us/op
+# Warmup Iteration  21: 369.246 us/op
+# Warmup Iteration  22: 362.561 us/op
+# Warmup Iteration  23: 360.211 us/op
+# Warmup Iteration  24: 363.473 us/op
+# Warmup Iteration  25: 368.248 us/op
+# Warmup Iteration  26: 359.390 us/op
+# Warmup Iteration  27: 361.851 us/op
+# Warmup Iteration  28: 359.854 us/op
+# Warmup Iteration  29: 359.020 us/op
+# Warmup Iteration  30: 358.801 us/op
+# Warmup Iteration  31: 364.370 us/op
+# Warmup Iteration  32: 360.181 us/op
+# Warmup Iteration  33: 358.948 us/op
+# Warmup Iteration  34: 362.880 us/op
+# Warmup Iteration  35: 366.116 us/op
+# Warmup Iteration  36: 363.336 us/op
+# Warmup Iteration  37: 377.915 us/op
+# Warmup Iteration  38: 371.859 us/op
+# Warmup Iteration  39: 367.220 us/op
+# Warmup Iteration  40: 380.505 us/op
+# Warmup Iteration  41: 362.246 us/op
+# Warmup Iteration  42: 404.760 us/op
+# Warmup Iteration  43: 348.363 us/op
+# Warmup Iteration  44: 344.009 us/op
+# Warmup Iteration  45: 344.048 us/op
+# Warmup Iteration  46: 346.714 us/op
+# Warmup Iteration  47: 344.982 us/op
+# Warmup Iteration  48: 344.561 us/op
+# Warmup Iteration  49: 346.600 us/op
+# Warmup Iteration  50: 342.699 us/op
+Iteration   1: 344.966 us/op
+Iteration   2: 353.664 us/op
+Iteration   3: 352.044 us/op
+Iteration   4: 345.117 us/op
+Iteration   5: 344.916 us/op
+Iteration   6: 344.430 us/op
+Iteration   7: 343.116 us/op
+Iteration   8: 346.354 us/op
+Iteration   9: 344.458 us/op
+Iteration  10: 343.488 us/op
+Iteration  11: 367.712 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  348.206 ±(99.9%) 10.123 us/op [Average]
+  (min, avg, max) = (343.116, 348.206, 367.712), stdev = 7.320
+  CI (99.9%): [338.083, 358.329] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 50)
+
+# Run progress: 55.08% complete, ETA 00:01:01
+# Fork: 1 of 1
+# Warmup Iteration   1: 1129.464 us/op
+# Warmup Iteration   2: 612.828 us/op
+# Warmup Iteration   3: 451.117 us/op
+# Warmup Iteration   4: 458.311 us/op
+# Warmup Iteration   5: 435.685 us/op
+# Warmup Iteration   6: 429.290 us/op
+# Warmup Iteration   7: 419.798 us/op
+# Warmup Iteration   8: 425.065 us/op
+# Warmup Iteration   9: 419.373 us/op
+# Warmup Iteration  10: 419.569 us/op
+# Warmup Iteration  11: 424.767 us/op
+# Warmup Iteration  12: 428.706 us/op
+# Warmup Iteration  13: 418.590 us/op
+# Warmup Iteration  14: 414.945 us/op
+# Warmup Iteration  15: 417.838 us/op
+# Warmup Iteration  16: 413.920 us/op
+# Warmup Iteration  17: 417.021 us/op
+# Warmup Iteration  18: 410.480 us/op
+# Warmup Iteration  19: 414.688 us/op
+# Warmup Iteration  20: 412.394 us/op
+# Warmup Iteration  21: 412.422 us/op
+# Warmup Iteration  22: 417.520 us/op
+# Warmup Iteration  23: 410.639 us/op
+# Warmup Iteration  24: 447.755 us/op
+# Warmup Iteration  25: 385.972 us/op
+# Warmup Iteration  26: 380.397 us/op
+# Warmup Iteration  27: 382.046 us/op
+# Warmup Iteration  28: 379.662 us/op
+# Warmup Iteration  29: 399.504 us/op
+# Warmup Iteration  30: 395.666 us/op
+# Warmup Iteration  31: 386.838 us/op
+# Warmup Iteration  32: 382.575 us/op
+# Warmup Iteration  33: 390.301 us/op
+# Warmup Iteration  34: 385.700 us/op
+# Warmup Iteration  35: 380.118 us/op
+# Warmup Iteration  36: 381.875 us/op
+# Warmup Iteration  37: 379.978 us/op
+# Warmup Iteration  38: 384.337 us/op
+# Warmup Iteration  39: 384.536 us/op
+# Warmup Iteration  40: 385.943 us/op
+# Warmup Iteration  41: 381.555 us/op
+# Warmup Iteration  42: 386.091 us/op
+# Warmup Iteration  43: 399.777 us/op
+# Warmup Iteration  44: 387.084 us/op
+# Warmup Iteration  45: 377.941 us/op
+# Warmup Iteration  46: 379.280 us/op
+# Warmup Iteration  47: 421.618 us/op
+# Warmup Iteration  48: 383.570 us/op
+# Warmup Iteration  49: 398.502 us/op
+# Warmup Iteration  50: 384.168 us/op
+Iteration   1: 386.734 us/op
+Iteration   2: 380.829 us/op
+Iteration   3: 389.218 us/op
+Iteration   4: 379.267 us/op
+Iteration   5: 380.609 us/op
+Iteration   6: 378.348 us/op
+Iteration   7: 377.863 us/op
+Iteration   8: 389.054 us/op
+Iteration   9: 387.471 us/op
+Iteration  10: 380.217 us/op
+Iteration  11: 433.624 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  387.567 ±(99.9%) 21.966 us/op [Average]
+  (min, avg, max) = (377.863, 387.567, 433.624), stdev = 15.883
+  CI (99.9%): [365.600, 409.533] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 5000)
+
+# Run progress: 58.29% complete, ETA 00:00:56
+# Fork: 1 of 1
+# Warmup Iteration   1: 4429.786 us/op
+# Warmup Iteration   2: 2691.862 us/op
+# Warmup Iteration   3: 2163.476 us/op
+# Warmup Iteration   4: 2001.385 us/op
+# Warmup Iteration   5: 1534.668 us/op
+# Warmup Iteration   6: 1583.544 us/op
+# Warmup Iteration   7: 1622.733 us/op
+# Warmup Iteration   8: 1232.248 us/op
+# Warmup Iteration   9: 1248.708 us/op
+# Warmup Iteration  10: 1208.138 us/op
+# Warmup Iteration  11: 1201.263 us/op
+# Warmup Iteration  12: 1236.749 us/op
+# Warmup Iteration  13: 1276.168 us/op
+# Warmup Iteration  14: 1187.602 us/op
+# Warmup Iteration  15: 1206.016 us/op
+# Warmup Iteration  16: 1191.747 us/op
+# Warmup Iteration  17: 1188.283 us/op
+# Warmup Iteration  18: 1185.978 us/op
+# Warmup Iteration  19: 1293.626 us/op
+# Warmup Iteration  20: 1221.381 us/op
+# Warmup Iteration  21: 1229.291 us/op
+# Warmup Iteration  22: 1229.804 us/op
+# Warmup Iteration  23: 1204.589 us/op
+# Warmup Iteration  24: 1182.716 us/op
+# Warmup Iteration  25: 1288.214 us/op
+# Warmup Iteration  26: 1205.008 us/op
+# Warmup Iteration  27: 1190.449 us/op
+# Warmup Iteration  28: 1185.794 us/op
+# Warmup Iteration  29: 1182.509 us/op
+# Warmup Iteration  30: 1189.559 us/op
+# Warmup Iteration  31: 1273.723 us/op
+# Warmup Iteration  32: 1178.591 us/op
+# Warmup Iteration  33: 1177.820 us/op
+# Warmup Iteration  34: 1204.440 us/op
+# Warmup Iteration  35: 1174.664 us/op
+# Warmup Iteration  36: 1172.643 us/op
+# Warmup Iteration  37: 1290.777 us/op
+# Warmup Iteration  38: 1199.363 us/op
+# Warmup Iteration  39: 1237.186 us/op
+# Warmup Iteration  40: 1195.983 us/op
+# Warmup Iteration  41: 1229.560 us/op
+# Warmup Iteration  42: 1180.163 us/op
+# Warmup Iteration  43: 1297.692 us/op
+# Warmup Iteration  44: 1196.729 us/op
+# Warmup Iteration  45: 1194.144 us/op
+# Warmup Iteration  46: 1188.665 us/op
+# Warmup Iteration  47: 1174.085 us/op
+# Warmup Iteration  48: 1192.320 us/op
+# Warmup Iteration  49: 1270.849 us/op
+# Warmup Iteration  50: 1180.284 us/op
+Iteration   1: 1179.062 us/op
+Iteration   2: 1185.878 us/op
+Iteration   3: 1238.426 us/op
+Iteration   4: 1206.979 us/op
+Iteration   5: 1208.328 us/op
+Iteration   6: 1282.932 us/op
+Iteration   7: 1276.644 us/op
+Iteration   8: 1254.083 us/op
+Iteration   9: 1220.849 us/op
+Iteration  10: 1166.394 us/op
+Iteration  11: 1169.927 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  1217.228 ±(99.9%) 57.212 us/op [Average]
+  (min, avg, max) = (1166.394, 1217.228, 1282.932), stdev = 41.368
+  CI (99.9%): [1160.016, 1274.440] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 5)
+
+# Run progress: 61.50% complete, ETA 00:00:52
+# Fork: 1 of 1
+# Warmup Iteration   1: 7990.241 us/op
+# Warmup Iteration   2: 6893.304 us/op
+# Warmup Iteration   3: 6670.859 us/op
+# Warmup Iteration   4: 6677.246 us/op
+# Warmup Iteration   5: 7314.723 us/op
+# Warmup Iteration   6: 6766.484 us/op
+# Warmup Iteration   7: 6810.812 us/op
+# Warmup Iteration   8: 6827.115 us/op
+# Warmup Iteration   9: 6711.854 us/op
+# Warmup Iteration  10: 7455.868 us/op
+# Warmup Iteration  11: 6846.453 us/op
+# Warmup Iteration  12: 6861.086 us/op
+# Warmup Iteration  13: 6786.916 us/op
+# Warmup Iteration  14: 6772.250 us/op
+# Warmup Iteration  15: 6774.090 us/op
+# Warmup Iteration  16: 6904.210 us/op
+# Warmup Iteration  17: 3690.457 us/op
+# Warmup Iteration  18: 3716.071 us/op
+# Warmup Iteration  19: 3798.402 us/op
+# Warmup Iteration  20: 3636.287 us/op
+# Warmup Iteration  21: 3676.574 us/op
+# Warmup Iteration  22: 3701.057 us/op
+# Warmup Iteration  23: 3643.467 us/op
+# Warmup Iteration  24: 3676.007 us/op
+# Warmup Iteration  25: 3829.364 us/op
+# Warmup Iteration  26: 3643.683 us/op
+# Warmup Iteration  27: 3637.159 us/op
+# Warmup Iteration  28: 3643.978 us/op
+# Warmup Iteration  29: 3654.114 us/op
+# Warmup Iteration  30: 3798.682 us/op
+# Warmup Iteration  31: 3724.487 us/op
+# Warmup Iteration  32: 3716.176 us/op
+# Warmup Iteration  33: 3645.526 us/op
+# Warmup Iteration  34: 3705.218 us/op
+# Warmup Iteration  35: 3648.953 us/op
+# Warmup Iteration  36: 3652.050 us/op
+# Warmup Iteration  37: 4079.383 us/op
+# Warmup Iteration  38: 3505.038 us/op
+# Warmup Iteration  39: 3477.153 us/op
+# Warmup Iteration  40: 3449.635 us/op
+# Warmup Iteration  41: 3481.357 us/op
+# Warmup Iteration  42: 3533.497 us/op
+# Warmup Iteration  43: 3432.398 us/op
+# Warmup Iteration  44: 3635.702 us/op
+# Warmup Iteration  45: 3443.877 us/op
+# Warmup Iteration  46: 3457.861 us/op
+# Warmup Iteration  47: 3474.755 us/op
+# Warmup Iteration  48: 3580.788 us/op
+# Warmup Iteration  49: 3568.889 us/op
+# Warmup Iteration  50: 3514.952 us/op
+Iteration   1: 3503.846 us/op
+Iteration   2: 3737.994 us/op
+Iteration   3: 3506.151 us/op
+Iteration   4: 3472.630 us/op
+Iteration   5: 3485.657 us/op
+Iteration   6: 3448.699 us/op
+Iteration   7: 3441.386 us/op
+Iteration   8: 3533.421 us/op
+Iteration   9: 3532.493 us/op
+Iteration  10: 3507.050 us/op
+Iteration  11: 3621.714 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  3526.458 ±(99.9%) 118.206 us/op [Average]
+  (min, avg, max) = (3441.386, 3526.458, 3737.994), stdev = 85.471
+  CI (99.9%): [3408.252, 3644.664] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 50)
+
+# Run progress: 64.71% complete, ETA 00:00:48
+# Fork: 1 of 1
+# Warmup Iteration   1: 9766.960 us/op
+# Warmup Iteration   2: 7773.059 us/op
+# Warmup Iteration   3: 6695.917 us/op
+# Warmup Iteration   4: 4187.057 us/op
+# Warmup Iteration   5: 4378.600 us/op
+# Warmup Iteration   6: 4124.497 us/op
+# Warmup Iteration   7: 4152.083 us/op
+# Warmup Iteration   8: 4196.249 us/op
+# Warmup Iteration   9: 4216.587 us/op
+# Warmup Iteration  10: 4266.440 us/op
+# Warmup Iteration  11: 4182.340 us/op
+# Warmup Iteration  12: 4059.734 us/op
+# Warmup Iteration  13: 4087.840 us/op
+# Warmup Iteration  14: 4203.500 us/op
+# Warmup Iteration  15: 4059.799 us/op
+# Warmup Iteration  16: 4082.691 us/op
+# Warmup Iteration  17: 4230.728 us/op
+# Warmup Iteration  18: 4057.219 us/op
+# Warmup Iteration  19: 4099.213 us/op
+# Warmup Iteration  20: 4135.799 us/op
+# Warmup Iteration  21: 4316.693 us/op
+# Warmup Iteration  22: 4687.761 us/op
+# Warmup Iteration  23: 3733.437 us/op
+# Warmup Iteration  24: 3768.427 us/op
+# Warmup Iteration  25: 3657.949 us/op
+# Warmup Iteration  26: 3735.644 us/op
+# Warmup Iteration  27: 3705.228 us/op
+# Warmup Iteration  28: 3737.758 us/op
+# Warmup Iteration  29: 3650.730 us/op
+# Warmup Iteration  30: 3707.944 us/op
+# Warmup Iteration  31: 3771.906 us/op
+# Warmup Iteration  32: 3686.887 us/op
+# Warmup Iteration  33: 3606.903 us/op
+# Warmup Iteration  34: 3638.249 us/op
+# Warmup Iteration  35: 3669.268 us/op
+# Warmup Iteration  36: 3615.954 us/op
+# Warmup Iteration  37: 3637.261 us/op
+# Warmup Iteration  38: 3719.855 us/op
+# Warmup Iteration  39: 3859.737 us/op
+# Warmup Iteration  40: 3786.285 us/op
+# Warmup Iteration  41: 3745.032 us/op
+# Warmup Iteration  42: 3702.237 us/op
+# Warmup Iteration  43: 3783.537 us/op
+# Warmup Iteration  44: 4423.704 us/op
+# Warmup Iteration  45: 3818.258 us/op
+# Warmup Iteration  46: 3744.088 us/op
+# Warmup Iteration  47: 3646.933 us/op
+# Warmup Iteration  48: 3617.195 us/op
+# Warmup Iteration  49: 3602.015 us/op
+# Warmup Iteration  50: 3633.782 us/op
+Iteration   1: 3604.347 us/op
+Iteration   2: 3683.534 us/op
+Iteration   3: 3677.002 us/op
+Iteration   4: 3767.295 us/op
+Iteration   5: 3663.760 us/op
+Iteration   6: 3643.935 us/op
+Iteration   7: 3677.576 us/op
+Iteration   8: 3796.581 us/op
+Iteration   9: 3619.413 us/op
+Iteration  10: 3590.730 us/op
+Iteration  11: 3598.062 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  3665.658 ±(99.9%) 92.380 us/op [Average]
+  (min, avg, max) = (3590.730, 3665.658, 3796.581), stdev = 66.797
+  CI (99.9%): [3573.278, 3758.038] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 5000)
+
+# Run progress: 67.91% complete, ETA 00:00:43
+# Fork: 1 of 1
+# Warmup Iteration   1: 20382.426 us/op
+# Warmup Iteration   2: 18604.362 us/op
+# Warmup Iteration   3: 21580.548 us/op
+# Warmup Iteration   4: 11235.400 us/op
+# Warmup Iteration   5: 10798.449 us/op
+# Warmup Iteration   6: 11463.119 us/op
+# Warmup Iteration   7: 10762.901 us/op
+# Warmup Iteration   8: 10683.857 us/op
+# Warmup Iteration   9: 11068.265 us/op
+# Warmup Iteration  10: 7427.641 us/op
+# Warmup Iteration  11: 7399.048 us/op
+# Warmup Iteration  12: 7401.650 us/op
+# Warmup Iteration  13: 7412.095 us/op
+# Warmup Iteration  14: 7385.665 us/op
+# Warmup Iteration  15: 7382.516 us/op
+# Warmup Iteration  16: 7382.741 us/op
+# Warmup Iteration  17: 7383.389 us/op
+# Warmup Iteration  18: 7318.475 us/op
+# Warmup Iteration  19: 8012.510 us/op
+# Warmup Iteration  20: 7410.732 us/op
+# Warmup Iteration  21: 7369.319 us/op
+# Warmup Iteration  22: 7799.965 us/op
+# Warmup Iteration  23: 7910.656 us/op
+# Warmup Iteration  24: 7508.592 us/op
+# Warmup Iteration  25: 7460.669 us/op
+# Warmup Iteration  26: 7540.958 us/op
+# Warmup Iteration  27: 7234.332 us/op
+# Warmup Iteration  28: 7611.117 us/op
+# Warmup Iteration  29: 8701.467 us/op
+# Warmup Iteration  30: 8453.927 us/op
+# Warmup Iteration  31: 7554.754 us/op
+# Warmup Iteration  32: 7467.259 us/op
+# Warmup Iteration  33: 7418.963 us/op
+# Warmup Iteration  34: 7369.838 us/op
+# Warmup Iteration  35: 7446.898 us/op
+# Warmup Iteration  36: 7409.098 us/op
+# Warmup Iteration  37: 7455.493 us/op
+# Warmup Iteration  38: 7340.339 us/op
+# Warmup Iteration  39: 7349.731 us/op
+# Warmup Iteration  40: 7391.023 us/op
+# Warmup Iteration  41: 8306.230 us/op
+# Warmup Iteration  42: 7357.497 us/op
+# Warmup Iteration  43: 7661.379 us/op
+# Warmup Iteration  44: 7335.258 us/op
+# Warmup Iteration  45: 7393.256 us/op
+# Warmup Iteration  46: 7328.820 us/op
+# Warmup Iteration  47: 7427.714 us/op
+# Warmup Iteration  48: 7398.053 us/op
+# Warmup Iteration  49: 7357.904 us/op
+# Warmup Iteration  50: 7510.951 us/op
+Iteration   1: 10607.025 us/op
+Iteration   2: 7675.697 us/op
+Iteration   3: 7320.930 us/op
+Iteration   4: 7296.735 us/op
+Iteration   5: 7466.872 us/op
+Iteration   6: 7393.541 us/op
+Iteration   7: 7646.276 us/op
+Iteration   8: 7580.612 us/op
+Iteration   9: 7195.434 us/op
+Iteration  10: 7174.437 us/op
+Iteration  11: 7221.168 us/op
+
+
+Result "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard":
+  7688.975 ±(99.9%) 1360.823 us/op [Average]
+  (min, avg, max) = (7174.437, 7688.975, 10607.025), stdev = 983.964
+  CI (99.9%): [6328.152, 9049.798] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 10, numberOfPlayers = 5)
+
+# Run progress: 71.12% complete, ETA 00:00:39
+# Fork: 1 of 1
+# Warmup Iteration   1: 57.755 us/op
+# Warmup Iteration   2: 5.482 us/op
+# Warmup Iteration   3: 3.654 us/op
+# Warmup Iteration   4: 2.621 us/op
+# Warmup Iteration   5: 1.857 us/op
+# Warmup Iteration   6: 1.234 us/op
+# Warmup Iteration   7: 1.150 us/op
+# Warmup Iteration   8: 1.198 us/op
+# Warmup Iteration   9: 1.197 us/op
+# Warmup Iteration  10: 1.146 us/op
+# Warmup Iteration  11: 1.213 us/op
+# Warmup Iteration  12: 1.199 us/op
+# Warmup Iteration  13: 1.181 us/op
+# Warmup Iteration  14: 1.138 us/op
+# Warmup Iteration  15: 1.195 us/op
+# Warmup Iteration  16: 1.235 us/op
+# Warmup Iteration  17: 1.144 us/op
+# Warmup Iteration  18: 1.234 us/op
+# Warmup Iteration  19: 1.203 us/op
+# Warmup Iteration  20: 1.186 us/op
+# Warmup Iteration  21: 1.258 us/op
+# Warmup Iteration  22: 1.299 us/op
+# Warmup Iteration  23: 1.211 us/op
+# Warmup Iteration  24: 1.146 us/op
+# Warmup Iteration  25: 1.216 us/op
+# Warmup Iteration  26: 1.208 us/op
+# Warmup Iteration  27: 1.146 us/op
+# Warmup Iteration  28: 1.204 us/op
+# Warmup Iteration  29: 1.164 us/op
+# Warmup Iteration  30: 1.166 us/op
+# Warmup Iteration  31: 1.148 us/op
+# Warmup Iteration  32: 1.194 us/op
+# Warmup Iteration  33: 1.156 us/op
+# Warmup Iteration  34: 1.152 us/op
+# Warmup Iteration  35: 1.208 us/op
+# Warmup Iteration  36: 1.200 us/op
+# Warmup Iteration  37: 1.149 us/op
+# Warmup Iteration  38: 1.188 us/op
+# Warmup Iteration  39: 1.165 us/op
+# Warmup Iteration  40: 1.126 us/op
+# Warmup Iteration  41: 1.182 us/op
+# Warmup Iteration  42: 1.314 us/op
+# Warmup Iteration  43: 1.155 us/op
+# Warmup Iteration  44: 1.149 us/op
+# Warmup Iteration  45: 1.154 us/op
+# Warmup Iteration  46: 1.165 us/op
+# Warmup Iteration  47: 1.136 us/op
+# Warmup Iteration  48: 1.166 us/op
+# Warmup Iteration  49: 1.170 us/op
+# Warmup Iteration  50: 1.152 us/op
+Iteration   1: 1.156 us/op
+Iteration   2: 1.174 us/op
+Iteration   3: 1.193 us/op
+Iteration   4: 1.156 us/op
+Iteration   5: 1.158 us/op
+Iteration   6: 1.169 us/op
+Iteration   7: 1.143 us/op
+Iteration   8: 1.167 us/op
+Iteration   9: 1.158 us/op
+Iteration  10: 1.148 us/op
+Iteration  11: 1.181 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  1.164 ±(99.9%) 0.020 us/op [Average]
+  (min, avg, max) = (1.143, 1.164, 1.193), stdev = 0.015
+  CI (99.9%): [1.143, 1.184] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 10, numberOfPlayers = 50)
+
+# Run progress: 74.33% complete, ETA 00:00:35
+# Fork: 1 of 1
+# Warmup Iteration   1: 55.247 us/op
+# Warmup Iteration   2: 5.816 us/op
+# Warmup Iteration   3: 4.070 us/op
+# Warmup Iteration   4: 3.268 us/op
+# Warmup Iteration   5: 1.963 us/op
+# Warmup Iteration   6: 1.870 us/op
+# Warmup Iteration   7: 1.972 us/op
+# Warmup Iteration   8: 1.933 us/op
+# Warmup Iteration   9: 1.924 us/op
+# Warmup Iteration  10: 1.823 us/op
+# Warmup Iteration  11: 2.000 us/op
+# Warmup Iteration  12: 1.940 us/op
+# Warmup Iteration  13: 1.998 us/op
+# Warmup Iteration  14: 1.901 us/op
+# Warmup Iteration  15: 1.814 us/op
+# Warmup Iteration  16: 2.119 us/op
+# Warmup Iteration  17: 2.079 us/op
+# Warmup Iteration  18: 1.949 us/op
+# Warmup Iteration  19: 1.820 us/op
+# Warmup Iteration  20: 1.913 us/op
+# Warmup Iteration  21: 1.931 us/op
+# Warmup Iteration  22: 2.010 us/op
+# Warmup Iteration  23: 1.949 us/op
+# Warmup Iteration  24: 1.807 us/op
+# Warmup Iteration  25: 1.886 us/op
+# Warmup Iteration  26: 1.874 us/op
+# Warmup Iteration  27: 1.866 us/op
+# Warmup Iteration  28: 1.863 us/op
+# Warmup Iteration  29: 1.857 us/op
+# Warmup Iteration  30: 1.829 us/op
+# Warmup Iteration  31: 1.920 us/op
+# Warmup Iteration  32: 1.880 us/op
+# Warmup Iteration  33: 1.839 us/op
+# Warmup Iteration  34: 1.843 us/op
+# Warmup Iteration  35: 1.815 us/op
+# Warmup Iteration  36: 1.838 us/op
+# Warmup Iteration  37: 1.869 us/op
+# Warmup Iteration  38: 1.856 us/op
+# Warmup Iteration  39: 1.842 us/op
+# Warmup Iteration  40: 1.793 us/op
+# Warmup Iteration  41: 1.865 us/op
+# Warmup Iteration  42: 1.868 us/op
+# Warmup Iteration  43: 1.854 us/op
+# Warmup Iteration  44: 1.881 us/op
+# Warmup Iteration  45: 1.804 us/op
+# Warmup Iteration  46: 2.023 us/op
+# Warmup Iteration  47: 2.001 us/op
+# Warmup Iteration  48: 1.909 us/op
+# Warmup Iteration  49: 2.011 us/op
+# Warmup Iteration  50: 1.931 us/op
+Iteration   1: 1.860 us/op
+Iteration   2: 1.846 us/op
+Iteration   3: 1.886 us/op
+Iteration   4: 1.821 us/op
+Iteration   5: 1.857 us/op
+Iteration   6: 1.830 us/op
+Iteration   7: 1.859 us/op
+Iteration   8: 1.866 us/op
+Iteration   9: 1.888 us/op
+Iteration  10: 1.899 us/op
+Iteration  11: 1.836 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  1.859 ±(99.9%) 0.035 us/op [Average]
+  (min, avg, max) = (1.821, 1.859, 1.899), stdev = 0.025
+  CI (99.9%): [1.824, 1.894] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 10, numberOfPlayers = 5000)
+
+# Run progress: 77.54% complete, ETA 00:00:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 42.072 us/op
+# Warmup Iteration   2: 5.913 us/op
+# Warmup Iteration   3: 4.626 us/op
+# Warmup Iteration   4: 4.112 us/op
+# Warmup Iteration   5: 2.004 us/op
+# Warmup Iteration   6: 2.165 us/op
+# Warmup Iteration   7: 2.108 us/op
+# Warmup Iteration   8: 2.082 us/op
+# Warmup Iteration   9: 1.958 us/op
+# Warmup Iteration  10: 2.078 us/op
+# Warmup Iteration  11: 2.301 us/op
+# Warmup Iteration  12: 2.051 us/op
+# Warmup Iteration  13: 2.062 us/op
+# Warmup Iteration  14: 2.053 us/op
+# Warmup Iteration  15: 2.024 us/op
+# Warmup Iteration  16: 1.942 us/op
+# Warmup Iteration  17: 2.033 us/op
+# Warmup Iteration  18: 2.050 us/op
+# Warmup Iteration  19: 2.023 us/op
+# Warmup Iteration  20: 2.022 us/op
+# Warmup Iteration  21: 1.940 us/op
+# Warmup Iteration  22: 2.075 us/op
+# Warmup Iteration  23: 2.026 us/op
+# Warmup Iteration  24: 2.019 us/op
+# Warmup Iteration  25: 2.063 us/op
+# Warmup Iteration  26: 2.052 us/op
+# Warmup Iteration  27: 1.969 us/op
+# Warmup Iteration  28: 1.972 us/op
+# Warmup Iteration  29: 1.941 us/op
+# Warmup Iteration  30: 2.014 us/op
+# Warmup Iteration  31: 1.975 us/op
+# Warmup Iteration  32: 2.019 us/op
+# Warmup Iteration  33: 1.966 us/op
+# Warmup Iteration  34: 1.999 us/op
+# Warmup Iteration  35: 1.966 us/op
+# Warmup Iteration  36: 1.959 us/op
+# Warmup Iteration  37: 1.926 us/op
+# Warmup Iteration  38: 2.160 us/op
+# Warmup Iteration  39: 1.969 us/op
+# Warmup Iteration  40: 1.942 us/op
+# Warmup Iteration  41: 1.940 us/op
+# Warmup Iteration  42: 1.989 us/op
+# Warmup Iteration  43: 2.070 us/op
+# Warmup Iteration  44: 2.026 us/op
+# Warmup Iteration  45: 1.971 us/op
+# Warmup Iteration  46: 1.985 us/op
+# Warmup Iteration  47: 1.971 us/op
+# Warmup Iteration  48: 1.971 us/op
+# Warmup Iteration  49: 1.930 us/op
+# Warmup Iteration  50: 2.009 us/op
+Iteration   1: 1.971 us/op
+Iteration   2: 1.963 us/op
+Iteration   3: 1.957 us/op
+Iteration   4: 1.956 us/op
+Iteration   5: 2.059 us/op
+Iteration   6: 2.123 us/op
+Iteration   7: 2.005 us/op
+Iteration   8: 1.976 us/op
+Iteration   9: 1.961 us/op
+Iteration  10: 2.112 us/op
+Iteration  11: 1.957 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  2.004 ±(99.9%) 0.088 us/op [Average]
+  (min, avg, max) = (1.956, 2.004, 2.123), stdev = 0.064
+  CI (99.9%): [1.915, 2.092] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 5)
+
+# Run progress: 80.75% complete, ETA 00:00:26
+# Fork: 1 of 1
+# Warmup Iteration   1: 546.579 us/op
+# Warmup Iteration   2: 192.090 us/op
+# Warmup Iteration   3: 72.233 us/op
+# Warmup Iteration   4: 66.977 us/op
+# Warmup Iteration   5: 39.370 us/op
+# Warmup Iteration   6: 36.334 us/op
+# Warmup Iteration   7: 32.844 us/op
+# Warmup Iteration   8: 33.085 us/op
+# Warmup Iteration   9: 32.446 us/op
+# Warmup Iteration  10: 31.881 us/op
+# Warmup Iteration  11: 30.041 us/op
+# Warmup Iteration  12: 32.091 us/op
+# Warmup Iteration  13: 31.857 us/op
+# Warmup Iteration  14: 31.114 us/op
+# Warmup Iteration  15: 30.197 us/op
+# Warmup Iteration  16: 31.835 us/op
+# Warmup Iteration  17: 32.334 us/op
+# Warmup Iteration  18: 31.903 us/op
+# Warmup Iteration  19: 31.409 us/op
+# Warmup Iteration  20: 32.777 us/op
+# Warmup Iteration  21: 32.883 us/op
+# Warmup Iteration  22: 31.325 us/op
+# Warmup Iteration  23: 29.895 us/op
+# Warmup Iteration  24: 31.888 us/op
+# Warmup Iteration  25: 32.284 us/op
+# Warmup Iteration  26: 32.139 us/op
+# Warmup Iteration  27: 30.414 us/op
+# Warmup Iteration  28: 34.681 us/op
+# Warmup Iteration  29: 31.435 us/op
+# Warmup Iteration  30: 30.756 us/op
+# Warmup Iteration  31: 30.331 us/op
+# Warmup Iteration  32: 31.052 us/op
+# Warmup Iteration  33: 34.982 us/op
+# Warmup Iteration  34: 31.446 us/op
+# Warmup Iteration  35: 30.746 us/op
+# Warmup Iteration  36: 31.513 us/op
+# Warmup Iteration  37: 32.232 us/op
+# Warmup Iteration  38: 30.684 us/op
+# Warmup Iteration  39: 32.536 us/op
+# Warmup Iteration  40: 31.596 us/op
+# Warmup Iteration  41: 30.759 us/op
+# Warmup Iteration  42: 31.148 us/op
+# Warmup Iteration  43: 31.019 us/op
+# Warmup Iteration  44: 31.484 us/op
+# Warmup Iteration  45: 31.644 us/op
+# Warmup Iteration  46: 30.830 us/op
+# Warmup Iteration  47: 30.548 us/op
+# Warmup Iteration  48: 31.477 us/op
+# Warmup Iteration  49: 31.283 us/op
+# Warmup Iteration  50: 31.102 us/op
+Iteration   1: 31.205 us/op
+Iteration   2: 31.140 us/op
+Iteration   3: 32.266 us/op
+Iteration   4: 33.051 us/op
+Iteration   5: 31.126 us/op
+Iteration   6: 31.142 us/op
+Iteration   7: 31.649 us/op
+Iteration   8: 31.515 us/op
+Iteration   9: 30.963 us/op
+Iteration  10: 33.723 us/op
+Iteration  11: 30.852 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  31.694 ±(99.9%) 1.293 us/op [Average]
+  (min, avg, max) = (30.852, 31.694, 33.723), stdev = 0.935
+  CI (99.9%): [30.401, 32.986] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 50)
+
+# Run progress: 83.96% complete, ETA 00:00:21
+# Fork: 1 of 1
+# Warmup Iteration   1: 1345.459 us/op
+# Warmup Iteration   2: 313.685 us/op
+# Warmup Iteration   3: 149.122 us/op
+# Warmup Iteration   4: 97.157 us/op
+# Warmup Iteration   5: 65.457 us/op
+# Warmup Iteration   6: 38.234 us/op
+# Warmup Iteration   7: 36.281 us/op
+# Warmup Iteration   8: 40.134 us/op
+# Warmup Iteration   9: 39.157 us/op
+# Warmup Iteration  10: 39.619 us/op
+# Warmup Iteration  11: 36.555 us/op
+# Warmup Iteration  12: 38.418 us/op
+# Warmup Iteration  13: 39.072 us/op
+# Warmup Iteration  14: 39.456 us/op
+# Warmup Iteration  15: 39.570 us/op
+# Warmup Iteration  16: 36.091 us/op
+# Warmup Iteration  17: 38.621 us/op
+# Warmup Iteration  18: 37.558 us/op
+# Warmup Iteration  19: 41.337 us/op
+# Warmup Iteration  20: 36.258 us/op
+# Warmup Iteration  21: 38.459 us/op
+# Warmup Iteration  22: 39.276 us/op
+# Warmup Iteration  23: 38.688 us/op
+# Warmup Iteration  24: 38.131 us/op
+# Warmup Iteration  25: 35.984 us/op
+# Warmup Iteration  26: 37.978 us/op
+# Warmup Iteration  27: 37.377 us/op
+# Warmup Iteration  28: 37.197 us/op
+# Warmup Iteration  29: 36.494 us/op
+# Warmup Iteration  30: 36.208 us/op
+# Warmup Iteration  31: 37.372 us/op
+# Warmup Iteration  32: 38.106 us/op
+# Warmup Iteration  33: 37.624 us/op
+# Warmup Iteration  34: 37.437 us/op
+# Warmup Iteration  35: 35.918 us/op
+# Warmup Iteration  36: 36.714 us/op
+# Warmup Iteration  37: 37.190 us/op
+# Warmup Iteration  38: 37.239 us/op
+# Warmup Iteration  39: 36.267 us/op
+# Warmup Iteration  40: 36.993 us/op
+# Warmup Iteration  41: 37.224 us/op
+# Warmup Iteration  42: 37.602 us/op
+# Warmup Iteration  43: 37.526 us/op
+# Warmup Iteration  44: 36.183 us/op
+# Warmup Iteration  45: 37.715 us/op
+# Warmup Iteration  46: 36.872 us/op
+# Warmup Iteration  47: 37.894 us/op
+# Warmup Iteration  48: 36.484 us/op
+# Warmup Iteration  49: 35.359 us/op
+# Warmup Iteration  50: 37.149 us/op
+Iteration   1: 37.462 us/op
+Iteration   2: 35.934 us/op
+Iteration   3: 36.492 us/op
+Iteration   4: 36.681 us/op
+Iteration   5: 35.977 us/op
+Iteration   6: 36.766 us/op
+Iteration   7: 35.916 us/op
+Iteration   8: 36.459 us/op
+Iteration   9: 36.056 us/op
+Iteration  10: 37.653 us/op
+Iteration  11: 36.908 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  36.573 ±(99.9%) 0.830 us/op [Average]
+  (min, avg, max) = (35.916, 36.573, 37.653), stdev = 0.600
+  CI (99.9%): [35.743, 37.403] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 1000, numberOfPlayers = 5000)
+
+# Run progress: 87.17% complete, ETA 00:00:17
+# Fork: 1 of 1
+# Warmup Iteration   1: 2777.773 us/op
+# Warmup Iteration   2: 650.273 us/op
+# Warmup Iteration   3: 566.873 us/op
+# Warmup Iteration   4: 415.136 us/op
+# Warmup Iteration   5: 298.342 us/op
+# Warmup Iteration   6: 309.206 us/op
+# Warmup Iteration   7: 284.395 us/op
+# Warmup Iteration   8: 295.202 us/op
+# Warmup Iteration   9: 305.747 us/op
+# Warmup Iteration  10: 280.373 us/op
+# Warmup Iteration  11: 297.989 us/op
+# Warmup Iteration  12: 278.809 us/op
+# Warmup Iteration  13: 294.296 us/op
+# Warmup Iteration  14: 281.877 us/op
+# Warmup Iteration  15: 299.140 us/op
+# Warmup Iteration  16: 297.177 us/op
+# Warmup Iteration  17: 280.455 us/op
+# Warmup Iteration  18: 302.457 us/op
+# Warmup Iteration  19: 277.337 us/op
+# Warmup Iteration  20: 293.529 us/op
+# Warmup Iteration  21: 278.537 us/op
+# Warmup Iteration  22: 299.776 us/op
+# Warmup Iteration  23: 281.259 us/op
+# Warmup Iteration  24: 301.958 us/op
+# Warmup Iteration  25: 291.852 us/op
+# Warmup Iteration  26: 287.135 us/op
+# Warmup Iteration  27: 305.993 us/op
+# Warmup Iteration  28: 280.874 us/op
+# Warmup Iteration  29: 296.596 us/op
+# Warmup Iteration  30: 280.656 us/op
+# Warmup Iteration  31: 305.086 us/op
+# Warmup Iteration  32: 283.131 us/op
+# Warmup Iteration  33: 290.835 us/op
+# Warmup Iteration  34: 285.159 us/op
+# Warmup Iteration  35: 276.668 us/op
+# Warmup Iteration  36: 281.332 us/op
+# Warmup Iteration  37: 276.504 us/op
+# Warmup Iteration  38: 291.262 us/op
+# Warmup Iteration  39: 277.076 us/op
+# Warmup Iteration  40: 286.415 us/op
+# Warmup Iteration  41: 281.044 us/op
+# Warmup Iteration  42: 284.744 us/op
+# Warmup Iteration  43: 284.075 us/op
+# Warmup Iteration  44: 308.863 us/op
+# Warmup Iteration  45: 294.566 us/op
+# Warmup Iteration  46: 277.223 us/op
+# Warmup Iteration  47: 288.728 us/op
+# Warmup Iteration  48: 278.098 us/op
+# Warmup Iteration  49: 285.321 us/op
+# Warmup Iteration  50: 283.012 us/op
+Iteration   1: 281.597 us/op
+Iteration   2: 293.491 us/op
+Iteration   3: 279.904 us/op
+Iteration   4: 278.414 us/op
+Iteration   5: 275.075 us/op
+Iteration   6: 290.696 us/op
+Iteration   7: 286.328 us/op
+Iteration   8: 284.361 us/op
+Iteration   9: 293.374 us/op
+Iteration  10: 295.444 us/op
+Iteration  11: 285.632 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  285.847 ±(99.9%) 9.358 us/op [Average]
+  (min, avg, max) = (275.075, 285.847, 295.444), stdev = 6.766
+  CI (99.9%): [276.489, 295.205] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 5)
+
+# Run progress: 90.37% complete, ETA 00:00:13
+# Fork: 1 of 1
+# Warmup Iteration   1: 3008.888 us/op
+# Warmup Iteration   2: 754.627 us/op
+# Warmup Iteration   3: 673.738 us/op
+# Warmup Iteration   4: 445.824 us/op
+# Warmup Iteration   5: 319.628 us/op
+# Warmup Iteration   6: 299.741 us/op
+# Warmup Iteration   7: 303.323 us/op
+# Warmup Iteration   8: 302.195 us/op
+# Warmup Iteration   9: 315.727 us/op
+# Warmup Iteration  10: 311.269 us/op
+# Warmup Iteration  11: 284.338 us/op
+# Warmup Iteration  12: 308.030 us/op
+# Warmup Iteration  13: 308.581 us/op
+# Warmup Iteration  14: 299.844 us/op
+# Warmup Iteration  15: 281.301 us/op
+# Warmup Iteration  16: 306.843 us/op
+# Warmup Iteration  17: 318.542 us/op
+# Warmup Iteration  18: 329.121 us/op
+# Warmup Iteration  19: 294.338 us/op
+# Warmup Iteration  20: 304.153 us/op
+# Warmup Iteration  21: 315.761 us/op
+# Warmup Iteration  22: 300.725 us/op
+# Warmup Iteration  23: 282.398 us/op
+# Warmup Iteration  24: 316.085 us/op
+# Warmup Iteration  25: 308.156 us/op
+# Warmup Iteration  26: 289.780 us/op
+# Warmup Iteration  27: 285.724 us/op
+# Warmup Iteration  28: 293.183 us/op
+# Warmup Iteration  29: 299.224 us/op
+# Warmup Iteration  30: 299.933 us/op
+# Warmup Iteration  31: 291.870 us/op
+# Warmup Iteration  32: 298.053 us/op
+# Warmup Iteration  33: 296.526 us/op
+# Warmup Iteration  34: 294.103 us/op
+# Warmup Iteration  35: 292.093 us/op
+# Warmup Iteration  36: 298.649 us/op
+# Warmup Iteration  37: 299.546 us/op
+# Warmup Iteration  38: 308.161 us/op
+# Warmup Iteration  39: 291.731 us/op
+# Warmup Iteration  40: 300.318 us/op
+# Warmup Iteration  41: 290.965 us/op
+# Warmup Iteration  42: 300.270 us/op
+# Warmup Iteration  43: 295.583 us/op
+# Warmup Iteration  44: 288.503 us/op
+# Warmup Iteration  45: 294.051 us/op
+# Warmup Iteration  46: 315.573 us/op
+# Warmup Iteration  47: 298.474 us/op
+# Warmup Iteration  48: 320.556 us/op
+# Warmup Iteration  49: 434.226 us/op
+# Warmup Iteration  50: 337.042 us/op
+Iteration   1: 305.012 us/op
+Iteration   2: 295.093 us/op
+Iteration   3: 292.450 us/op
+Iteration   4: 296.962 us/op
+Iteration   5: 297.024 us/op
+Iteration   6: 308.566 us/op
+Iteration   7: 301.323 us/op
+Iteration   8: 288.477 us/op
+Iteration   9: 292.442 us/op
+Iteration  10: 288.945 us/op
+Iteration  11: 295.042 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  296.485 ±(99.9%) 8.749 us/op [Average]
+  (min, avg, max) = (288.477, 296.485, 308.566), stdev = 6.326
+  CI (99.9%): [287.736, 305.234] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 50)
+
+# Run progress: 93.58% complete, ETA 00:00:08
+# Fork: 1 of 1
+# Warmup Iteration   1: 7384.700 us/op
+# Warmup Iteration   2: 870.052 us/op
+# Warmup Iteration   3: 761.839 us/op
+# Warmup Iteration   4: 650.616 us/op
+# Warmup Iteration   5: 357.146 us/op
+# Warmup Iteration   6: 355.163 us/op
+# Warmup Iteration   7: 349.412 us/op
+# Warmup Iteration   8: 330.077 us/op
+# Warmup Iteration   9: 348.541 us/op
+# Warmup Iteration  10: 336.437 us/op
+# Warmup Iteration  11: 316.875 us/op
+# Warmup Iteration  12: 340.074 us/op
+# Warmup Iteration  13: 340.769 us/op
+# Warmup Iteration  14: 362.570 us/op
+# Warmup Iteration  15: 336.635 us/op
+# Warmup Iteration  16: 362.449 us/op
+# Warmup Iteration  17: 337.323 us/op
+# Warmup Iteration  18: 321.269 us/op
+# Warmup Iteration  19: 345.920 us/op
+# Warmup Iteration  20: 341.548 us/op
+# Warmup Iteration  21: 318.273 us/op
+# Warmup Iteration  22: 352.526 us/op
+# Warmup Iteration  23: 340.864 us/op
+# Warmup Iteration  24: 335.058 us/op
+# Warmup Iteration  25: 324.526 us/op
+# Warmup Iteration  26: 342.172 us/op
+# Warmup Iteration  27: 359.920 us/op
+# Warmup Iteration  28: 327.374 us/op
+# Warmup Iteration  29: 344.687 us/op
+# Warmup Iteration  30: 335.767 us/op
+# Warmup Iteration  31: 324.701 us/op
+# Warmup Iteration  32: 343.889 us/op
+# Warmup Iteration  33: 338.694 us/op
+# Warmup Iteration  34: 330.413 us/op
+# Warmup Iteration  35: 338.141 us/op
+# Warmup Iteration  36: 340.050 us/op
+# Warmup Iteration  37: 340.200 us/op
+# Warmup Iteration  38: 327.581 us/op
+# Warmup Iteration  39: 340.744 us/op
+# Warmup Iteration  40: 336.549 us/op
+# Warmup Iteration  41: 328.602 us/op
+# Warmup Iteration  42: 344.957 us/op
+# Warmup Iteration  43: 333.932 us/op
+# Warmup Iteration  44: 349.003 us/op
+# Warmup Iteration  45: 339.420 us/op
+# Warmup Iteration  46: 339.355 us/op
+# Warmup Iteration  47: 334.947 us/op
+# Warmup Iteration  48: 338.947 us/op
+# Warmup Iteration  49: 337.427 us/op
+# Warmup Iteration  50: 331.651 us/op
+Iteration   1: 344.856 us/op
+Iteration   2: 335.856 us/op
+Iteration   3: 345.670 us/op
+Iteration   4: 356.727 us/op
+Iteration   5: 338.250 us/op
+Iteration   6: 336.944 us/op
+Iteration   7: 341.431 us/op
+Iteration   8: 336.980 us/op
+Iteration   9: 325.413 us/op
+Iteration  10: 346.919 us/op
+Iteration  11: 342.327 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  341.034 ±(99.9%) 10.982 us/op [Average]
+  (min, avg, max) = (325.413, 341.034, 356.727), stdev = 7.941
+  CI (99.9%): [330.052, 352.016] (assumes normal distribution)
+
+
+# JMH version: 1.21
+# VM version: JDK 1.8.0_222, OpenJDK 64-Bit Server VM, 25.222-b10
+# VM invoker: /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Xms4g -Xmx4g -Xss1m -XX:+UseG1GC -XX:MaxGCPauseMillis=1
+# Warmup: 50 iterations, 50 ms each
+# Measurement: 11 iterations, 100 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod
+# Parameters: (numberOfGames = 10000, numberOfPlayers = 5000)
+
+# Run progress: 96.79% complete, ETA 00:00:04
+# Fork: 1 of 1
+# Warmup Iteration   1: 20212.343 us/op
+# Warmup Iteration   2: 5403.293 us/op
+# Warmup Iteration   3: 3506.586 us/op
+# Warmup Iteration   4: 2306.568 us/op
+# Warmup Iteration   5: 1749.796 us/op
+# Warmup Iteration   6: 1950.180 us/op
+# Warmup Iteration   7: 1785.524 us/op
+# Warmup Iteration   8: 1844.488 us/op
+# Warmup Iteration   9: 1725.114 us/op
+# Warmup Iteration  10: 1881.678 us/op
+# Warmup Iteration  11: 1741.610 us/op
+# Warmup Iteration  12: 1997.249 us/op
+# Warmup Iteration  13: 1762.446 us/op
+# Warmup Iteration  14: 1857.319 us/op
+# Warmup Iteration  15: 1699.449 us/op
+# Warmup Iteration  16: 1913.876 us/op
+# Warmup Iteration  17: 1676.951 us/op
+# Warmup Iteration  18: 1822.627 us/op
+# Warmup Iteration  19: 1693.237 us/op
+# Warmup Iteration  20: 1808.744 us/op
+# Warmup Iteration  21: 1689.334 us/op
+# Warmup Iteration  22: 1849.653 us/op
+# Warmup Iteration  23: 1684.091 us/op
+# Warmup Iteration  24: 1950.114 us/op
+# Warmup Iteration  25: 1826.505 us/op
+# Warmup Iteration  26: 1855.143 us/op
+# Warmup Iteration  27: 1658.985 us/op
+# Warmup Iteration  28: 1809.421 us/op
+# Warmup Iteration  29: 1652.558 us/op
+# Warmup Iteration  30: 1879.147 us/op
+# Warmup Iteration  31: 1677.961 us/op
+# Warmup Iteration  32: 1792.520 us/op
+# Warmup Iteration  33: 1781.167 us/op
+# Warmup Iteration  34: 1717.360 us/op
+# Warmup Iteration  35: 1792.301 us/op
+# Warmup Iteration  36: 1708.674 us/op
+# Warmup Iteration  37: 1757.976 us/op
+# Warmup Iteration  38: 1686.558 us/op
+# Warmup Iteration  39: 1699.669 us/op
+# Warmup Iteration  40: 1918.375 us/op
+# Warmup Iteration  41: 1845.228 us/op
+# Warmup Iteration  42: 1827.686 us/op
+# Warmup Iteration  43: 1720.820 us/op
+# Warmup Iteration  44: 1745.170 us/op
+# Warmup Iteration  45: 1730.895 us/op
+# Warmup Iteration  46: 1829.789 us/op
+# Warmup Iteration  47: 2070.409 us/op
+# Warmup Iteration  48: 1877.217 us/op
+# Warmup Iteration  49: 1803.577 us/op
+# Warmup Iteration  50: 1774.489 us/op
+Iteration   1: 1726.238 us/op
+Iteration   2: 1696.501 us/op
+Iteration   3: 1715.920 us/op
+Iteration   4: 1705.150 us/op
+Iteration   5: 1753.842 us/op
+Iteration   6: 1768.266 us/op
+Iteration   7: 1725.297 us/op
+Iteration   8: 1739.669 us/op
+Iteration   9: 1698.858 us/op
+Iteration  10: 1670.624 us/op
+Iteration  11: 1680.551 us/op
+
+
+Result "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod":
+  1716.447 ±(99.9%) 41.537 us/op [Average]
+  (min, avg, max) = (1670.624, 1716.447, 1768.266), stdev = 30.034
+  CI (99.9%): [1674.910, 1757.984] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:02:16
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+Benchmark                                        (numberOfGames)  (numberOfPlayers)  Mode  Cnt     Score      Error  Units
+BaselineBenchmark.baseline                                   N/A                N/A  avgt   50     0.920 ±    0.010  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                   10                  5  avgt   11     6.179 ±    0.164  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                   10                 50  avgt   11     9.022 ±    0.252  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                   10               5000  avgt   11     8.973 ±    0.289  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                 1000                  5  avgt   11   358.464 ±   13.069  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                 1000                 50  avgt   11   385.445 ±   17.055  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                 1000               5000  avgt   11   893.469 ±   46.535  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                10000                  5  avgt   11  3599.349 ±  131.833  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                10000                 50  avgt   11  3578.856 ±  124.876  us/op
+LeaderboardBenchmark.updateFreshLeaderboard                10000               5000  avgt   11  7913.693 ±  288.670  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard               10                  5  avgt   11     6.185 ±    0.149  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard               10                 50  avgt   11    10.852 ±    0.360  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard               10               5000  avgt   11    10.921 ±    0.272  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard             1000                  5  avgt   11   348.206 ±   10.123  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard             1000                 50  avgt   11   387.567 ±   21.966  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard             1000               5000  avgt   11  1217.228 ±   57.212  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard            10000                  5  avgt   11  3526.458 ±  118.206  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard            10000                 50  avgt   11  3665.658 ±   92.380  us/op
+LeaderboardBenchmark.updatePrefilledLeaderboard            10000               5000  avgt   11  7688.975 ± 1360.823  us/op
+RatingPeriodBenchmark.createRatingPeriod                      10                  5  avgt   11     1.164 ±    0.020  us/op
+RatingPeriodBenchmark.createRatingPeriod                      10                 50  avgt   11     1.859 ±    0.035  us/op
+RatingPeriodBenchmark.createRatingPeriod                      10               5000  avgt   11     2.004 ±    0.088  us/op
+RatingPeriodBenchmark.createRatingPeriod                    1000                  5  avgt   11    31.694 ±    1.293  us/op
+RatingPeriodBenchmark.createRatingPeriod                    1000                 50  avgt   11    36.573 ±    0.830  us/op
+RatingPeriodBenchmark.createRatingPeriod                    1000               5000  avgt   11   285.847 ±    9.358  us/op
+RatingPeriodBenchmark.createRatingPeriod                   10000                  5  avgt   11   296.485 ±    8.749  us/op
+RatingPeriodBenchmark.createRatingPeriod                   10000                 50  avgt   11   341.034 ±   10.982  us/op
+RatingPeriodBenchmark.createRatingPeriod                   10000               5000  avgt   11  1716.447 ±   41.537  us/op
+
+Benchmark result is saved to target/results.json
