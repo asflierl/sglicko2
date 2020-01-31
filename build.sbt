@@ -26,16 +26,17 @@ headerLicense := (ThisBuild / headerLicense).value
 
 updateOptions ~= (_ withCachedResolution true)
 logBuffered := false
-scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8",
+scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ybackend-parallelism", "16",
   "-opt:l:inline", "-opt-inline-from:sglicko2.**", "-opt-warnings:_", "-target:jvm-1.8")
 
-Test / fork := true
-Test / javaOptions := Seq("-server", "-Xmx4g", "-Xss1m")
-Test / scalacOptions += "-Yrangepos"
-Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc")
+ThisBuild / turbo := true
+Global / concurrentRestrictions := Seq(Tags.limitAll(32), Tags.exclusiveGroup(Tags.Clean))
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.8.0" % Test)
-libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.1" % Test)
+Test / scalacOptions += "-Yrangepos"
+Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc", "specs2ThreadsNb", "31")
+
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.8.3" % Test)
+libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.3" % Test)
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   fork := true,
