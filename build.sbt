@@ -1,6 +1,6 @@
 inThisBuild(Seq(
   organization := "sglicko2",
-  scalaVersion := "2.13.1",
+  scalaVersion := "2.13.2",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2020, Andreas Flierl <andreas@flierl.eu>
@@ -35,7 +35,7 @@ Global / concurrentRestrictions := Seq(Tags.limitAll(32), Tags.exclusiveGroup(Ta
 Test / scalacOptions += "-Yrangepos"
 Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc", "specs2ThreadsNb", "31")
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.8.3" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.9.3" % Test)
 libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.3" % Test)
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
