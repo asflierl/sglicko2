@@ -49,7 +49,7 @@ final case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, Vector[Scor
       mm.getOrElseUpdate(player2, Vector.newBuilder) += ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2)
     }
 
-    val newGames = mm.view.mapValues(_.result).toMap
+    val newGames = mm.view.mapValues(_.result()).toMap
 
     copy(games = newGames)
   }

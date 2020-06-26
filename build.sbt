@@ -1,6 +1,6 @@
 inThisBuild(Seq(
   organization := "sglicko2",
-  scalaVersion := "2.13.2",
+  scalaVersion := "2.13.3",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2020, Andreas Flierl <andreas@flierl.eu>
