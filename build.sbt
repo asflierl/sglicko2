@@ -35,16 +35,16 @@ Global / concurrentRestrictions := Seq(Tags.limitAll(32), Tags.exclusiveGroup(Ta
 Test / scalacOptions += "-Yrangepos"
 Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc", "specs2ThreadsNb", "31")
 
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.10.0" % Test)
-libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.14.3" % Test)
+libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "4.10.5" % Test)
+libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.15.1" % Test)
 
 val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin).settings(
   fork := true,
   scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-target:jvm-1.8"),
-  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=1"),
+  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=1", "-XX:MaxInlineLevel=20"),
   libraryDependencies ++= Seq(
-    "org.json4s"    %% "json4s-native" % "3.6.9",
-    "org.typelevel" %% "spire" % "0.17.0-RC1"),
+    "org.json4s"    %% "json4s-native" % "3.6.10",
+    "org.typelevel" %% "spire" % "0.17.0"),
   headerLicense := (ThisBuild / headerLicense).value)
 
 // benchmarks will run for about 2.5 minutes
