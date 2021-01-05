@@ -19,9 +19,7 @@ package sglicko2
 import scala.math.{abs, exp, sqrt, log => ln, Pi => π}
 
 // implements the (public domain) Glicko 2 algorithm; see http://www.glicko.net/glicko.html for further details
-final class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializable {
-  require(tau > 0d && tau < Double.PositiveInfinity, s"the system constant τ ($tau) must be a number greater than 0")
-
+final class Glicko2[A, B: ScoringRules] private (val tau: Double = 0.6d) extends Serializable {
   private def g(φ: Double): Double = 1d / sqrt(1d + 3d * φ.`²` / π.`²`)
   private def E(µ: Double, µj: Double, φj: Double): Double = 1d / (1d + exp(-g(φj) * (µ - µj)))
 
@@ -60,7 +58,7 @@ final class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializ
         n += 1
       }
       s
-    }
+    }x
 
     // Step 3
     val ν = 1d / (sumOverOpponentsAndMatchResults { (opponent, matchResult) =>
@@ -128,4 +126,10 @@ final class Glicko2[A, B: ScoringRules](val tau: Double = 0.6d) extends Serializ
   }
 
   override def toString: String = s"Glicko2(τ = $τ, scoring rules = ${implicitly[ScoringRules[B]]})"
+}
+
+object Glicko2 {
+  def apply(tau: Double) = {
+    require(tau > 0d && tau < Double.PositiveInfinity, s"the system constant τ ($tau) must be a number greater than 0")
+  }
 }

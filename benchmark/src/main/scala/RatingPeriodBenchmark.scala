@@ -30,7 +30,7 @@ import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, RatingPeriod}
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 class RatingPeriodBenchmark {
 
-  var system: Glicko2[String, EitherOnePlayerWinsOrItsADraw] = new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
+  var system: Glicko2[String, EitherOnePlayerWinsOrItsADraw] = ???//new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
 
   @Param(Array("10", "1000", "10000"))
   @volatile var numberOfGames: Int = _
