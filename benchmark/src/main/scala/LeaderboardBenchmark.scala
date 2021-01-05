@@ -30,7 +30,7 @@ import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, Leaderboard, RatingPeri
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 class LeaderboardBenchmark {
 
-  var system: Glicko2[String, EitherOnePlayerWinsOrItsADraw] = new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
+  var system: Glicko2[String, EitherOnePlayerWinsOrItsADraw] = ???//new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
 
   @Param(Array("10", "1000", "10000"))
   @volatile var numberOfGames: Int = _
