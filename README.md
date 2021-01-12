@@ -13,7 +13,7 @@ libraryDependencies += "sglicko2" %% "sglicko2" % "1.7"
 
 ### Usage
 
-Here's a simple, runnable example on how the library can be used:
+Here's a simple, runnable example on how the library can be used. You can [experiment with it right in your browser (using Scastie)](https://scastie.scala-lang.org/asflierl/Rh8aKj7aTNapEE163WYyHA).
 
 ```scala
 import sglicko2._, EitherOnePlayerWinsOrItsADraw._
