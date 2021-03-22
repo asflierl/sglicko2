@@ -7,7 +7,7 @@ inThisBuild(Seq(
   scalaVersion := "2.13.5",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   githubWorkflowPublishTargetBranches := Nil,
-  githubWorkflowJavaVersions := Seq("adopt@11"),
+  githubWorkflowJavaVersions := Seq("graalvm-ce-java11@21"),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
        |
