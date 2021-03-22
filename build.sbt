@@ -2,12 +2,11 @@ import xerial.sbt.Sonatype._
 
 inThisBuild(Seq(
   organization := "eu.flierl",
-  version := "1.7.0",
+  version := "1.7.1",
   versionScheme := Some("semver-spec"),
   scalaVersion := "2.13.5",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   githubWorkflowPublishTargetBranches := Nil,
-  githubWorkflowJavaVersions := Seq("graalvm-ce-java11@21"),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
        |
@@ -30,7 +29,7 @@ headerLicense := (ThisBuild / headerLicense).value
 updateOptions ~= (_ withCachedResolution true)
 logBuffered := false
 scalacOptions := Seq("-unchecked", "-deprecation", "-language:_", "-encoding", "UTF-8", "-Ybackend-parallelism", "16",
-  "-opt:l:inline", "-opt-inline-from:sglicko2.**", "-opt-warnings:_", "-target:11")
+  "-opt:l:inline", "-opt-inline-from:sglicko2.**", "-opt-warnings:_", "-target:8")
 
 ThisBuild / turbo := true
 Global / concurrentRestrictions := Seq(Tags.limitAll(32), Tags.exclusiveGroup(Tags.Clean))
