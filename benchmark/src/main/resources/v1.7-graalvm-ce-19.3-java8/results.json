@@ -1,0 +1,1971 @@
+[
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.BaselineBenchmark.baseline",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 1000,
+        "warmupTime" : "10 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 50,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "primaryMetric" : {
+            "score" : 0.9169256823309582,
+            "scoreError" : 0.008445087416848693,
+            "scoreConfidence" : [
+                0.9084805949141095,
+                0.9253707697478069
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.9027108566224796,
+                "50.0" : 0.9091281166753,
+                "90.0" : 0.9406150704341115,
+                "95.0" : 0.9520317354533124,
+                "99.0" : 0.9871859115623346,
+                "99.9" : 0.9871859115623346,
+                "99.99" : 0.9871859115623346,
+                "99.999" : 0.9871859115623346,
+                "99.9999" : 0.9871859115623346,
+                "100.0" : 0.9871859115623346
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    0.9031860819025183,
+                    0.9093036535015969,
+                    0.9466736816277226,
+                    0.9254206716799042,
+                    0.9061891910534756,
+                    0.9030683790052401,
+                    0.913632470976999,
+                    0.9077117293817774,
+                    0.9073895168313,
+                    0.9041226216190632,
+                    0.9055454018964638,
+                    0.9274387688750813,
+                    0.9315168510276819,
+                    0.9148769068682084,
+                    0.9175018639613762,
+                    0.9112769065540498,
+                    0.9407882228509957,
+                    0.9520429974276648,
+                    0.9140702217191679,
+                    0.9027108566224796,
+                    0.9060697217167841,
+                    0.9262875995028165,
+                    0.9345489517950177,
+                    0.9215708744067178,
+                    0.9871859115623346,
+                    0.9108882948302456,
+                    0.9080664794088414,
+                    0.9083424321125069,
+                    0.903223666004933,
+                    0.9031730454412297,
+                    0.907590584339626,
+                    0.9354085177608332,
+                    0.9268134582473226,
+                    0.906692935462443,
+                    0.9043398133885732,
+                    0.9520225211106604,
+                    0.9046793381884545,
+                    0.9074828136330675,
+                    0.9040889912474736,
+                    0.9247581096222341,
+                    0.9238951440604201,
+                    0.9390566986821532,
+                    0.9072833247022268,
+                    0.9053849886936859,
+                    0.9069393298942392,
+                    0.9091639669450123,
+                    0.9094866153726319,
+                    0.9090922664055876,
+                    0.9032137596440988,
+                    0.9050669669829762
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 6.154747254876995,
+            "scoreError" : 0.12692167456276704,
+            "scoreConfidence" : [
+                6.027825580314228,
+                6.281668929439761
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6.0402081034482755,
+                "50.0" : 6.135644533987386,
+                "90.0" : 6.344147474777651,
+                "95.0" : 6.356074495668121,
+                "99.0" : 6.356074495668121,
+                "99.9" : 6.356074495668121,
+                "99.99" : 6.356074495668121,
+                "99.999" : 6.356074495668121,
+                "99.9999" : 6.356074495668121,
+                "100.0" : 6.356074495668121
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    6.126396352473817,
+                    6.159530834564254,
+                    6.140090356871678,
+                    6.135644533987386,
+                    6.104009292061095,
+                    6.296439391215771,
+                    6.083048324555819,
+                    6.1207555866772205,
+                    6.356074495668121,
+                    6.1400225321235,
+                    6.0402081034482755
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 9.15766027218005,
+            "scoreError" : 0.32852316700003353,
+            "scoreConfidence" : [
+                8.829137105180017,
+                9.486183439180085
+            ],
+            "scorePercentiles" : {
+                "0.0" : 8.776809635920289,
+                "50.0" : 9.127170761350811,
+                "90.0" : 9.49275568870136,
+                "95.0" : 9.503089240506329,
+                "99.0" : 9.503089240506329,
+                "99.9" : 9.503089240506329,
+                "99.99" : 9.503089240506329,
+                "99.999" : 9.503089240506329,
+                "99.9999" : 9.503089240506329,
+                "100.0" : 9.503089240506329
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    8.995105862216517,
+                    9.024742079505453,
+                    9.38110096378778,
+                    8.943951499118166,
+                    9.21843592099219,
+                    9.503089240506329,
+                    9.342350259933161,
+                    9.451421481481482,
+                    8.970085289168365,
+                    9.127170761350811,
+                    8.776809635920289
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 9.42667514821949,
+            "scoreError" : 1.1547517720894676,
+            "scoreConfidence" : [
+                8.271923376130022,
+                10.581426920308957
+            ],
+            "scorePercentiles" : {
+                "0.0" : 8.964714386834189,
+                "50.0" : 9.051959165317504,
+                "90.0" : 11.397346975106982,
+                "95.0" : 11.80925033982782,
+                "99.0" : 11.80925033982782,
+                "99.9" : 11.80925033982782,
+                "99.99" : 11.80925033982782,
+                "99.999" : 11.80925033982782,
+                "99.9999" : 11.80925033982782,
+                "100.0" : 11.80925033982782
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    8.964714386834189,
+                    9.242009227524386,
+                    9.661489767179873,
+                    8.998414776132181,
+                    9.04233909363428,
+                    9.046395713178962,
+                    9.74973351622363,
+                    11.80925033982782,
+                    9.051959165317504,
+                    9.000026626712328,
+                    9.127094017849254
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 377.6916395712664,
+            "scoreError" : 14.819602371314474,
+            "scoreConfidence" : [
+                362.87203719995193,
+                392.5112419425809
+            ],
+            "scorePercentiles" : {
+                "0.0" : 368.5331119133574,
+                "50.0" : 375.02770818505337,
+                "90.0" : 402.8590588184575,
+                "95.0" : 407.461203187251,
+                "99.0" : 407.461203187251,
+                "99.9" : 407.461203187251,
+                "99.99" : 407.461203187251,
+                "99.999" : 407.461203187251,
+                "99.9999" : 407.461203187251,
+                "100.0" : 407.461203187251
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    375.02770818505337,
+                    371.5113604240283,
+                    376.8521182795699,
+                    376.00406343283584,
+                    373.84471276595747,
+                    368.5331119133574,
+                    370.18838745387455,
+                    374.44691814946617,
+                    384.45048134328357,
+                    376.28797014925374,
+                    407.461203187251
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 397.3195944860749,
+            "scoreError" : 14.28784651095361,
+            "scoreConfidence" : [
+                383.0317479751213,
+                411.6074409970285
+            ],
+            "scorePercentiles" : {
+                "0.0" : 385.27357307692307,
+                "50.0" : 391.29261654135337,
+                "90.0" : 410.6521909901251,
+                "95.0" : 410.8364342629482,
+                "99.0" : 410.8364342629482,
+                "99.9" : 410.8364342629482,
+                "99.99" : 410.8364342629482,
+                "99.999" : 410.8364342629482,
+                "99.9999" : 410.8364342629482,
+                "100.0" : 410.8364342629482
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    387.5844291187739,
+                    391.29261654135337,
+                    410.8364342629482,
+                    390.8671735849057,
+                    405.84307287449394,
+                    402.494,
+                    409.4329102040816,
+                    409.9152178988327,
+                    390.2149148148148,
+                    385.27357307692307,
+                    386.761196969697
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 927.0003447454332,
+            "scoreError" : 50.72679056259895,
+            "scoreConfidence" : [
+                876.2735541828342,
+                977.7271353080321
+            ],
+            "scorePercentiles" : {
+                "0.0" : 885.2330683760683,
+                "50.0" : 913.4188173913044,
+                "90.0" : 995.7325651544572,
+                "95.0" : 1006.2078155339806,
+                "99.0" : 1006.2078155339806,
+                "99.9" : 1006.2078155339806,
+                "99.99" : 1006.2078155339806,
+                "99.999" : 1006.2078155339806,
+                "99.9999" : 1006.2078155339806,
+                "100.0" : 1006.2078155339806
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    945.6006181818182,
+                    1006.2078155339806,
+                    901.6241538461538,
+                    903.6245431034483,
+                    904.7716260869565,
+                    944.79990990991,
+                    950.9895405405406,
+                    885.2330683760683,
+                    913.4188173913044,
+                    953.8315636363636,
+                    886.9021355932204
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 3768.105036070889,
+            "scoreError" : 74.67589947244382,
+            "scoreConfidence" : [
+                3693.4291365984454,
+                3842.780935543333
+            ],
+            "scorePercentiles" : {
+                "0.0" : 3714.418642857143,
+                "50.0" : 3763.9656785714287,
+                "90.0" : 3880.812831216931,
+                "95.0" : 3901.0965925925925,
+                "99.0" : 3901.0965925925925,
+                "99.9" : 3901.0965925925925,
+                "99.99" : 3901.0965925925925,
+                "99.999" : 3901.0965925925925,
+                "99.9999" : 3901.0965925925925,
+                "100.0" : 3901.0965925925925
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    3726.78325,
+                    3763.9656785714287,
+                    3796.1335,
+                    3799.6777857142856,
+                    3778.289142857143,
+                    3901.0965925925925,
+                    3736.9448214285712,
+                    3782.4394285714284,
+                    3728.6780714285715,
+                    3714.418642857143,
+                    3720.728482758621
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 3696.0359703313925,
+            "scoreError" : 53.52877560999613,
+            "scoreConfidence" : [
+                3642.5071947213964,
+                3749.5647459413885
+            ],
+            "scorePercentiles" : {
+                "0.0" : 3657.162931034483,
+                "50.0" : 3687.9603793103447,
+                "90.0" : 3773.0578214285715,
+                "95.0" : 3776.6215714285713,
+                "99.0" : 3776.6215714285713,
+                "99.9" : 3776.6215714285713,
+                "99.99" : 3776.6215714285713,
+                "99.999" : 3776.6215714285713,
+                "99.9999" : 3776.6215714285713,
+                "100.0" : 3776.6215714285713
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    3693.2740357142857,
+                    3699.2194642857144,
+                    3687.0559285714285,
+                    3664.341931034483,
+                    3687.9603793103447,
+                    3700.6459310344826,
+                    3657.162931034483,
+                    3758.8028214285714,
+                    3776.6215714285713,
+                    3666.1277142857143,
+                    3665.1829655172414
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updateFreshLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 7963.914065434565,
+            "scoreError" : 232.88184387338086,
+            "scoreConfidence" : [
+                7731.032221561184,
+                8196.795909307946
+            ],
+            "scorePercentiles" : {
+                "0.0" : 7843.364428571429,
+                "50.0" : 7892.189769230769,
+                "90.0" : 8344.10196923077,
+                "95.0" : 8390.630846153847,
+                "99.0" : 8390.630846153847,
+                "99.9" : 8390.630846153847,
+                "99.99" : 8390.630846153847,
+                "99.999" : 8390.630846153847,
+                "99.9999" : 8390.630846153847,
+                "100.0" : 8390.630846153847
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    7875.510285714286,
+                    7988.087142857143,
+                    7878.908071428571,
+                    7892.189769230769,
+                    8390.630846153847,
+                    8157.986461538461,
+                    7970.432142857143,
+                    7849.505785714286,
+                    7843.364428571429,
+                    7896.6017142857145,
+                    7859.838071428571
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 6.14368044819926,
+            "scoreError" : 0.13763505105327772,
+            "scoreConfidence" : [
+                6.006045397145982,
+                6.281315499252537
+            ],
+            "scorePercentiles" : {
+                "0.0" : 6.045753292311232,
+                "50.0" : 6.106805077852661,
+                "90.0" : 6.325469296424116,
+                "95.0" : 6.336380613192939,
+                "99.0" : 6.336380613192939,
+                "99.9" : 6.336380613192939,
+                "99.99" : 6.336380613192939,
+                "99.999" : 6.336380613192939,
+                "99.9999" : 6.336380613192939,
+                "100.0" : 6.336380613192939
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    6.146924089128019,
+                    6.281824029348823,
+                    6.229700610515085,
+                    6.106805077852661,
+                    6.336380613192939,
+                    6.067419379039705,
+                    6.0608582631761045,
+                    6.045753292311232,
+                    6.064628470819142,
+                    6.07304694058528,
+                    6.167144164222874
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 11.199673196336478,
+            "scoreError" : 0.4550191210218077,
+            "scoreConfidence" : [
+                10.74465407531467,
+                11.654692317358286
+            ],
+            "scorePercentiles" : {
+                "0.0" : 10.851075918192526,
+                "50.0" : 11.198084149978696,
+                "90.0" : 11.838597429131637,
+                "95.0" : 11.873568056026206,
+                "99.0" : 11.873568056026206,
+                "99.9" : 11.873568056026206,
+                "99.99" : 11.873568056026206,
+                "99.999" : 11.873568056026206,
+                "99.9999" : 11.873568056026206,
+                "100.0" : 11.873568056026206
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    11.23412784363986,
+                    10.977267449238578,
+                    11.032220415442719,
+                    11.292217293233083,
+                    10.851075918192526,
+                    11.213343810969,
+                    10.966920369177934,
+                    11.198084149978696,
+                    11.698714921553355,
+                    10.858864932249322,
+                    11.873568056026206
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 11.32703460884163,
+            "scoreError" : 0.4845894815270653,
+            "scoreConfidence" : [
+                10.842445127314566,
+                11.811624090368696
+            ],
+            "scorePercentiles" : {
+                "0.0" : 10.89232229393715,
+                "50.0" : 11.366539310046502,
+                "90.0" : 11.975826926605505,
+                "95.0" : 12.061716399082568,
+                "99.0" : 12.061716399082568,
+                "99.9" : 12.061716399082568,
+                "99.99" : 12.061716399082568,
+                "99.999" : 12.061716399082568,
+                "99.9999" : 12.061716399082568,
+                "100.0" : 12.061716399082568
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    10.965650535331905,
+                    11.505176558033162,
+                    11.038037916185274,
+                    11.372264046167247,
+                    11.309769673491976,
+                    11.366539310046502,
+                    11.632269036697247,
+                    12.061716399082568,
+                    10.966061345852895,
+                    11.48757358243199,
+                    10.89232229393715
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 365.54106530899,
+            "scoreError" : 16.649882554712974,
+            "scoreConfidence" : [
+                348.89118275427705,
+                382.190947863703
+            ],
+            "scorePercentiles" : {
+                "0.0" : 355.083703180212,
+                "50.0" : 364.1106884057971,
+                "90.0" : 392.4017158696398,
+                "95.0" : 397.8794830188679,
+                "99.0" : 397.8794830188679,
+                "99.9" : 397.8794830188679,
+                "99.99" : 397.8794830188679,
+                "99.999" : 397.8794830188679,
+                "99.9999" : 397.8794830188679,
+                "100.0" : 397.8794830188679
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    368.5739178571429,
+                    370.49064727272724,
+                    365.9108993055556,
+                    397.8794830188679,
+                    364.1106884057971,
+                    363.2358689655172,
+                    355.8355035211268,
+                    355.083703180212,
+                    356.64326855123676,
+                    356.6688181818182,
+                    366.5189201388889
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 401.73942520035877,
+            "scoreError" : 13.76165827440996,
+            "scoreConfidence" : [
+                387.9777669259488,
+                415.50108347476873
+            ],
+            "scorePercentiles" : {
+                "0.0" : 393.7951136363636,
+                "50.0" : 399.12622745098037,
+                "90.0" : 424.9590836961451,
+                "95.0" : 429.2513020408163,
+                "99.0" : 429.2513020408163,
+                "99.9" : 429.2513020408163,
+                "99.99" : 429.2513020408163,
+                "99.999" : 429.2513020408163,
+                "99.9999" : 429.2513020408163,
+                "100.0" : 429.2513020408163
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    429.2513020408163,
+                    399.12622745098037,
+                    398.35400384615383,
+                    402.7696551724138,
+                    393.7951136363636,
+                    396.2232401574803,
+                    399.73169140625,
+                    407.7902103174603,
+                    401.08321705426357,
+                    396.37730451127817,
+                    394.6317116104869
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 1241.2381550096957,
+            "scoreError" : 37.9682282684891,
+            "scoreConfidence" : [
+                1203.2699267412065,
+                1279.2063832781848
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1201.760523255814,
+                "50.0" : 1244.850511904762,
+                "90.0" : 1277.580408192771,
+                "95.0" : 1279.3682,
+                "99.0" : 1279.3682,
+                "99.9" : 1279.3682,
+                "99.99" : 1279.3682,
+                "99.999" : 1279.3682,
+                "99.9999" : 1279.3682,
+                "100.0" : 1279.3682
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    1269.2152839506173,
+                    1244.850511904762,
+                    1256.8155476190477,
+                    1270.4292409638554,
+                    1221.884988505747,
+                    1227.9523882352942,
+                    1279.3682,
+                    1219.258908045977,
+                    1204.6605882352942,
+                    1201.760523255814,
+                    1257.423524390244
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 3637.7148876482393,
+            "scoreError" : 115.2500355202592,
+            "scoreConfidence" : [
+                3522.46485212798,
+                3752.9649231684984
+            ],
+            "scorePercentiles" : {
+                "0.0" : 3560.379172413793,
+                "50.0" : 3600.2455333333332,
+                "90.0" : 3783.767455026455,
+                "95.0" : 3786.355892857143,
+                "99.0" : 3786.355892857143,
+                "99.9" : 3786.355892857143,
+                "99.99" : 3786.355892857143,
+                "99.999" : 3786.355892857143,
+                "99.9999" : 3786.355892857143,
+                "100.0" : 3786.355892857143
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    3600.2455333333332,
+                    3611.802107142857,
+                    3572.1931666666665,
+                    3560.379172413793,
+                    3773.4137037037035,
+                    3684.535448275862,
+                    3692.993068965517,
+                    3593.650285714286,
+                    3577.7398333333335,
+                    3561.555551724138,
+                    3786.355892857143
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 3838.9210947570955,
+            "scoreError" : 113.08702150917405,
+            "scoreConfidence" : [
+                3725.8340732479214,
+                3952.0081162662696
+            ],
+            "scorePercentiles" : {
+                "0.0" : 3748.93925,
+                "50.0" : 3815.2087142857144,
+                "90.0" : 3967.387851851852,
+                "95.0" : 3967.440259259259,
+                "99.0" : 3967.440259259259,
+                "99.9" : 3967.440259259259,
+                "99.99" : 3967.440259259259,
+                "99.999" : 3967.440259259259,
+                "99.9999" : 3967.440259259259,
+                "100.0" : 3967.440259259259
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    3817.585148148148,
+                    3946.93662962963,
+                    3807.9264814814815,
+                    3967.1782222222223,
+                    3800.3537142857144,
+                    3821.5716428571427,
+                    3776.4784444444444,
+                    3815.2087142857144,
+                    3758.513535714286,
+                    3748.93925,
+                    3967.440259259259
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.LeaderboardBenchmark.updatePrefilledLeaderboard",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 7664.827937112887,
+            "scoreError" : 613.1482249983682,
+            "scoreConfidence" : [
+                7051.679712114519,
+                8277.976162111256
+            ],
+            "scorePercentiles" : {
+                "0.0" : 7335.1388,
+                "50.0" : 7441.062866666667,
+                "90.0" : 8666.279989743589,
+                "95.0" : 8795.893083333332,
+                "99.0" : 8795.893083333332,
+                "99.9" : 8795.893083333332,
+                "99.99" : 8795.893083333332,
+                "99.999" : 8795.893083333332,
+                "99.9999" : 8795.893083333332,
+                "100.0" : 8795.893083333332
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    7497.293142857143,
+                    7441.062866666667,
+                    7430.554066666667,
+                    7386.6952,
+                    7335.1388,
+                    8147.8276153846155,
+                    7788.742071428572,
+                    7645.650857142857,
+                    7435.4460714285715,
+                    8795.893083333332,
+                    7408.803533333334
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 0.926271031613407,
+            "scoreError" : 0.040992776430815565,
+            "scoreConfidence" : [
+                0.8852782551825914,
+                0.9672638080442225
+            ],
+            "scorePercentiles" : {
+                "0.0" : 0.8964778530928934,
+                "50.0" : 0.9155298632577147,
+                "90.0" : 0.986448473884936,
+                "95.0" : 0.9899100863399851,
+                "99.0" : 0.9899100863399851,
+                "99.9" : 0.9899100863399851,
+                "99.99" : 0.9899100863399851,
+                "99.999" : 0.9899100863399851,
+                "99.9999" : 0.9899100863399851,
+                "100.0" : 0.9899100863399851
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    0.9108339269465748,
+                    0.9029216999356084,
+                    0.910821248213435,
+                    0.9296783613182411,
+                    0.9347813091149516,
+                    0.9155298632577147,
+                    0.9899100863399851,
+                    0.9202018135826134,
+                    0.8964778530928934,
+                    0.9726020240647392,
+                    0.9052231618807195
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 1.588426744191314,
+            "scoreError" : 0.08170612244697276,
+            "scoreConfidence" : [
+                1.5067206217443412,
+                1.6701328666382869
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.534954739301884,
+                "50.0" : 1.567625685666587,
+                "90.0" : 1.7165350775409172,
+                "95.0" : 1.737060160959131,
+                "99.0" : 1.737060160959131,
+                "99.9" : 1.737060160959131,
+                "99.99" : 1.737060160959131,
+                "99.999" : 1.737060160959131,
+                "99.9999" : 1.737060160959131,
+                "100.0" : 1.737060160959131
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    1.5682381215387142,
+                    1.634434743868062,
+                    1.567625685666587,
+                    1.737060160959131,
+                    1.5383273530789043,
+                    1.5514516434845724,
+                    1.62419346834872,
+                    1.5648299830467425,
+                    1.534954739301884,
+                    1.5538528566128733,
+                    1.597725430198262
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 1.5942928985339129,
+            "scoreError" : 0.06023485423601772,
+            "scoreConfidence" : [
+                1.534058044297895,
+                1.6545277527699307
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1.5537739694023665,
+                "50.0" : 1.587093947466237,
+                "90.0" : 1.6925371470601065,
+                "95.0" : 1.7131449591813457,
+                "99.0" : 1.7131449591813457,
+                "99.9" : 1.7131449591813457,
+                "99.99" : 1.7131449591813457,
+                "99.999" : 1.7131449591813457,
+                "99.9999" : 1.7131449591813457,
+                "100.0" : 1.7131449591813457
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    1.7131449591813457,
+                    1.588601170828922,
+                    1.56830028587251,
+                    1.5537739694023665,
+                    1.5772421295879475,
+                    1.587093947466237,
+                    1.5657910220189246,
+                    1.6042074214148427,
+                    1.6101058985751493,
+                    1.6044537261273413,
+                    1.5645073533974558
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 26.040323867601497,
+            "scoreError" : 0.642442916604708,
+            "scoreConfidence" : [
+                25.39788095099679,
+                26.682766784206205
+            ],
+            "scorePercentiles" : {
+                "0.0" : 25.533596397273612,
+                "50.0" : 25.872508487084872,
+                "90.0" : 26.93565442861185,
+                "95.0" : 26.979007581699346,
+                "99.0" : 26.979007581699346,
+                "99.9" : 26.979007581699346,
+                "99.99" : 26.979007581699346,
+                "99.999" : 26.979007581699346,
+                "99.9999" : 26.979007581699346,
+                "100.0" : 26.979007581699346
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    25.533596397273612,
+                    25.872508487084872,
+                    25.777566717791412,
+                    25.77332473064395,
+                    26.76224181626188,
+                    26.37847691921726,
+                    25.948490643424762,
+                    25.9753564894932,
+                    25.71993734703867,
+                    26.979007581699346,
+                    25.723055413687437
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 34.972964527585994,
+            "scoreError" : 3.121335227728528,
+            "scoreConfidence" : [
+                31.851629299857464,
+                38.09429975531452
+            ],
+            "scorePercentiles" : {
+                "0.0" : 33.35042639593909,
+                "50.0" : 34.299702205882355,
+                "90.0" : 39.85308720674396,
+                "95.0" : 40.21464861612515,
+                "99.0" : 40.21464861612515,
+                "99.9" : 40.21464861612515,
+                "99.99" : 40.21464861612515,
+                "99.999" : 40.21464861612515,
+                "99.9999" : 40.21464861612515,
+                "100.0" : 40.21464861612515
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    33.502211082639334,
+                    34.507826714801446,
+                    34.633846257133264,
+                    33.35042639593909,
+                    33.54743841735801,
+                    33.453961171228514,
+                    40.21464861612515,
+                    38.40684156921916,
+                    33.65881492154979,
+                    35.12689245156981,
+                    34.299702205882355
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "1000",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 274.6113492583614,
+            "scoreError" : 3.928240650715741,
+            "scoreConfidence" : [
+                270.68310860764564,
+                278.5395899090771
+            ],
+            "scorePercentiles" : {
+                "0.0" : 271.3176987012987,
+                "50.0" : 274.0767302452316,
+                "90.0" : 280.3396919316804,
+                "95.0" : 281.01479466666666,
+                "99.0" : 281.01479466666666,
+                "99.9" : 281.01479466666666,
+                "99.99" : 281.01479466666666,
+                "99.999" : 281.01479466666666,
+                "99.9999" : 281.01479466666666,
+                "100.0" : 281.01479466666666
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    273.49736856368565,
+                    272.94523746701844,
+                    272.781481865285,
+                    275.85179581151834,
+                    271.53234536082476,
+                    274.47313541666665,
+                    281.01479466666666,
+                    275.5949727520436,
+                    277.6392809917355,
+                    274.0767302452316,
+                    271.3176987012987
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "5"
+        },
+        "primaryMetric" : {
+            "score" : 286.0744889957013,
+            "scoreError" : 12.683503262877025,
+            "scoreConfidence" : [
+                273.3909857328243,
+                298.7579922585783
+            ],
+            "scorePercentiles" : {
+                "0.0" : 277.44107733333334,
+                "50.0" : 282.11469272237196,
+                "90.0" : 304.4660095162161,
+                "95.0" : 305.29247536231884,
+                "99.0" : 305.29247536231884,
+                "99.9" : 305.29247536231884,
+                "99.99" : 305.29247536231884,
+                "99.999" : 305.29247536231884,
+                "99.9999" : 305.29247536231884,
+                "100.0" : 305.29247536231884
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    277.92630343007914,
+                    301.16014613180516,
+                    284.2438220338983,
+                    289.35464835164834,
+                    281.7601534246575,
+                    285.70026016260164,
+                    277.44107733333334,
+                    280.07384383561646,
+                    305.29247536231884,
+                    281.75195616438356,
+                    282.11469272237196
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "50"
+        },
+        "primaryMetric" : {
+            "score" : 308.96614929299824,
+            "scoreError" : 6.012329508569384,
+            "scoreConfidence" : [
+                302.95381978442884,
+                314.97847880156763
+            ],
+            "scorePercentiles" : {
+                "0.0" : 302.8127385057471,
+                "50.0" : 308.35293548387097,
+                "90.0" : 316.6874500423713,
+                "95.0" : 317.3485090361446,
+                "99.0" : 317.3485090361446,
+                "99.9" : 317.3485090361446,
+                "99.99" : 317.3485090361446,
+                "99.999" : 317.3485090361446,
+                "99.9999" : 317.3485090361446,
+                "100.0" : 317.3485090361446
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    311.94666066066065,
+                    302.8127385057471,
+                    306.6455748502994,
+                    303.173772334294,
+                    310.2624411764706,
+                    309.19144744744744,
+                    307.87759064327486,
+                    306.9727580174927,
+                    317.3485090361446,
+                    314.0432140672783,
+                    308.35293548387097
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    },
+    {
+        "jmhVersion" : "1.21",
+        "benchmark" : "sglicko2.benchmark.RatingPeriodBenchmark.createRatingPeriod",
+        "mode" : "avgt",
+        "threads" : 1,
+        "forks" : 1,
+        "jvm" : "/Library/Java/JavaVirtualMachines/graalvm-ce-java8-19.3.0/Contents/Home/jre/bin/java",
+        "jvmArgs" : [
+            "-Dfile.encoding=UTF-8",
+            "-Duser.country=US",
+            "-Duser.language=en",
+            "-Xms4g",
+            "-Xmx4g",
+            "-Xss1m",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=1"
+        ],
+        "jdkVersion" : "1.8.0_232",
+        "vmName" : "OpenJDK 64-Bit GraalVM CE 19.3.0",
+        "vmVersion" : "25.232-b07-jvmci-19.3-b05",
+        "warmupIterations" : 50,
+        "warmupTime" : "50 ms",
+        "warmupBatchSize" : 1,
+        "measurementIterations" : 11,
+        "measurementTime" : "100 ms",
+        "measurementBatchSize" : 1,
+        "params" : {
+            "numberOfGames" : "10000",
+            "numberOfPlayers" : "5000"
+        },
+        "primaryMetric" : {
+            "score" : 1665.3181040364361,
+            "scoreError" : 59.23768972056501,
+            "scoreConfidence" : [
+                1606.0804143158712,
+                1724.555793757001
+            ],
+            "scorePercentiles" : {
+                "0.0" : 1616.0483548387097,
+                "50.0" : 1653.7674761904761,
+                "90.0" : 1751.5516629508197,
+                "95.0" : 1754.5123,
+                "99.0" : 1754.5123,
+                "99.9" : 1754.5123,
+                "99.99" : 1754.5123,
+                "99.999" : 1754.5123,
+                "99.9999" : 1754.5123,
+                "100.0" : 1754.5123
+            },
+            "scoreUnit" : "us/op",
+            "rawData" : [
+                [
+                    1648.565203125,
+                    1739.7091147540984,
+                    1660.3939682539683,
+                    1616.0483548387097,
+                    1665.2583548387097,
+                    1642.101796875,
+                    1636.293629032258,
+                    1641.0453174603174,
+                    1653.7674761904761,
+                    1754.5123,
+                    1660.803629032258
+                ]
+            ]
+        },
+        "secondaryMetrics" : {
+        }
+    }
+]
+
+

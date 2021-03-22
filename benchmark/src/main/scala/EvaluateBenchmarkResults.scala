@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
+ * Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -32,7 +32,7 @@ object EvaluateBenchmarkResults {
   implicit val formats = Serialization.formats(NoTypeHints)
 
   def main(args: Array[String]): Unit = {
-    val referenceGroups = groups(results(readResource("/v1.7/results.json")))
+    val referenceGroups = groups(results(readResource("/v1.7-graalvm-ce-19.3-java11/results.json")))
     val referenceBaseline = referenceGroups("sglicko2.benchmark.BaselineBenchmark").results("sglicko2.benchmark.BaselineBenchmark.baseline")
     val referenceResults = referenceGroups - "sglicko2.benchmark.BaselineBenchmark"
     val newGroups = groups(results(readPath(Paths.get("target", "results.json"))))

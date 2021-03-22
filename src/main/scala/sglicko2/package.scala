@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
+ * Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -18,7 +18,7 @@ package object sglicko2 {
   private[sglicko2] final val glicko2Scalar = 173.7178d
   private[sglicko2] final val ε = 0.000001d
 
-  private[sglicko2] implicit class DoubleOps(val n: Double) extends AnyVal {
+  private[sglicko2] final implicit class DoubleOps(private val n: Double) extends AnyVal {
     def `²`: Double = n * n
   }
 }

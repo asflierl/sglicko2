@@ -1,10 +1,13 @@
-# sglicko2 [![Build Status](https://travis-ci.org/asflierl/sglicko2.svg?branch=master)](https://travis-ci.org/asflierl/sglicko2) [![Download](https://api.bintray.com/packages/asflierl/maven/sglicko2/images/download.svg)](https://bintray.com/asflierl/maven/sglicko2/_latestVersion/) [![Join the chat at https://gitter.im/asflierl/sglicko2](https://badges.gitter.im/asflierl/sglicko2.svg)](https://gitter.im/asflierl/sglicko2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Get automatic notifications about new versions of sglicko2](https://www.bintray.com/docs/images/bintray_badge_color.png)](https://bintray.com/asflierl/maven/sglicko2/view?source=watch)
+# sglicko2 [![Build Status](https://travis-ci.org/asflierl/sglicko2.svg?branch=master)](https://travis-ci.org/asflierl/sglicko2) [![Join the chat at https://gitter.im/asflierl/sglicko2](https://badges.gitter.im/asflierl/sglicko2.svg)](https://gitter.im/asflierl/sglicko2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A small, simple & self-contained implementation of the [Glicko-2 rating algorithm](http://www.glicko.net/glicko.html) in Scala that also helps the user with maintaining a leaderboard and allows for custom scoring rules.
 
 ### Setup
 
-Version 1.7 is currently available for Scala 2.13. The last version to support Scala 2.11 and 2.12 was 1.5. The last version to support Scala 2.10 was 1.3. To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
+Version 1.7.0 is currently available for Scala 2.13 and targets Java 11. 
+
+
+ To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
 
 ```scala
 resolvers += Resolver.jcenterRepo
@@ -13,7 +16,7 @@ libraryDependencies += "sglicko2" %% "sglicko2" % "1.7"
 
 ### Usage
 
-Here's a simple, runnable example on how the library can be used:
+Here's a simple, runnable example on how the library can be used. You can [experiment with it right in your browser (using Scastie)](https://scastie.scala-lang.org/asflierl/Rh8aKj7aTNapEE163WYyHA).
 
 ```scala
 import sglicko2._, EitherOnePlayerWinsOrItsADraw._
@@ -50,3 +53,20 @@ Output:
 You can find more example code in the test sources. The main sources should be very easy to understand, too, so don't hesitate to look at those if you have questions.
 
 Also, if you use this library, I'd love to hear from you. Thanks <3
+
+### Note on earlier versions
+
+Earlier versions of this library are hosted on Bintray and will be available until February 1st 2022 after which Bintray/JCenter will be [retired by JFrog and completely go out of service](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/).
+
+**If you are still depending on these versions consider migrating as soon as possible before your build breaks in 2022.**
+
+Versions 1.6 and 1.7 are available for Scala 2.13.
+
+The last version to support Scala 2.11 and 2.12 was 1.5. The last version to support Scala 2.10 was 1.3.
+
+Access them by adding the JCenter repo to your build along with the actual dependency:
+
+```scala
+resolvers += Resolver.jcenterRepo
+libraryDependencies += "sglicko2" %% "sglicko2" % "1.7"
+```

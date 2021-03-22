@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Andreas Flierl <andreas@flierl.eu>
+ * Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -49,7 +49,7 @@ object GW2ExampleResources {
 
   object Pairing extends ((Long, Long) => Pairing) {
     implicit val rules: ScoringRules[Pairing] = new ScoringRules[Pairing] {
-      val scoreForTwoPlayers = (pair: Pairing) => Score(rateAVersusB(pair pointsOfPlayer1, pair pointsOfPlayer2))
+      val scoreForTwoPlayers = (pair: Pairing) => Score(rateAVersusB(pair.pointsOfPlayer1.toDouble, pair.pointsOfPlayer2.toDouble))
       def rateAVersusB(a: Double, b: Double): Double = (sin((a / (a + b) - 0.5d) * π) + 1d) * 0.5d
     }
   }
