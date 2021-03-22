@@ -21,7 +21,7 @@ inThisBuild(Seq(
 
 val sglicko2 = project.in(file("."))
 
-version := "1.7.0-SNAPSHOT"
+version := "1.7.0"
 versionScheme := Some("semver-spec")
 
 headerLicense := (ThisBuild / headerLicense).value
