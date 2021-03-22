@@ -2,6 +2,8 @@ import xerial.sbt.Sonatype._
 
 inThisBuild(Seq(
   organization := "eu.flierl",
+  version := "1.7.0",
+  versionScheme := Some("semver-spec"),
   scalaVersion := "2.13.5",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom(
@@ -20,9 +22,6 @@ inThisBuild(Seq(
        |OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.""".stripMargin))))
 
 val sglicko2 = project.in(file("."))
-
-version := "1.7.0-SNAPSHOT"
-versionScheme := Some("semver-spec")
 
 headerLicense := (ThisBuild / headerLicense).value
 
