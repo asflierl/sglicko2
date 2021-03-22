@@ -1,22 +1,21 @@
-# sglicko2 [![Build Status](https://travis-ci.org/asflierl/sglicko2.svg?branch=master)](https://travis-ci.org/asflierl/sglicko2) [![Join the chat at https://gitter.im/asflierl/sglicko2](https://badges.gitter.im/asflierl/sglicko2.svg)](https://gitter.im/asflierl/sglicko2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# sglicko2 [![Build Status](https://github.com/asflierl/sglicko2/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/asflierl/sglicko2/actions?query=branch%3Amaster) [![Join the chat at https://gitter.im/asflierl/sglicko2](https://badges.gitter.im/asflierl/sglicko2.svg)](https://gitter.im/asflierl/sglicko2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A small, simple & self-contained implementation of the [Glicko-2 rating algorithm](http://www.glicko.net/glicko.html) in Scala that also helps the user with maintaining a leaderboard and allows for custom scoring rules.
 
 ### Setup
 
-Version 1.7.0 is currently available for Scala 2.13 and targets Java 11. 
+Version 1.7.1 is currently available for Scala 2.13 and targets Java 8. 
 
 
  To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
 
 ```scala
-resolvers += Resolver.jcenterRepo
-libraryDependencies += "sglicko2" %% "sglicko2" % "1.7"
+libraryDependencies += "eu.flierl" %% "sglicko2" % "1.7.1"
 ```
 
 ### Usage
 
-Here's a simple, runnable example on how the library can be used. You can [experiment with it right in your browser (using Scastie)](https://scastie.scala-lang.org/asflierl/Rh8aKj7aTNapEE163WYyHA).
+Here's a simple, runnable example on how the library can be used. You can [experiment with it right in your browser (using Scastie)](https://scastie.scala-lang.org/asflierl/Rh8aKj7aTNapEE163WYyHA/4).
 
 ```scala
 import sglicko2._, EitherOnePlayerWinsOrItsADraw._
