@@ -6,6 +6,8 @@ inThisBuild(Seq(
   versionScheme := Some("semver-spec"),
   scalaVersion := "2.13.5",
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
+  githubWorkflowPublishTargetBranches := Nil,
+  githubWorkflowJavaVersions := Seq("adopt@11"),
   headerLicense := Some(HeaderLicense.Custom(
     """|Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
        |
