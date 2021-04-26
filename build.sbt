@@ -68,7 +68,7 @@ val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin, BuildInfoPl
     (Compile / compile),
     Def.taskDyn { 
       val dir = crossTarget.value
-      (Jmh / run).toTask(s" -rf json -rff $dir/results.json -o $dir/results.txt")
+      (Jmh / run).toTask(s""" -rf json -rff \"$dir/results.json\" -o \"$dir/results.txt\"""")
     },
     (Compile / run).toTask("")
   ).value)
