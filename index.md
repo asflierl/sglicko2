@@ -1,10 +1,10 @@
-# sglicko2 [![Build Status](https://github.com/asflierl/sglicko2/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/asflierl/sglicko2/actions?query=branch%3Amaster) [![Maven Central](https://img.shields.io/maven-central/v/eu.flierl/sglicko2_2.13)](https://search.maven.org/search?q=g:eu.flierl%20AND%20a:sglicko2_2.13) [![Join the chat at https://gitter.im/asflierl/sglicko2](https://badges.gitter.im/asflierl/sglicko2.svg)](https://gitter.im/asflierl/sglicko2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# sglicko2 [![Build Status](https://github.com/asflierl/sglicko2/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/asflierl/sglicko2/actions?query=branch%3Amaster) [![Maven Central](https://img.shields.io/maven-central/v/eu.flierl/sglicko2_2.13)](https://search.maven.org/search?q=g:eu.flierl%20AND%20a:sglicko2_3) [![Join the chat at https://gitter.im/asflierl/sglicko2](https://badges.gitter.im/asflierl/sglicko2.svg)](https://gitter.im/asflierl/sglicko2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A small, simple & self-contained implementation of the [Glicko-2 rating algorithm](http://www.glicko.net/glicko.html) in Scala that also helps the user with maintaining a leaderboard and allows for custom scoring rules.
 
 ### Setup
 
-Version 1.7.1 is currently available for Scala 2.13 and targets Java 8. 
+Version 1.7.1 is currently available for Scala 3 and 2.13, targetting Java 8. 
 
 
  To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
