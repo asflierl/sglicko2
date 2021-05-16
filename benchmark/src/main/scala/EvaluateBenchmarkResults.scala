@@ -32,7 +32,7 @@ import scala.util.chaining._
 object EvaluateBenchmarkResults {
 
   def main(args: Array[String]): Unit = {
-    val referenceGroups = groups(results(readResource("/v1.7-graalvm-ce-19.3-java11/results.json")))
+    val referenceGroups = groups(results(readResource("/v1.7.1-graalvm-ce-21.1-java11/results.json")))
     val referenceBaseline = referenceGroups("sglicko2.benchmark.BaselineBenchmark").results("sglicko2.benchmark.BaselineBenchmark.baseline")
     val referenceResults = referenceGroups - "sglicko2.benchmark.BaselineBenchmark"
     val newGroups = groups(results(readPath(crossTarget.toPath.resolve("results.json"))))

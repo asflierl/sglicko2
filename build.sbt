@@ -5,7 +5,7 @@ inThisBuild(Seq(
   version := "1.7.1",
   versionScheme := Some("semver-spec"),
   scalaVersion := "2.13.5",
-  crossScalaVersions := Seq(scalaVersion.value, "3.0.0-RC2"),
+  crossScalaVersions := Seq(scalaVersion.value, "3.0.0"),
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   githubWorkflowPublishTargetBranches := Nil,
   githubWorkflowScalaVersions := Seq(scalaVersion.value),
@@ -60,7 +60,7 @@ val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin, BuildInfoPl
   javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=1", "-XX:MaxInlineLevel=20"),
   publish / skip := true,
   Jmh / bspEnabled := false,
-  libraryDependencies ++= Seq("core", "generic", "parser").map(m => "io.circe" %% s"circe-$m" % "0.14.0-M5"),
+  libraryDependencies ++= Seq("core", "generic", "parser").map(m => "io.circe" %% s"circe-$m" % "0.14.0-M7"),
   headerLicense := (ThisBuild / headerLicense).value,
   buildInfoKeys += crossTarget,
   jmh := Def.sequential(
