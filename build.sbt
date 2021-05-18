@@ -4,7 +4,7 @@ inThisBuild(Seq(
   organization := "eu.flierl",
   version := "1.7.1",
   versionScheme := Some("semver-spec"),
-  scalaVersion := "2.13.5",
+  scalaVersion := "2.13.6",
   crossScalaVersions := Seq(scalaVersion.value, "3.0.0"),
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   githubWorkflowPublishTargetBranches := Nil,
