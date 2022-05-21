@@ -16,4 +16,17 @@
 
 package sglicko2
 
-final case class ScoreAgainstAnotherPlayer[A] private[sglicko2] (opponentID: A, score: Double)
+enum WinOrDraw derives CanEqual:
+  case Player1Wins
+  case Player2Wins
+  case Draw
+
+object WinOrDraw:
+  given ScoringRules[WinOrDraw] = new ScoringRules[WinOrDraw]:
+    val scoreForTwoPlayers: WinOrDraw => Score =
+      case Player1Wins => Score[1d]
+      case Player2Wins => Score[0d]
+      case Draw        => Score[0.5d]
+
+    override def toString = "either one player wins or the game's a draw"
+    

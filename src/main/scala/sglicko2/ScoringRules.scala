@@ -16,6 +16,5 @@
 
 package sglicko2
 
-trait ScoringRules[A] extends Serializable {
+trait ScoringRules[A] extends Serializable:
   def scoreForTwoPlayers: A => Score
-}

@@ -16,7 +16,21 @@
 
 package sglicko2
 
-final case class Score(asSeenFromPlayer1: Double) {
-  require(asSeenFromPlayer1 >= 0d && asSeenFromPlayer1 <= 1d, s"score ($asSeenFromPlayer1) must be a number between 0 and 1 (both inclusive)")
-  val asSeenFromPlayer2 = 1d - asSeenFromPlayer1
-}
+opaque type Score = Double
+
+object Score extends Opaque[Double, Score]:
+  protected inline def cond(d: Double): Boolean = d >= 0d && d <= 1d
+  protected transparent inline def msg: String = "Score must be a number between 0 and 1 (both inclusive)."
+  protected inline def lift(d: Double): Score = d
+
+// object Score:
+//   transparent inline def apply(asSeenFromPlayer1: Double): Score | Valid[Score] =
+//     Opaque(asSeenFromPlayer1, liftScore(asSeenFromPlayer1), 
+//       asSeenFromPlayer1 >= 0d && asSeenFromPlayer1 <= 1d, 
+//       "Score must be a number between 0 and 1 (both inclusive).")
+
+// private inline def liftScore(inline s: Double): Score = s
+
+extension (s: Score)
+  def asSeenFromPlayer1: Double = s
+  def asSeenFromPlayer2: Double = 1d - asSeenFromPlayer1

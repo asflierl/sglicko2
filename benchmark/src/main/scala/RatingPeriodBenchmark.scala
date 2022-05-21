@@ -18,8 +18,8 @@ package sglicko2.benchmark
 
 import java.util.concurrent.TimeUnit
 
-import org.openjdk.jmh.annotations._
-import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, RatingPeriod}
+import org.openjdk.jmh.annotations.*
+import sglicko2.{WinOrDraw, Glicko2, RatingPeriod}
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Array(Mode.AverageTime))
@@ -28,9 +28,9 @@ import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, RatingPeriod}
 @Fork(1)
 @Threads(1)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-class RatingPeriodBenchmark {
+class RatingPeriodBenchmark:
 
-  var system: Glicko2[String, EitherOnePlayerWinsOrItsADraw] = ???//new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
+  var system: Glicko2[String, WinOrDraw] = ???//new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
 
   @Param(Array("10", "1000", "10000"))
   @volatile var numberOfGames: Int = _
@@ -38,14 +38,12 @@ class RatingPeriodBenchmark {
   @Param(Array("5", "50", "5000"))
   @volatile var numberOfPlayers: Int = _
 
-  @volatile var games: Seq[(String, String, EitherOnePlayerWinsOrItsADraw)] = _
+  @volatile var games: Seq[(String, String, WinOrDraw)] = _
 
   @Setup
-  def prepare: Unit = {
+  def prepare: Unit =
     val generator = new Generator(numberOfPlayers)
     games = generator.gameStream.take(numberOfGames).toVector
-  }
 
   @Benchmark
-  def createRatingPeriod: RatingPeriod[String, EitherOnePlayerWinsOrItsADraw] = system.newRatingPeriod.withGames(games:_*)
-}
+  def createRatingPeriod: RatingPeriod[String, WinOrDraw] = ??? //system.newRatingPeriod.withGames(games *)

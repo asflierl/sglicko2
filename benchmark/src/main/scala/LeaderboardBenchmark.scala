@@ -18,8 +18,10 @@ package sglicko2.benchmark
 
 import java.util.concurrent.TimeUnit
 
-import org.openjdk.jmh.annotations._
-import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, Leaderboard, RatingPeriod}
+import org.openjdk.jmh.annotations.*
+import sglicko2.{WinOrDraw, Glicko2, Leaderboard, RatingPeriod}
+
+import scala.compiletime.uninitialized
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Array(Mode.AverageTime))
@@ -28,32 +30,30 @@ import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, Leaderboard, RatingPeri
 @Fork(1)
 @Threads(1)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-class LeaderboardBenchmark {
+class LeaderboardBenchmark:
 
-  var system: Glicko2[String, EitherOnePlayerWinsOrItsADraw] = ???//new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
+  var system: Glicko2[String, WinOrDraw] = ???//new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
 
   @Param(Array("10", "1000", "10000"))
-  @volatile var numberOfGames: Int = _
+  @volatile var numberOfGames: Int = uninitialized
 
   @Param(Array("5", "50", "5000"))
-  @volatile var numberOfPlayers: Int = _
+  @volatile var numberOfPlayers: Int = uninitialized
 
-  @volatile var ratingPeriod: RatingPeriod[String, EitherOnePlayerWinsOrItsADraw] = _
+  @volatile var ratingPeriod: RatingPeriod[String, WinOrDraw] = uninitialized
 
-  @volatile var prefilledLeaderboard: Leaderboard[String] = _
+  @volatile var prefilledLeaderboard: Leaderboard[String] = uninitialized
 
   @Setup
-  def prepare: Unit = {
+  def prepare: Unit =
     val generator = new Generator(numberOfPlayers)
-    ratingPeriod = system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector:_*)
-    prefilledLeaderboard = system.updatedLeaderboard(system.newLeaderboard, system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector:_*))
-  }
+    // ratingPeriod = system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector *)
+    // prefilledLeaderboard = system.updatedLeaderboard(system.newLeaderboard, system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector *))
 
   @Benchmark
   def updateFreshLeaderboard: Leaderboard[String] = system.updatedLeaderboard(system.newLeaderboard, ratingPeriod)
 
   @Benchmark
   def updatePrefilledLeaderboard: Leaderboard[String] = system.updatedLeaderboard(prefilledLeaderboard, ratingPeriod)
-}
 
 

@@ -18,9 +18,9 @@ package sglicko2.benchmark
 
 import java.util.concurrent.TimeUnit
 
-import org.openjdk.jmh.annotations._
+import org.openjdk.jmh.annotations.*
 import org.openjdk.jmh.infra.Blackhole
-import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, RatingPeriod}
+import sglicko2.{WinOrDraw, Glicko2, RatingPeriod}
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Array(Mode.AverageTime))
@@ -29,9 +29,8 @@ import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, RatingPeriod}
 @Fork(1)
 @Threads(1)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-class BaselineBenchmark {
+class BaselineBenchmark:
 
   @Benchmark
   def baseline: Unit = Blackhole.consumeCPU(527)
 
-}

@@ -14,11 +14,14 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package object sglicko2 {
-  private[sglicko2] final val glicko2Scalar = 173.7178d
-  private[sglicko2] final val ε = 0.000001d
+package sglicko2 
 
-  private[sglicko2] final implicit class DoubleOps(private val n: Double) extends AnyVal {
-    def `²`: Double = n * n
-  }
-}
+private[sglicko2] final val glicko2Scalar = 173.7178d
+private[sglicko2] final val ε = 0.000001d
+
+extension (n: Double)
+  private[sglicko2] def `²`: Double = n * n
+
+type Eq[-A] = CanEqual[A, A]
+
+type Valid[A] = Either[Err, A]
