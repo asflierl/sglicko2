@@ -38,7 +38,7 @@ class RatingPeriodBenchmark:
   @Param(Array("5", "50", "5000"))
   @volatile var numberOfPlayers: Int = _
 
-  @volatile var games: Seq[(String, String, WinOrDraw)] = _
+  @volatile var games: Seq[WinOrDraw[String]] = _
 
   @Setup
   def prepare: Unit =

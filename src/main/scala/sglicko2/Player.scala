@@ -16,18 +16,9 @@
 
 package sglicko2
 
-final case class Player[A](id: A, rating: Double = 1500d, deviation: Double = 350d, volatility: Double = 0.06d) derives CanEqual:
-  require(
-    rating > 0d && rating < Double.PositiveInfinity &&
-    deviation > 0d && deviation < Double.PositiveInfinity &&
-    volatility > 0d && volatility < Double.PositiveInfinity,
-    s"rating ($rating), deviation ($deviation) and volatility ($volatility) must each be a number greater than 0")
+final case class Player[A: Eq](id: A, rating: Rating = Rating.default, deviation: Deviation = Deviation.default, 
+    volatility: Volatility = Volatility.default) derives CanEqual:
+  
+  def toGlickoScale = GlickoPlayer(id, rating.glickoValue, deviation.glickoValue, volatility.value)
 
-  // Step 1
-  private[sglicko2] inline def r = rating
-  private[sglicko2] inline def rd = deviation
-  private[sglicko2] inline def σ = volatility
-
-  // Step 2
-  private[sglicko2] lazy val µ = (r - 1500d) / glicko2Scalar
-  private[sglicko2] lazy val φ = rd / glicko2Scalar
+final case class GlickoPlayer[A: Eq](id: A, rating: Double, deviation: Double, volatility: Double) derives CanEqual

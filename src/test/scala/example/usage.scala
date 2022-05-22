@@ -3,17 +3,15 @@ package example
 import sglicko2.*
 
 @main def run: Unit = 
-  val n: 0.5d = 0.5d
-  val x = Tau(n)
+  val glicko2 = Glicko2[String, WinOrDraw]()
+  import glicko2.*, WinOrDraw.*
 
-  val m = 0.5d
-  val y = Tau(m)
+  val result = for {
+    initial <- Right(newLeaderboard)
+    period1 <- newRatingPeriod.withGames(
+                 Win("Nilin", "Bob"),
+                 Draw("Bob", "Nilin"))
+    board    = updatedLeaderboard(initial, period1)
+  } yield board
 
-  val z = Tau[0.5d]
-
-  println(x)
-  println(y)
-  println(z)
-
-class Meep:
-  private val meep = Tau[0.5d]
+  result.foreach(_.playersInRankOrder.map(_.toGlickoScale).foreach(println))

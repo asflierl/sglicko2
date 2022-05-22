@@ -16,5 +16,5 @@
 
 package sglicko2
 
-trait ScoringRules[A] extends Serializable:
-  def scoreForTwoPlayers: A => Score
+trait ScoringRules[G[_]] extends Serializable:
+  def gameScores[A](game: G[A]): Vector[(A, A, Score)]

@@ -19,18 +19,12 @@ package sglicko2
 opaque type Score = Double
 
 object Score extends Opaque[Double, Score]:
-  protected inline def cond(d: Double): Boolean = d >= 0d && d <= 1d
-  protected transparent inline def msg: String = "Score must be a number between 0 and 1 (both inclusive)."
-  protected inline def lift(d: Double): Score = d
+  transparent inline def apply(d: Double): Score | Valid[Score] =
+    macros.opaqueCons(d, liftScore(d), d >= 0d && d <= 1d, "Score must be a number between 0 and 1 (both inclusive).") 
 
-// object Score:
-//   transparent inline def apply(asSeenFromPlayer1: Double): Score | Valid[Score] =
-//     Opaque(asSeenFromPlayer1, liftScore(asSeenFromPlayer1), 
-//       asSeenFromPlayer1 >= 0d && asSeenFromPlayer1 <= 1d, 
-//       "Score must be a number between 0 and 1 (both inclusive).")
+  extension (s: Score)
+    def asSeenFromPlayer1: Score = s
+    def asSeenFromPlayer2: Score = 1d - asSeenFromPlayer1
+    def value: Double = s
 
-// private inline def liftScore(inline s: Double): Score = s
-
-extension (s: Score)
-  def asSeenFromPlayer1: Double = s
-  def asSeenFromPlayer2: Double = 1d - asSeenFromPlayer1
+private inline def liftScore(d: Double): Score = d
