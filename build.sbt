@@ -7,40 +7,24 @@ inThisBuild(Seq(
   scalaVersion := "3.1.2",
   scalacOptions := Seq("-source:3.1", "-language:strictEquality", "-new-syntax", "-unchecked", "-deprecation", "-encoding", "UTF-8", "-java-output-version:11"),
   githubWorkflowPublishTargetBranches := Nil,
-  githubWorkflowScalaVersions := Seq(scalaVersion.value),
-  licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
-  headerLicense := Some(HeaderLicense.Custom("SPDX-License-Identifier: ISC".stripMargin)),
-  headerMappings := Map(HeaderFileType.scala -> HeaderCommentStyle.cppStyleLineComment)))
+  githubWorkflowScalaVersions := Seq(scalaVersion.value)))
 
-val sglicko2 = project.in(file("."))
+lazy val sglicko2 = project.in(file(".")).enablePlugins(AutomateHeaderPlugin).settings(licenseSettings).settings(
+  publishMavenStyle := true,
+  sonatypeCredentialHost := "s01.oss.sonatype.org",
+  sonatypeProjectHosting := Some(GitHubHosting("asflierl", "sglicko2", "andreas@flierl.eu")),
+  publishTo := sonatypePublishToBundle.value,
+  turbo := true,
+  Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc", "specs2ThreadsNb", cpus.toString),
+  libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "5.0.0" % Test),
+  libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.16.0" % Test))
 
-headerLicense := (ThisBuild / headerLicense).value
-headerMappings := (ThisBuild / headerMappings).value
-
-updateOptions ~= (_ withCachedResolution true)
-
-ThisBuild / turbo := true
-Global / concurrentRestrictions := Seq(Tags.limitAll(32), Tags.exclusiveGroup(Tags.Clean))
-Global / sourcesInBase := false
-
-publishMavenStyle := true
-sonatypeCredentialHost := "s01.oss.sonatype.org"
-sonatypeProjectHosting := Some(GitHubHosting("asflierl", "sglicko2", "andreas@flierl.eu"))
-publishTo := sonatypePublishToBundle.value
-
-Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc", "specs2ThreadsNb", "31")
-
-libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "5.0.0" % Test)
-libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.16.0" % Test)
-
-val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin, BuildInfoPlugin).settings(
+lazy val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin, BuildInfoPlugin, AutomateHeaderPlugin).settings(licenseSettings).settings(
   fork := true,
   javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=1", "-XX:MaxInlineLevel=20"),
   publish / skip := true,
   Jmh / bspEnabled := false,
   libraryDependencies ++= Seq("core", "generic", "parser").map(m => "io.circe" %% s"circe-$m" % "0.14.1"),
-  headerLicense := (ThisBuild / headerLicense).value,
-  headerMappings := (ThisBuild / headerMappings).value,
   buildInfoKeys += crossTarget,
   jmh := Def.sequential(
     clean,
@@ -52,4 +36,14 @@ val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin, BuildInfoPl
     (Compile / run).toTask("")
   ).value)
 
+Global / concurrentRestrictions := Seq(Tags.limitAll(cpus * 4), Tags.limit(Tags.CPU, cpus), Tags.exclusiveGroup(Tags.Clean))
+Global / sourcesInBase := false
+
 lazy val jmh = taskKey[Unit]("Runs all benchmarks")
+
+lazy val licenseSettings = Seq(
+  licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
+  headerLicense := Some(HeaderLicense.Custom("SPDX-License-Identifier: ISC".stripMargin)),
+  headerMappings := Map(HeaderFileType.scala -> HeaderCommentStyle.cppStyleLineComment))
+
+lazy val cpus = java.lang.Runtime.getRuntime.availableProcessors
