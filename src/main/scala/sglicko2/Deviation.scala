@@ -15,5 +15,5 @@ object Deviation extends Opaque[Double, Deviation]:
   val default: Deviation = 350d / Scale.glicko2Scalar
   
   extension (d: Deviation) def value(using scale: Scale): Double = scale match
-      case Scale.Glicko  => d * Scale.glicko2Scalar
-      case Scale.Glicko2 => d
+    case Scale.Glicko  => d * Scale.glicko2Scalar
+    case Scale.Glicko2 => d
