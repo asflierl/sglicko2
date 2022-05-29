@@ -5,8 +5,7 @@ package example
 import sglicko2.*
 
 @main def run: Unit = 
-  given Scale = Scale.Glicko2
-  val glicko2 = Glicko2[String, WinOrDraw]()
+  given glicko2: Glicko2[String, WinOrDraw] = Glicko2()
 
   import glicko2.*, WinOrDraw.*
 

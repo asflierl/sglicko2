@@ -9,7 +9,9 @@ import scala.math.{abs, exp, sqrt, log as ln, Pi as π}
  * See http://www.glicko.net/glicko.html for further details.
  * Please note that this implementation does NOT convert to and from the original Glicko scale for each calculation.
  */ 
-final class Glicko2[A: Eq, B[_]: ScoringRules](tau: Tau = Tau.default, defaultVolatility: Volatility = Volatility.default) extends Serializable:
+final class Glicko2[A: Eq, B[_]: ScoringRules](val tau: Tau = Tau.default, 
+    val defaultVolatility: Volatility = Volatility.default, val scale: Scale = Scale.Glicko) extends Serializable:
+
   def newRatingPeriod: RatingPeriod[A, B] = RatingPeriod[A, B](Map.empty)
   def newLeaderboard: Leaderboard[A] = Leaderboard.empty
   def newPlayer(id: A): Player[A] = Player(id)
@@ -36,7 +38,7 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](tau: Tau = Tau.default, defaultVo
     inline def τ = tau.value
 
     extension [A](inline p: Player[A])
-        // Step 1
+      // Step 1
       inline def r: Double = Rating.toGlicko2(p.rating)
       inline def rd: Double = Deviation.toGlicko2(p.deviation)
       inline def σ: Double = p.volatility.value
