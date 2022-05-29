@@ -19,6 +19,6 @@ package sglicko2
 final case class Player[A: Eq](id: A, rating: Rating = Rating.default, deviation: Deviation = Deviation.default, 
     volatility: Volatility = Volatility.default) derives CanEqual:
   
-  def toGlickoScale = GlickoPlayer(id, rating.glickoValue, deviation.glickoValue, volatility.value)
-
-final case class GlickoPlayer[A: Eq](id: A, rating: Double, deviation: Double, volatility: Double) derives CanEqual
+  def confidence95 = Interval(
+    Rating.fromGlicko2Value(Rating.toGlicko2(rating) - Deviation.toGlicko2(deviation) * 1.96d), 
+    Rating.fromGlicko2Value(Rating.toGlicko2(rating) + Deviation.toGlicko2(deviation) * 1.96d))

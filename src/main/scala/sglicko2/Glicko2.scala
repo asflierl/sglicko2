@@ -29,9 +29,8 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](tau: Tau = Tau.default, defaultVo
   def newPlayer(id: A): Player[A] = Player(id)
 
   def updatedLeaderboard(currentLeaderboard: Leaderboard[A], ratingPeriod: RatingPeriod[A, B]): Leaderboard[A] =
-    val competingPlayers = ratingPeriod.games.iterator.map {
-      case (id, matchResults) =>
-        updatedRatingAndDeviationAndVolatility(id, matchResults, currentLeaderboard)
+    val competingPlayers = ratingPeriod.games.iterator.map { (id, matchResults) =>
+      updatedRatingAndDeviationAndVolatility(id, matchResults, currentLeaderboard)
     }
 
     val notCompetingPlayers =
@@ -41,6 +40,9 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](tau: Tau = Tau.default, defaultVo
 
     Leaderboard.fromPlayers(competingPlayers ++ notCompetingPlayers)
 
+  extension (currentLeaderboard: Leaderboard[A]) def after(ratingPeriod: RatingPeriod[A, B]): Leaderboard[A] = 
+    updatedLeaderboard(currentLeaderboard, ratingPeriod)
+
   override def toString: String = s"Glicko2(τ = $tau, defaultVolatility = $defaultVolatility, rules = ${summon[ScoringRules[B]]})"
 
   private object Private:
@@ -49,8 +51,8 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](tau: Tau = Tau.default, defaultVo
 
     extension [A](inline p: Player[A])
         // Step 1
-      inline def r: Double = p.rating.value
-      inline def rd: Double = p.deviation.value
+      inline def r: Double = Rating.toGlicko2(p.rating)
+      inline def rd: Double = Deviation.toGlicko2(p.deviation)
       inline def σ: Double = p.volatility.value
 
       // Step 2
@@ -127,7 +129,7 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](tau: Tau = Tau.default, defaultVo
     })
 
     // Step 8
-    Player(playerID, Rating(`µ'`), Deviation(`φ'`), Volatility(`σ'`))
+    Player(playerID, Rating.fromGlicko2Value(`µ'`), Deviation.fromGlicko2(`φ'`), Volatility(`σ'`))
 
   private def updatedDeviation(playerID: A, leaderboard: Leaderboard[A]): Player[A] =
     val player = leaderboard.playersByIdInNoParticularOrder(playerID)
@@ -135,7 +137,7 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](tau: Tau = Tau.default, defaultVo
     val `φ'` = sqrt(player.φ.`²` + player.σ.`²`)
 
     // Step 8
-    Player(player.id, player.rating, Deviation(`φ'`), player.volatility)
+    Player(player.id, player.rating, Deviation.fromGlicko2(`φ'`), player.volatility)
 
   private def g(φ: Double): Double = 1d / sqrt(1d + 3d * φ.`²` / π.`²`)
   private def E(µ: Double, µj: Double, φj: Double): Double = 1d / (1d + exp(-g(φj) * (µ - µj)))
