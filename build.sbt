@@ -9,7 +9,7 @@ inThisBuild(Seq(
   githubWorkflowPublishTargetBranches := Nil,
   githubWorkflowScalaVersions := Seq(scalaVersion.value)))
 
-lazy val sglicko2 = project.in(file(".")).enablePlugins(AutomateHeaderPlugin).settings(licenseSettings).settings(
+lazy val sglicko2 = project.in(file(".")).enablePlugins(AutomateHeaderPlugin).settings(licensing).settings(
   publishMavenStyle := true,
   sonatypeCredentialHost := "s01.oss.sonatype.org",
   sonatypeProjectHosting := Some(GitHubHosting("asflierl", "sglicko2", "andreas@flierl.eu")),
@@ -19,7 +19,7 @@ lazy val sglicko2 = project.in(file(".")).enablePlugins(AutomateHeaderPlugin).se
   libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "5.0.0" % Test),
   libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.16.0" % Test))
 
-lazy val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin, BuildInfoPlugin, AutomateHeaderPlugin).settings(licenseSettings).settings(
+lazy val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin, BuildInfoPlugin, AutomateHeaderPlugin).settings(licensing).settings(
   fork := true,
   javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=1", "-XX:MaxInlineLevel=20"),
   publish / skip := true,
@@ -41,7 +41,7 @@ Global / sourcesInBase := false
 
 lazy val jmh = taskKey[Unit]("Runs all benchmarks")
 
-lazy val licenseSettings = Seq(
+lazy val licensing = Seq(
   licenses += ("ISC", url("http://opensource.org/licenses/ISC")),
   headerLicense := Some(HeaderLicense.Custom("SPDX-License-Identifier: ISC".stripMargin)),
   headerMappings := Map(HeaderFileType.scala -> HeaderCommentStyle.cppStyleLineComment))
