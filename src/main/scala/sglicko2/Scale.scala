@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: ISC
+
 package sglicko2
 
 enum Scale derives Eq:
