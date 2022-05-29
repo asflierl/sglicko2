@@ -9,8 +9,8 @@ object Rating extends Opaque[Double, Rating]:
     case Scale.Glicko  => (r - 1500d) / Scale.glicko2Scalar
     case Scale.Glicko2 => r
 
-  private[sglicko2] inline def fromGlicko2Value(r: Double): Rating = r
-  private[sglicko2] inline def toGlicko2(r: Rating): Double = r
+  private[sglicko2] inline def fromGlicko2(inline r: Double): Rating = r
+  private[sglicko2] inline def toGlicko2(inline r: Rating): Double = r
 
   val default: Rating = 0d
 

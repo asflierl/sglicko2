@@ -115,7 +115,7 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](tau: Tau = Tau.default, defaultVo
     })
 
     // Step 8
-    Player(playerID, Rating.fromGlicko2Value(`µ'`), Deviation.fromGlicko2(`φ'`), Volatility(`σ'`))
+    Player(playerID, Rating.fromGlicko2(`µ'`), Deviation.fromGlicko2(`φ'`), Volatility(`σ'`))
 
   private def updatedDeviation(playerID: A, leaderboard: Leaderboard[A]): Player[A] =
     val player = leaderboard.playersByIdInNoParticularOrder(playerID)
