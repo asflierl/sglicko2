@@ -10,7 +10,7 @@ enum WinOrDraw[A]:
 
 object WinOrDraw:
   given ScoringRules[WinOrDraw] = new ScoringRules[WinOrDraw]:
-    override def gameScores[A](g: WinOrDraw[A]): Vector[(A, A, Score)] = Vector(g match
+    override def gameScores[A](g: WinOrDraw[A]): Iterable[(A, A, Score)] = Some(g match
       case Win(winner, loser)     => (winner,  loser,   Score[1d])
       case Draw(player1, player2) => (player1, player2, Score[0.5d]))
 

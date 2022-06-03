@@ -33,8 +33,8 @@ class LeaderboardBenchmark:
   @Setup
   def prepare: Unit =
     val generator = new Generator(numberOfPlayers)
-    ratingPeriod = RatingPeriod(generator.gameStream.take(numberOfGames).toVector *)
-    prefilledLeaderboard = Leaderboard.empty.after(RatingPeriod(generator.gameStream.take(numberOfGames).toVector *))
+    ratingPeriod = RatingPeriod(generator.gameStream.take(numberOfGames).toVector*)
+    prefilledLeaderboard = Leaderboard.empty.after(RatingPeriod(generator.gameStream.take(numberOfGames).toVector*))
 
   @Benchmark
   def updateFreshLeaderboard: Leaderboard[String] = Leaderboard.empty.after(ratingPeriod)
