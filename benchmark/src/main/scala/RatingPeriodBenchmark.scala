@@ -16,8 +16,6 @@ import sglicko2.{WinOrDraw, Glicko2, RatingPeriod}
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 class RatingPeriodBenchmark:
 
-  var system: Glicko2[String, WinOrDraw] = ???//new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
-
   @Param(Array("10", "1000", "10000"))
   @volatile var numberOfGames: Int = _
 
@@ -32,4 +30,4 @@ class RatingPeriodBenchmark:
     games = generator.gameStream.take(numberOfGames).toVector
 
   @Benchmark
-  def createRatingPeriod: RatingPeriod[String, WinOrDraw] = ??? //system.newRatingPeriod.withGames(games *)
+  def createRatingPeriod: RatingPeriod[String, WinOrDraw] = RatingPeriod(games *)

@@ -26,4 +26,8 @@ final class RatingPeriod[A: Eq, G[_]: ScoringRules] private[sglicko2] (
 
     val newGames = mm.view.mapValues(_.result()).toMap
 
-    RatingPeriod(newGames)
+    new RatingPeriod(newGames)
+
+object RatingPeriod:
+  def apply[A: Eq, G[_]: ScoringRules](gamesToAdd: G[A]*): RatingPeriod[A, G] =
+    new RatingPeriod(Map.empty).withGames(gamesToAdd*)

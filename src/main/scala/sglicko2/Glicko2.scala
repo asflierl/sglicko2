@@ -9,54 +9,30 @@ import scala.math.{abs, exp, sqrt, log as ln, Pi as π}
  * See http://www.glicko.net/glicko.html for further details.
  * Please note that this implementation does NOT convert to and from the original Glicko scale for each calculation.
  */ 
-final class Glicko2[A: Eq, B[_]: ScoringRules](val tau: Tau = Tau.default, 
+final class Glicko2(val tau: Tau = Tau.default, 
     val defaultVolatility: Volatility = Volatility.default, val scale: Scale = Scale.Glicko) extends Serializable:
 
-  def newRatingPeriod: RatingPeriod[A, B] = RatingPeriod[A, B](Map.empty)
-  def newLeaderboard: Leaderboard[A] = Leaderboard.empty
-  def newPlayer(id: A): Player[A] = Player(id)
+  private inline val ε = 0.000001d
+  private inline def τ = tau.value
 
-  def updatedLeaderboard(currentLeaderboard: Leaderboard[A], ratingPeriod: RatingPeriod[A, B]): Leaderboard[A] =
-    val competingPlayers = ratingPeriod.games.iterator.map { (id, matchResults) =>
-      updatedRatingAndDeviationAndVolatility(id, matchResults, currentLeaderboard)
-    }
+  extension [A](inline p: Player[A])
+    // Step 1
+    private inline def r: Double = Rating.toGlicko2(p.rating)
+    private inline def rd: Double = Deviation.toGlicko2(p.deviation)
+    private inline def σ: Double = p.volatility.value
 
-    val notCompetingPlayers =
-      currentLeaderboard.playersByIdInNoParticularOrder.keysIterator
-                        .filterNot(ratingPeriod.games.contains)
-                        .map(id => updatedDeviation(id, currentLeaderboard))
+    // Step 2
+    private inline def µ: Double = r
+    private inline def φ: Double = rd
+  
+  extension (n: Double)
+    private def `²`: Double = n * n
 
-    Leaderboard.fromPlayers(competingPlayers ++ notCompetingPlayers)
-
-  extension (currentLeaderboard: Leaderboard[A]) def after(ratingPeriod: RatingPeriod[A, B]): Leaderboard[A] = 
-    updatedLeaderboard(currentLeaderboard, ratingPeriod)
-
-  override def toString: String = s"Glicko2(τ = $tau, defaultVolatility = $defaultVolatility, rules = ${summon[ScoringRules[B]]})"
-
-  private object Private:
-    inline val ε = 0.000001d
-    inline def τ = tau.value
-
-    extension [A](inline p: Player[A])
-      // Step 1
-      inline def r: Double = Rating.toGlicko2(p.rating)
-      inline def rd: Double = Deviation.toGlicko2(p.deviation)
-      inline def σ: Double = p.volatility.value
-
-      // Step 2
-      inline def µ: Double = r
-      inline def φ: Double = rd
-    
-    extension (n: Double)
-      def `²`: Double = n * n
-
-  import Private._
-
-  private def updatedRatingAndDeviationAndVolatility(playerID: A, matchResults: Vector[ScoreVsPlayer[A]], leaderboard: Leaderboard[A]): Player[A] =
+  def updatedRatingAndDeviationAndVolatility[A: Eq](playerID: A, matchResults: IndexedSeq[ScoreVsPlayer[A]], lookup: A => Option[Player[A]]): Player[A] =
     val default = Player(playerID, volatility = defaultVolatility)
-    val player = leaderboard.playersByIdInNoParticularOrder.getOrElse(playerID, default)
+    val player = lookup(playerID).getOrElse(default)
 
-    val opponents = Array.tabulate(matchResults.size)(n => leaderboard.playersByIdInNoParticularOrder.getOrElse(matchResults(n).opponentID, default))
+    val opponents = Array.tabulate(matchResults.size)(n => lookup(matchResults(n).opponentID).getOrElse(default))
 
     inline def sumOverOpponentsAndMatchResults(inline f: (Player[A], ScoreVsPlayer[A]) => Double): Double =
       var n = 0
@@ -119,8 +95,7 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](val tau: Tau = Tau.default,
     // Step 8
     Player(playerID, Rating.fromGlicko2(`µ'`), Deviation.fromGlicko2(`φ'`), Volatility(`σ'`))
 
-  private def updatedDeviation(playerID: A, leaderboard: Leaderboard[A]): Player[A] =
-    val player = leaderboard.playersByIdInNoParticularOrder(playerID)
+  def updatedDeviation[A: Eq](player: Player[A]): Player[A] =
     // Step 7
     val `φ'` = sqrt(player.φ.`²` + player.σ.`²`)
 
@@ -129,3 +104,5 @@ final class Glicko2[A: Eq, B[_]: ScoringRules](val tau: Tau = Tau.default,
 
   private def g(φ: Double): Double = 1d / sqrt(1d + 3d * φ.`²` / π.`²`)
   private def E(µ: Double, µj: Double, φj: Double): Double = 1d / (1d + exp(-g(φj) * (µ - µj)))
+
+  override def toString: String = s"Glicko2(τ = $tau, defaultVolatility = $defaultVolatility)"

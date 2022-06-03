@@ -18,7 +18,7 @@ import scala.compiletime.uninitialized
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 class LeaderboardBenchmark:
 
-  var system: Glicko2[String, WinOrDraw] = ???//new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
+  given Glicko2 = Glicko2()
 
   @Param(Array("10", "1000", "10000"))
   @volatile var numberOfGames: Int = uninitialized
@@ -33,13 +33,13 @@ class LeaderboardBenchmark:
   @Setup
   def prepare: Unit =
     val generator = new Generator(numberOfPlayers)
-    // ratingPeriod = system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector *)
-    // prefilledLeaderboard = system.updatedLeaderboard(system.newLeaderboard, system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector *))
+    ratingPeriod = RatingPeriod(generator.gameStream.take(numberOfGames).toVector *)
+    prefilledLeaderboard = Leaderboard.empty.after(RatingPeriod(generator.gameStream.take(numberOfGames).toVector *))
 
   @Benchmark
-  def updateFreshLeaderboard: Leaderboard[String] = system.updatedLeaderboard(system.newLeaderboard, ratingPeriod)
+  def updateFreshLeaderboard: Leaderboard[String] = Leaderboard.empty.after(ratingPeriod)
 
   @Benchmark
-  def updatePrefilledLeaderboard: Leaderboard[String] = system.updatedLeaderboard(prefilledLeaderboard, ratingPeriod)
+  def updatePrefilledLeaderboard: Leaderboard[String] = prefilledLeaderboard.after(ratingPeriod)
 
 

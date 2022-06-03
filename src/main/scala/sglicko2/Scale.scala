@@ -9,4 +9,4 @@ enum Scale derives Eq:
 object Scale:
   inline val glicko2Scalar = 173.7178d
 
-  given (using g: Glicko2[?, ?]): Scale = g.scale
+  given (using g: Glicko2): Scale = g.scale

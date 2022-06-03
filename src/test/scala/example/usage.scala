@@ -5,15 +5,13 @@ package example
 import sglicko2.*, WinOrDraw.Ops.*
 
 @main def run: Unit = 
-  given glicko2: Glicko2[String, WinOrDraw] = Glicko2()
+  given Glicko2 = Glicko2()
 
-  import glicko2.*
-
-  newLeaderboard
-    .after(newRatingPeriod.withGames(
+  Leaderboard.empty
+    .after(RatingPeriod(
       "Nilin"   :>: "Bob",
       "Bob"     :=: "Nilin"))
-    .after(newRatingPeriod.withGames(
+    .after(RatingPeriod(
       "Nilin"   :>: "Cookies",
       "Cookies" :>: "Bob",
       "Nilin"   :=: "Cookies"))
