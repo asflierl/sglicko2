@@ -26,7 +26,7 @@ final class Glicko2(val tau: Tau = Tau.default,
     private inline def φ: Double = rd
   
   extension (n: Double)
-    private def `²`: Double = n * n
+    private inline def `²`: Double = n * n
 
   def updatedRatingAndDeviationAndVolatility[A: Eq](playerID: A, matchResults: IndexedSeq[ScoreVsPlayer[A]], lookup: A => Option[Player[A]]): Player[A] =
     val default = Player(playerID, volatility = defaultVolatility)
@@ -56,7 +56,7 @@ final class Glicko2(val tau: Tau = Tau.default,
     // Step 5
     val a = ln(player.σ.`²`)
 
-    inline def f(x: Double) = ((exp(x) * (∆.`²` - player.φ.`²` - ν - exp(x))) / (2d * (player.φ.`²` + ν + exp(x)).`²`)) - ((x - a) / τ.`²`)
+    inline def f(inline x: Double) = ((exp(x) * (∆.`²` - player.φ.`²` - ν - exp(x))) / (2d * (player.φ.`²` + ν + exp(x)).`²`)) - ((x - a) / τ.`²`)
 
     var A = a
     var k = 1d
