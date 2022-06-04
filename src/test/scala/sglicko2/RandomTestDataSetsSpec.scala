@@ -47,7 +47,7 @@ object Generators:
 
   final case class Config(glicko2: Glicko2, ids: Vector[ID], minNumberOfRatingPeriods: Int, maxNumberOfRatingPeriods: Int, minNumberOfGames: Int, maxNumberOfGames: Int)
 
-  implicit lazy val arbLeaderboard: Arbitrary[(Config, Leaderboard[ID])] = Arbitrary {
+  given Arbitrary[(Config, Leaderboard[ID])] = Arbitrary {
     for
       config      <- genConfig
       leaderboard <- genLeaderboard(config)
@@ -56,8 +56,8 @@ object Generators:
 
   lazy val genConfig: Gen[Config] =
     for
-      glicko2                  <- genGlicko2System
-      numberOfIDs              <- choose(2, 100)
+      glicko2     <- genGlicko2System
+      numberOfIDs <- choose(2, 100)
     yield Config(glicko2, newIDs(numberOfIDs), 0, 10, 0, numberOfIDs * 2)
 
   def genLeaderboard(config: Config): Gen[Leaderboard[ID]] =
