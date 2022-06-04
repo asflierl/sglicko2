@@ -9,7 +9,7 @@ enum WinOrDraw[A]:
   case Draw(player1: A, player2: A)
 
 object WinOrDraw:
-  given [A: Eq]: ScoringRules[A, WinOrDraw[A]] = new ScoringRules[A, WinOrDraw[A]]:
+  given [A: Eq]: ScoringRules[A, WinOrDraw[A]] with
     override def gameScores(g: WinOrDraw[A]): Iterable[(A, A, Score)] = Some(g match
       case Win(winner, loser)     => (winner,  loser,   Score[1d])
       case Draw(player1, player2) => (player1, player2, Score[0.5d]))
