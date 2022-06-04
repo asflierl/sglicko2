@@ -9,8 +9,8 @@ import sglicko2.{WinOrDraw, Glicko2, RatingPeriod}
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Array(Mode.AverageTime))
-@Warmup(iterations = 50, time = 50, timeUnit = TimeUnit.MILLISECONDS)
-@Measurement(iterations = 11, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(iterations = 250, time = 33, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 17, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(1)
 @Threads(1)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
