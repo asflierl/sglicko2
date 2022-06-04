@@ -36,6 +36,5 @@ object GW2ExampleResources:
     override def gameScores(o: Outcome): Iterable[(WorldID, WorldID, Score)] = 
       Array(pair(o.green, o.blue), pair(o.green, o.red), pair(o.blue, o.red))
 
-    private def pair(a: Participant, b: Participant) = (a.id, b.id, rateAVersusB(a.points.toDouble, b.points.toDouble))
-    private def rateAVersusB(a: Double, b: Double) = Score((sin((a / (a + b) - 0.5d) * π) + 1d) * 0.5d)
-
+    private def pair(a: Participant, b: Participant) = (a.id, b.id, rateAVsB(a.points.toDouble, b.points.toDouble))
+    private def rateAVsB(a: Double, b: Double) = Score((sin((a / (a + b) - 0.5d) * π) + 1d) * 0.5d)

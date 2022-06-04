@@ -12,8 +12,8 @@ class GW2ExampleSpec extends Specification:
     pluggable scoring rules.
 
     Information how they use Glicko 2 exactly can be found from these sources:
-      - https://forum-en.guildwars2.com/forum/game/wuv/The-math-behind-WvW-ratings/first#post679386
-      - https://forum-en.guildwars2.com/forum/game/wuv/The-math-behind-WvW-ratings/first#post682392
+      - https://forum-en.gw2archive.eu/forum/game/wuv/The-math-behind-WvW-ratings/first#post679386
+      - https://forum-en.gw2archive.eu/forum/game/wuv/The-math-behind-WvW-ratings/first#post682392
       - https://www.guildwars2.com/en/news/big-changes-coming-to-wvw-matchups
       - https://www.guildwars2.com/en/news/wvw-matchup-variance-reduction
         
