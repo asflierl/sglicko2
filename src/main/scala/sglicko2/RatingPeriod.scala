@@ -1,56 +1,36 @@
-/*
- * Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- */
+// SPDX-License-Identifier: ISC
 
 package sglicko2
 
 import scala.collection.mutable.{HashMap, ReusableBuilder}
 
-final case class RatingPeriod[A, B] private[sglicko2] (games: Map[A, Vector[ScoreAgainstAnotherPlayer[A]]] =
-    Map.empty[A, Vector[ScoreAgainstAnotherPlayer[A]]])(implicit rules: ScoringRules[B]) {
+final class RatingPeriod[A: Eq, B: ScoringRulesC[A]] private[sglicko2] (
+    val games: Map[A, Vector[ScoreVsPlayer[A]]]):
 
-  def withGame(player1: A, player2: A, outcome: B): RatingPeriod[A, B] = {
-    require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
-    val score = rules.scoreForTwoPlayers(outcome)
+  def withGames(gamesToAdd: B*): RatingPeriod[A, B] = new RatingPeriod(RatingPeriod.updated(games, gamesToAdd*)) 
 
-    val outcomes1 = ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1) +: games.getOrElse(player1, Vector.empty)
-    val outcomes2 = ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2) +: games.getOrElse(player2, Vector.empty)
+object RatingPeriod:
+  def empty[A: Eq, B: ScoringRulesC[A]]: RatingPeriod[A, B] = new RatingPeriod(Map.empty)
 
-    copy(games.updated(player1, outcomes1).updated(player2, outcomes2))
-  }
+  def apply[A: Eq, B: ScoringRulesC[A]](gamesToAdd: B*): RatingPeriod[A, B] =
+    new RatingPeriod(updated(Map.empty, gamesToAdd*))
 
-  def withGames(gamesToAdd: (A, A, B)*): RatingPeriod[A, B] = {
-    val mm = HashMap.empty[A, ReusableBuilder[ScoreAgainstAnotherPlayer[A], Vector[ScoreAgainstAnotherPlayer[A]]]]
+  private def updated[A: Eq, B: ScoringRulesC[A]](games: Map[A, Vector[ScoreVsPlayer[A]]], gamesToAdd: B*) =
+    val rules = summon[ScoringRules[A, B]]
+    val mm = HashMap.empty[A, ReusableBuilder[ScoreVsPlayer[A], Vector[ScoreVsPlayer[A]]]]
 
-    games.foreach { case (id, gamesOfPlayer)  => mm.put(id, {
-      val builder = Vector.newBuilder[ScoreAgainstAnotherPlayer[A]]
+    games.foreach { (id, gamesOfPlayer) => mm.put(id, {
+      val builder = Vector.newBuilder[ScoreVsPlayer[A]]
       builder ++= gamesOfPlayer
       builder
     })}
 
-    gamesToAdd.foreach { case (player1, player2, outcome) =>
-      require(player1 != player2, s"player1 ($player1) and player2 ($player2) must not be the same player")
+    gamesToAdd.iterator
+      .flatMap(rules.gameScores(_).iterator)
+      .filter((p1, p2, _) => p1 != p2)
+      .foreach { (player1, player2, score) =>
+        mm.getOrElseUpdate(player1, Vector.newBuilder) += ScoreVsPlayer(player2, score.asSeenFromPlayer1)
+        mm.getOrElseUpdate(player2, Vector.newBuilder) += ScoreVsPlayer(player1, score.asSeenFromPlayer2)
+      }
 
-      val score = rules.scoreForTwoPlayers(outcome)
-
-      mm.getOrElseUpdate(player1, Vector.newBuilder) += ScoreAgainstAnotherPlayer(player2, score.asSeenFromPlayer1)
-      mm.getOrElseUpdate(player2, Vector.newBuilder) += ScoreAgainstAnotherPlayer(player1, score.asSeenFromPlayer2)
-    }
-
-    val newGames = mm.view.mapValues(_.result()).toMap
-
-    copy(games = newGames)
-  }
-}
+    mm.iterator.map(_ -> _.result()).toMap

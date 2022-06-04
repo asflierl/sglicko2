@@ -1,59 +1,43 @@
-/*
- * Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- */
+// SPDX-License-Identifier: ISC
 
 package sglicko2.benchmark
 
 import java.util.concurrent.TimeUnit
 
-import org.openjdk.jmh.annotations._
-import sglicko2.{EitherOnePlayerWinsOrItsADraw, Glicko2, Leaderboard, RatingPeriod}
+import org.openjdk.jmh.annotations.*
+import sglicko2.{Glicko2, Leaderboard, RatingPeriod, WinOrDraw}
+
+import scala.compiletime.uninitialized
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Array(Mode.AverageTime))
-@Warmup(iterations = 50, time = 50, timeUnit = TimeUnit.MILLISECONDS)
-@Measurement(iterations = 11, time = 100, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(iterations = 250, time = 33, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(iterations = 17, time = 100, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(1)
 @Threads(1)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-class LeaderboardBenchmark {
+class LeaderboardBenchmark:
 
-  var system: Glicko2[String, EitherOnePlayerWinsOrItsADraw] = new Glicko2[String, EitherOnePlayerWinsOrItsADraw]
+  given Glicko2 = Glicko2()
 
   @Param(Array("10", "1000", "10000"))
-  @volatile var numberOfGames: Int = _
+  @volatile var numberOfGames: Int = uninitialized
 
   @Param(Array("5", "50", "5000"))
-  @volatile var numberOfPlayers: Int = _
+  @volatile var numberOfPlayers: Int = uninitialized
 
-  @volatile var ratingPeriod: RatingPeriod[String, EitherOnePlayerWinsOrItsADraw] = _
+  @volatile var ratingPeriod: RatingPeriod[String, WinOrDraw[String]] = uninitialized
 
-  @volatile var prefilledLeaderboard: Leaderboard[String] = _
+  @volatile var prefilledLeaderboard: Leaderboard[String] = uninitialized
 
   @Setup
-  def prepare: Unit = {
+  def prepare: Unit =
     val generator = new Generator(numberOfPlayers)
-    ratingPeriod = system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector:_*)
-    prefilledLeaderboard = system.updatedLeaderboard(system.newLeaderboard, system.newRatingPeriod.withGames(generator.gameStream.take(numberOfGames).toVector:_*))
-  }
+    ratingPeriod = RatingPeriod(generator.gameStream.take(numberOfGames).toVector*)
+    prefilledLeaderboard = Leaderboard.empty.after(RatingPeriod(generator.gameStream.take(numberOfGames).toVector*))
 
   @Benchmark
-  def updateFreshLeaderboard: Leaderboard[String] = system.updatedLeaderboard(system.newLeaderboard, ratingPeriod)
+  def updateFreshLeaderboard: Leaderboard[String] = Leaderboard.empty.after(ratingPeriod)
 
   @Benchmark
-  def updatePrefilledLeaderboard: Leaderboard[String] = system.updatedLeaderboard(prefilledLeaderboard, ratingPeriod)
-}
-
-
+  def updatePrefilledLeaderboard: Leaderboard[String] = prefilledLeaderboard.after(ratingPeriod)
