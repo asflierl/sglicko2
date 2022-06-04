@@ -4,17 +4,19 @@ package sglicko2
 
 import scala.collection.mutable.{HashMap, ReusableBuilder}
 
-final class RatingPeriod[A: Eq, G[_]: ScoringRules] private[sglicko2] (
+final class RatingPeriod[A: Eq, B: ScoringRulesC[A]] private[sglicko2] (
     val games: Map[A, Vector[ScoreVsPlayer[A]]]):
 
-  def withGames(gamesToAdd: G[A]*): RatingPeriod[A, G] = new RatingPeriod(RatingPeriod.updated(games, gamesToAdd*)) 
+  def withGames(gamesToAdd: B*): RatingPeriod[A, B] = new RatingPeriod(RatingPeriod.updated(games, gamesToAdd*)) 
 
 object RatingPeriod:
-  def apply[A: Eq, G[_]: ScoringRules](gamesToAdd: G[A]*): RatingPeriod[A, G] =
+  def empty[A: Eq, B: ScoringRulesC[A]]: RatingPeriod[A, B] = new RatingPeriod(Map.empty)
+
+  def apply[A: Eq, B: ScoringRulesC[A]](gamesToAdd: B*): RatingPeriod[A, B] =
     new RatingPeriod(updated(Map.empty, gamesToAdd*))
 
-  private def updated[A: Eq, G[_]: ScoringRules](games: Map[A, Vector[ScoreVsPlayer[A]]], gamesToAdd: G[A]*) =
-    val rules = summon[ScoringRules[G]]
+  private def updated[A: Eq, B: ScoringRulesC[A]](games: Map[A, Vector[ScoreVsPlayer[A]]], gamesToAdd: B*) =
+    val rules = summon[ScoringRules[A, B]]
     val mm = HashMap.empty[A, ReusableBuilder[ScoreVsPlayer[A], Vector[ScoreVsPlayer[A]]]]
 
     games.foreach { (id, gamesOfPlayer) => mm.put(id, {

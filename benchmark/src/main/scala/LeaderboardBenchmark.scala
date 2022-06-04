@@ -26,7 +26,7 @@ class LeaderboardBenchmark:
   @Param(Array("5", "50", "5000"))
   @volatile var numberOfPlayers: Int = uninitialized
 
-  @volatile var ratingPeriod: RatingPeriod[String, WinOrDraw] = uninitialized
+  @volatile var ratingPeriod: RatingPeriod[String, WinOrDraw[String]] = uninitialized
 
   @volatile var prefilledLeaderboard: Leaderboard[String] = uninitialized
 
@@ -41,5 +41,3 @@ class LeaderboardBenchmark:
 
   @Benchmark
   def updatePrefilledLeaderboard: Leaderboard[String] = prefilledLeaderboard.after(ratingPeriod)
-
-

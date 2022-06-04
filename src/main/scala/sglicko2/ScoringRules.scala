@@ -2,5 +2,7 @@
 
 package sglicko2
 
-trait ScoringRules[G[_]] extends Serializable:
-  def gameScores[A](game: G[A]): Iterable[(A, A, Score)]
+type ScoringRulesC[A] = [b] =>> ScoringRules[A, b]
+
+trait ScoringRules[A: Eq, B] extends Serializable:
+  def gameScores(game: B): Iterable[(A, A, Score)]

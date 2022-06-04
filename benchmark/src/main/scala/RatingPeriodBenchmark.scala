@@ -30,4 +30,4 @@ class RatingPeriodBenchmark:
     games = generator.gameStream.take(numberOfGames).toVector
 
   @Benchmark
-  def createRatingPeriod: RatingPeriod[String, WinOrDraw] = RatingPeriod(games*)
+  def createRatingPeriod: RatingPeriod[String, WinOrDraw[String]] = RatingPeriod(games*)
