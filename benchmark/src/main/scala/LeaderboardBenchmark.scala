@@ -5,7 +5,7 @@ package sglicko2.benchmark
 import java.util.concurrent.TimeUnit
 
 import org.openjdk.jmh.annotations.*
-import sglicko2.{WinOrDraw, Glicko2, Leaderboard, RatingPeriod}
+import sglicko2.{Glicko2, Leaderboard, RatingPeriod, WinOrDraw}
 
 import scala.compiletime.uninitialized
 

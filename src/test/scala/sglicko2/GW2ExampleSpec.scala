@@ -4,6 +4,7 @@ package sglicko2
 
 import org.specs2.*
 import org.specs2.matcher.Matcher
+
 import GW2ExampleResources.*
 
 class GW2ExampleSpec extends Specification: 

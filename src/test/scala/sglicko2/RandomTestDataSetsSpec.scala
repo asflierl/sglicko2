@@ -2,12 +2,13 @@
 
 package sglicko2
 
+import org.scalacheck.*
 import org.scalacheck.Gen.*
 import org.scalacheck.Prop.forAll
-import org.scalacheck.*
 import org.specs2.*
 import org.specs2.execute.Result
 import sglicko2.WinOrDraw.Ops.*
+
 import scala.collection.immutable.ArraySeq
 
 class RandomTestDataSetsSpec extends Specification with ScalaCheck:

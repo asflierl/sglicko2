@@ -5,7 +5,7 @@ package sglicko2.benchmark
 import java.util.concurrent.TimeUnit
 
 import org.openjdk.jmh.annotations.*
-import sglicko2.{WinOrDraw, Glicko2, RatingPeriod}
+import sglicko2.{Glicko2, RatingPeriod, WinOrDraw}
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Array(Mode.AverageTime))

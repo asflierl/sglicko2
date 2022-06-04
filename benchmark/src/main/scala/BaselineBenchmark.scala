@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit
 
 import org.openjdk.jmh.annotations.*
 import org.openjdk.jmh.infra.Blackhole
-import sglicko2.{WinOrDraw, Glicko2, RatingPeriod}
+import sglicko2.{Glicko2, RatingPeriod, WinOrDraw}
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Array(Mode.AverageTime))
@@ -19,4 +19,3 @@ class BaselineBenchmark:
 
   @Benchmark
   def baseline: Unit = Blackhole.consumeCPU(527)
-

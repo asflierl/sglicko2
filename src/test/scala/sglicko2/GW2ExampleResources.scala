@@ -6,9 +6,9 @@ import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.Files.readAllLines
 import java.nio.file.Paths.{get as path}
 
+import scala.collection.immutable.ArraySeq
 import scala.jdk.CollectionConverters.*
 import scala.math.{sin, Pi as π}
-import scala.collection.immutable.ArraySeq
 
 object GW2ExampleResources:
   def leaderboardFromResource(name: String)(using Scale): Leaderboard[WorldID] =

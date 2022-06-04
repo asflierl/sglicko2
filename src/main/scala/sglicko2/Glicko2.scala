@@ -2,7 +2,7 @@
 
 package sglicko2
 
-import scala.math.{abs, exp, sqrt, log as ln, Pi as π}
+import scala.math.{abs, exp, log as ln, sqrt, Pi as π}
 
 /* 
  * Implements the (public domain) Glicko 2 algorithm. 

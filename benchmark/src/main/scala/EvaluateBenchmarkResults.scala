@@ -3,8 +3,8 @@
 package sglicko2.benchmark
 
 import java.nio.charset.StandardCharsets.UTF_8
-import java.nio.file.Files.readAllBytes
 import java.nio.file.{Path, Paths}
+import java.nio.file.Files.readAllBytes
 
 import buildinfo.BuildInfo.crossTarget
 import io.circe.*
