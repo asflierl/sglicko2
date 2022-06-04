@@ -13,6 +13,9 @@ object Deviation extends Opaque[Double, Deviation]:
   private[sglicko2] inline def toGlicko2(inline d: Deviation): Double = d
 
   val default: Deviation = 350d / Scale.glicko2Scalar
+
+  given (using od: Ordering[Double]): Ordering[Deviation] = od
+  given (using nd: Numeric[Double]): Numeric[Deviation] = nd
   
   extension (d: Deviation) def value(using scale: Scale): Double = scale match
     case Scale.Glicko  => d * Scale.glicko2Scalar

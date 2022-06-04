@@ -11,6 +11,8 @@ object Score extends Opaque[Double, Score]:
     inline val a = compiletime.constValue[A]
     inline if a >= 0d && a <= 1d then a else compiletime.error("Score must be a number between 0 and 1 (both inclusive).")
 
+  given (using od: Ordering[Double]): Ordering[Score] = od
+
   extension (s: Score)
     def asSeenFromPlayer1: Score = s
     def asSeenFromPlayer2: Score = 1d - asSeenFromPlayer1

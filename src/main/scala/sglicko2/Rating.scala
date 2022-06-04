@@ -14,6 +14,9 @@ object Rating extends Opaque[Double, Rating]:
 
   val default: Rating = 0d
 
+  given (using od: Ordering[Double]): Ordering[Rating] = od
+  given (using nd: Numeric[Double]): Numeric[Rating] = nd
+
   extension (r: Rating) def value(using  scale: Scale): Double = scale match
     case Scale.Glicko  => (r * Scale.glicko2Scalar) + 1500d
     case Scale.Glicko2 => r

@@ -12,4 +12,7 @@ object Tau extends Opaque[Double, Tau]:
     inline if a > 0d && a < Double.PositiveInfinity then a else compiletime.error("System constant τ must be a number greater than 0.")
 
   val default = Tau[0.6d]
+
+  given (using od: Ordering[Double]): Ordering[Tau] = od
+
   extension (inline t: Tau) inline def value: Double = t
