@@ -155,17 +155,17 @@ given [A: Eq]: ScoringRules[A, WinOrDraw[A]] with
 
 So in a single game with two players, represented e.g. by `Win("Abby", "Becky")` (Abby wins against Becky), these scoring rules will "translate" that single outcome as if Abby is being rated:
 
- 1. Abby
- 2. Becky
- 3. 1.0
+ 1. `"Abby"`
+ 2. `"Becky"`
+ 3. `1.0d`
 
 This will be used to update the rating of Abby and her position on the leaderboard. But the second player also needs to be rated. Therefore the above values will be automatically "inverted" for the second player like this:
 
- 1. Becky
- 2. Abby
- 3. 0.0
+ 1. `"Becky"`
+ 2. `"Abby"`
+ 3. `0.0d`
 
-This "inversion" is not the responsibility of the scoring rules – as you can see in the implementation.
+This "inversion" is not the responsibility of the scoring rules so you don't have to worry about it.
 
 #### Games with more than 2 players
 
@@ -181,11 +181,11 @@ given ScoringRules[String, Outcome] with
     (o.second, o.last,   Score[1d]))
 ```
 
-This is essentially saying that a three-player game where Abby wins, Becky makes second place and Chas is last can be represented as three two-player games: Abby wins vs Becky, Abby wins vs Chas and Becky wins vs Chas.
+This is essentially saying that a three-player game where Abby wins, Becky takes second place and Chas is last can be represented as three two-player games: Abby wins vs Becky, Abby wins vs Chas and Becky wins vs Chas.
 
 #### More accurate score
 
-One detail we can gleam from the paper is that we are not limited to the three values 0, 0.5 and 1 to represent the outcome of a game. Any fractional value between 0 and 1 is fine and the Glicko-2 was made with that in mind. Considering e.g. soccer games, winning 7 : 0 is certainly a bigger win than winning 2 : 1.
+One detail we can glean from the paper is that we are not limited to the three values 0, 0.5 and 1 to represent the outcome of a game. Any fractional value between 0 and 1 is fine and the Glicko-2 was made with that in mind. Considering e.g. soccer games, winning 7 : 0 is certainly a bigger win than winning 2 : 1.
 
 Calculating a good score for these scenarios can get involved but a neat formula that works for any positive point-based outcomes was used by the Guild Wars 2 team to calculating server ratings for their "world vs world" game mode (see `src/test/scala/sglicko2/GW2ExampleSpec.scala` and `src/test/scala/sglicko2/GW2ExampleResources.scala` for more details).
 
