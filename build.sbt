@@ -6,8 +6,7 @@ inThisBuild(Seq(
   versionScheme := Some("semver-spec"),
   scalaVersion := "3.1.2",
   scalacOptions := Seq("-source:3.1", "-language:strictEquality", "-new-syntax", "-unchecked", "-deprecation", "-encoding", "UTF-8", "-java-output-version:11"),
-  githubWorkflowPublishTargetBranches := Nil,
-  githubWorkflowBuild := Seq(WorkflowStep.Sbt(List("clean", "test")))))
+  githubWorkflowPublishTargetBranches := Nil))
 
 lazy val sglicko2 = project.in(file(".")).enablePlugins(AutomateHeaderPlugin).settings(licensing).settings(
   publishMavenStyle := true,

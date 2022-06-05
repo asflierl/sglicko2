@@ -5,7 +5,7 @@ package sglicko2
 final class Leaderboard[A: Eq] private (val playersByIdInNoParticularOrder: Map[A, Player[A]]) extends Serializable derives CanEqual:
   import Ordering.Double.TotalOrdering
 
-  def after[B: ScoringRulesC[A]](ratingPeriod: RatingPeriod[A, B])(using glicko2: Glicko2): Leaderboard[A] =
+  def after[B: [b] =>> ScoringRules[A, b]](ratingPeriod: RatingPeriod[A, B])(using glicko2: Glicko2): Leaderboard[A] =
     val competingPlayers = ratingPeriod.games.iterator.map { (id, matchResults) =>
       glicko2.updatedRatingAndDeviationAndVolatility(id, matchResults, playersByIdInNoParticularOrder.get)
     }
