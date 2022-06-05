@@ -1,113 +1,90 @@
-/*
- * Copyright (c) 2021, Andreas Flierl <andreas@flierl.eu>
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- */
+// SPDX-License-Identifier: ISC
 
 package sglicko2
 
-import org.scalacheck.Gen._
+import org.scalacheck.*
+import org.scalacheck.Gen.*
 import org.scalacheck.Prop.forAll
-import org.scalacheck._
-import org.specs2._
-import org.specs2.matcher.MatchResult
-import sglicko2.EitherOnePlayerWinsOrItsADraw._
-import sglicko2.{EitherOnePlayerWinsOrItsADraw => S}
+import org.specs2.*
+import org.specs2.execute.Result
+import sglicko2.WinOrDraw.Ops.*
 
-class RandomTestDataSetsSpec extends Specification with ScalaCheck { def is =
-s2"""
-  The number of players on the leaderboard is less than or equal to the number of player IDs. $ex1
-  The ranking list of a leaderboard contains no duplicates. $ex2
-  Adding games to a rating period via repeating 'withGame' is equivalent to using 'withGames' once with the same but aggregated input data. $ex3
-  Adding games to a rating period via repeating 'withGames' is equivalent to using 'withGames' once with the same but aggregated input data. $ex4
-"""
+import scala.collection.immutable.ArraySeq
 
-  import Generators._
+class RandomTestDataSetsSpec extends Specification with ScalaCheck:
+  def is = s2"""
+    The number of players on the leaderboard is less than or equal to the number of player IDs. $ex1
+    The ranking list of a leaderboard contains no duplicates. $ex2
+    Adding games to a rating period via repeating 'withGames' is equivalent to using 'withGames' once with the same but aggregated input data. $ex3
+  """
 
-  def ex1 = leaderboardProperty { case (config, leaderboard) =>
+  import Generators.*
+
+  def ex1 = leaderboardProperty { (config, leaderboard) =>
     leaderboard.playersByIdInNoParticularOrder.size should beLessThanOrEqualTo(config.ids.size)
   }
 
-  def ex2 = leaderboardProperty { case (config, leaderboard) =>
-    leaderboard.playersInRankOrder.distinct should_=== leaderboard.playersInRankOrder
+  def ex2 = leaderboardProperty { (config, leaderboard) =>
+    leaderboard.playersInRankOrder.distinct should ===(leaderboard.playersInRankOrder)
   }
 
-  def ex3 = forAll(listOfN(1000, genGame(newIDs(1000)))) { g =>
-    val glicko2 = new G
-    val empty = glicko2.newRatingPeriod
+  def ex3 = forAll(containerOfN[ArraySeq, Game](1000, genGame(newIDs(1000)))) { g =>
+    given Glicko2 = Glicko2()
+    val empty = RatingPeriod.empty[ID, WinOrDraw[ID]]
 
-    val method1 = empty.withGames(g:_*)
-    val method2 = g.foldLeft(empty)((akku, el) => akku.withGame(el _1, el _2, el _3))
+    val method1 = empty.withGames(g*)
+    val method2 = g.sliding(100, 100).toSeq.foldLeft(empty)((akku, el) => akku.withGames(el*))
 
-    method1.games.view.mapValues(_ toSet).toMap should_=== method2.games.view.mapValues(_ toSet).toMap
+    method1.games.view.mapValues(_.toSet).toMap should ===(method2.games.view.mapValues(_.toSet).toMap)
   }
 
-  def ex4 = forAll(listOfN(1000, genGame(newIDs(1000)))) { g =>
-    val glicko2 = new G
-    val empty = glicko2.newRatingPeriod
+  def leaderboardProperty[A](f: ((Config, Leaderboard[ID])) => Result) = prop(f)
 
-    val method1 = empty.withGames(g:_*)
-    val method2 = g.sliding(100, 100).toSeq.foldLeft(empty)((akku, el) => akku.withGames(el:_*))
+object Generators:
+  final case class ID(raw: String) derives Eq
 
-    method1.games.view.mapValues(_ toSet).toMap should_=== method2.games.view.mapValues(_ toSet).toMap
-  }
-  def leaderboardProperty[A](f: ((Config, Leaderboard[ID])) => MatchResult[A]) = prop(f)
-}
+  type Game = WinOrDraw[ID]
 
-object Generators {
-  case class ID(raw: String)
+  final case class Config(glicko2: Glicko2, ids: Vector[ID], minNumberOfRatingPeriods: Int, maxNumberOfRatingPeriods: Int, minNumberOfGames: Int, maxNumberOfGames: Int)
 
-  type G = Glicko2[ID, S]
-  type Game = (ID, ID, S)
-
-  case class Config(glicko2: G, ids: Vector[ID], minNumberOfRatingPeriods: Int, maxNumberOfRatingPeriods: Int, minNumberOfGames: Int, maxNumberOfGames: Int)
-
-  implicit lazy val arbLeaderboard: Arbitrary[(Config, Leaderboard[ID])] = Arbitrary {
-    for {
+  given Arbitrary[(Config, Leaderboard[ID])] = Arbitrary {
+    for
       config      <- genConfig
       leaderboard <- genLeaderboard(config)
-    } yield (config, leaderboard)
+    yield (config, leaderboard)
   }
 
   lazy val genConfig: Gen[Config] =
-    for {
-      glicko2                  <- genGlicko2System
-      numberOfIDs              <- choose(2, 100)
-    } yield Config(glicko2, newIDs(numberOfIDs), 0, 10, 0, numberOfIDs * 2)
+    for
+      glicko2     <- genGlicko2System
+      numberOfIDs <- choose(2, 100)
+    yield Config(glicko2, newIDs(numberOfIDs), 0, 10, 0, numberOfIDs * 2)
 
   def genLeaderboard(config: Config): Gen[Leaderboard[ID]] =
-    for {
+    given Glicko2 = config.glicko2
+    for
       numberOfRatingPeriods <- chooseNum(config.minNumberOfRatingPeriods, config.maxNumberOfRatingPeriods)
       ratingPeriods         <- listOfN(numberOfRatingPeriods, genRatingPeriod(config))
-    } yield ratingPeriods.foldLeft(config.glicko2.newLeaderboard)((board, period) => config.glicko2.updatedLeaderboard(board, period))
+    yield ratingPeriods.foldLeft(Leaderboard.empty[ID])((board, period) => board after period)
 
-  lazy val genGlicko2System: Gen[G] = choose(0.3d, 1.2d) map (new Glicko2(_))
+  given Gen.Choose[Tau] with
+    def choose(min: Tau, max: Tau): Gen[Tau] = Gen.choose(min.value, max.value) map (t => Tau(t).getOrElse(???))
+
+  lazy val genGlicko2System: Gen[Glicko2] = choose(Tau[0.3d], Tau[1.2d]) map (Glicko2(_))
 
   def newIDs(numberOfIDs: Int): Vector[ID] = (1 to numberOfIDs).view.map(n => ID(s"player #$n")).toVector
 
-  def genRatingPeriod(config: Config): Gen[RatingPeriod[ID, S]] =
-    for {
+  def genRatingPeriod(config: Config): Gen[RatingPeriod[ID, WinOrDraw[ID]]] =
+    for
       numberOfGames <- chooseNum(config.minNumberOfRatingPeriods, config.maxNumberOfGames)
       games <- listOfN(numberOfGames, genGame(config.ids))
-    } yield config.glicko2.newRatingPeriod.withGames(games:_*)
+    yield RatingPeriod(games*)
 
   def genGame(ids: Vector[ID]): Gen[Game] =
-    for {
+    for
       index1  <- choose(0, ids.size - 1)
       id1      = ids(index1)
       index2  <- choose(1, ids.size - 1).map(n => (index1 + n) % ids.size)
       id2      = ids(index2)
-      outcome <- oneOf(Player1Wins, Player2Wins, Draw)
-    } yield (id1, id2, outcome)
-
-}
+      outcome <- oneOf(WinOrDraw.Win(id1, id2), WinOrDraw.Draw(id1, id2))
+    yield outcome
