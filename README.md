@@ -4,10 +4,9 @@ A small & simple implementation of the [Glicko-2 rating algorithm](http://www.gl
 
 ## Features
 
- - helps with maintaining a leaderboard 
+ - helps with maintaining a player leaderboard 
  - any type (with proper equality, like `String` or `UUID` etc.) can be used to identify a player
- - allows custom scoring rules (e.g. more than 2 players per game, point difference instead of ternary win/loss/draw)
- - parameters can be tweaked but sensible defaults are provided
+ - allows custom scoring rules (e.g. more than 2 opponents per game, point difference instead of ternary win/loss/draw)
  - rating scale can be switched between Glicko and Glicko-2
  - checks important constraints – where possible, at compile-time
  - only depends on the Scala standard library
@@ -16,8 +15,7 @@ A small & simple implementation of the [Glicko-2 rating algorithm](http://www.gl
 
 Version 2.0.0 is currently available for Scala 3, targetting Java 11. 
 
-
- To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
+To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
 
 ```scala
 libraryDependencies += "eu.flierl" %% "sglicko2" % "2.0.0"
