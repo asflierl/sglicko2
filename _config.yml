@@ -2,7 +2,7 @@ title: sglicko2 – Glicko-2 for Scala
 description: A small & simple implementation of the Glicko-2 rating algorithm in Scala.
 google_analytics: UA-66503444-1
 show_downloads: true
-theme: jekyll-theme-modernist
+theme: jekyll-theme-time-machine
 
 gems:
   - jekyll-mentions
