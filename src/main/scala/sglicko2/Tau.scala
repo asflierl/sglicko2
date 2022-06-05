@@ -5,7 +5,7 @@ package sglicko2
 opaque type Tau = Double
 
 object Tau extends Opaque[Double, Tau]:
-  def apply(d: Double): Valid[Tau] = Either.cond(d > 0d && d < Double.PositiveInfinity, d, Err("System constant τ must be a number greater than 0."))
+  def apply(d: Double): Either[Err, Tau] = Either.cond(d > 0d && d < Double.PositiveInfinity, d, Err("System constant τ must be a number greater than 0."))
 
   inline def apply[A <: Double & Singleton]: Tau =
     inline val a = compiletime.constValue[A]
