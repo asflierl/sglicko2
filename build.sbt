@@ -2,7 +2,7 @@ import xerial.sbt.Sonatype._
 
 inThisBuild(Seq(
   organization := "eu.flierl",
-  version := "2.0.0",
+  version := "2.0.1",
   versionScheme := Some("semver-spec"),
   scalaVersion := "3.1.2",
   scalacOptions := Seq("-source:3.1", "-language:strictEquality", "-new-syntax", "-unchecked", "-deprecation", "-encoding", "UTF-8", "-java-output-version:11"),
