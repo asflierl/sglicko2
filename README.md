@@ -13,18 +13,18 @@ A small & simple implementation of the [Glicko-2 rating algorithm](http://www.gl
 
 ## Setup
 
-Version 2.0.0 is currently available for Scala 3, targetting Java 11. 
+Version 2.0.1 is currently available for Scala 3, targetting Java 11. 
 
 To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
 
 ```scala
-libraryDependencies += "eu.flierl" %% "sglicko2" % "2.0.0"
+libraryDependencies += "eu.flierl" %% "sglicko2" % "2.0.1"
 ```
 
 ## Usage
 
 ### Basics
-Here's a simple, runnable example on how the library can be used. You can [experiment with it right in your browser (using Scastie)](https://scastie.scala-lang.org/l07dgDzxS8maTIIWsycA5w).
+Here's a simple, runnable example on how the library can be used. You can [experiment with it right in your browser (using Scastie)](https://scastie.scala-lang.org/asflierl/e7d2vFTpTFqxq85sIx6WDQ).
 
 ```scala
 import sglicko2.*, WinOrDraw.Ops.*
@@ -32,7 +32,7 @@ import sglicko2.*, WinOrDraw.Ops.*
 @main def run: Unit = 
   given Glicko2 = Glicko2()
 
-  Leaderboard.empty
+  Leaderboard.empty[String]
     .after(RatingPeriod(
       "Abby"  winsVs   "Becky",
       "Abby"  winsVs   "Chas",

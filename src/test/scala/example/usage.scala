@@ -7,7 +7,7 @@ import sglicko2.*, WinOrDraw.Ops.*
 @main def run: Unit = 
   given Glicko2 = Glicko2()
 
-  Leaderboard.empty
+  Leaderboard.empty[String]
     .after(RatingPeriod(
       "Abby"  winsVs   "Becky",
       "Abby"  winsVs   "Chas",
