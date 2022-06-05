@@ -128,7 +128,7 @@ Of course, you can always supply the `Scale` implicitly yourself, in case you do
 
 ### Identifying players
 
-Many of this library's types are parameterized with a type parameter `A` to allow for any custom type to identify players. This can be as simple as a `String` or more general like a `java.util.UUID`. The only requirement is that the type implements a proper equality (i.e. `.equals(...)` method) and provides an instance of `Eq[A]` (which is just an alias for `scala.CanEqual[A, A]`) to signal that values of this type can safely be compared to each other.
+Many of this library's types are parameterized with a type parameter `A` to allow for any custom type to identify players. This can be as general as a `String` or more specific like a `java.util.UUID` or your own type, e.g. a case class. The only requirement is that its implementation provides a proper equality (i.e. `.equals(...)` method) and provides an instance of `Eq[A]` (which is just an alias for `scala.CanEqual[A, A]`) to signal that values of this type can safely be compared to each other.
 
 The Scala standard library provides that for primitive types and some very common types. If you use your own type, you will have to provide this typeclass instance as well.
 
@@ -136,7 +136,7 @@ The Scala standard library provides that for primitive types and some very commo
 
 ### Implementing custom games and scoring rules
 
-Any type `B` can be used in a `RatingPeriod` to represent a game, as long as there is an instance of `ScoringRules[A, B]` is in implicit scope, where `A` is any type you use to identify a player. The job of scoring rules is to "explain" what an outcome of a game means "in Glicko-2 terms". The Glicko-2 algorithm expects input as three values:
+Any type `B` can be used in a `RatingPeriod` to represent a game, as long as there is an instance of `ScoringRules[A, B]` in implicit scope, where `A` is any type you use to identify a player. The job of scoring rules is to "explain" what an outcome of a game means "in Glicko-2 terms". The Glicko-2 algorithm expects input as three values:
 
  1. the player that is being rated
  2. their opponent
@@ -165,7 +165,7 @@ This will be used to update the rating of Abby and her position on the leaderboa
  2. `"Abby"`
  3. `0.0d`
 
-This "inversion" is not the responsibility of the scoring rules so you don't have to worry about it.
+This "inversion" is not the responsibility of the scoring rules. It is done behind the scenes when a leaderboard is updated after a new rating period.
 
 #### Games with more than 2 players
 
@@ -181,13 +181,13 @@ given ScoringRules[String, Outcome] with
     (o.second, o.last,   Score[1d]))
 ```
 
-This is essentially saying that a three-player game where Abby wins, Becky takes second place and Chas is last can be represented as three two-player games: Abby wins vs Becky, Abby wins vs Chas and Becky wins vs Chas.
+This is essentially saying that one three-player game where e.g. Abby wins, Becky takes second place and Chas is last can be represented as three two-player games: Abby wins vs Becky, Abby wins vs Chas and Becky wins vs Chas.
 
 #### More accurate score
 
-One detail we can glean from the paper is that we are not limited to the three values 0, 0.5 and 1 to represent the outcome of a game. Any fractional value between 0 and 1 is fine and the Glicko-2 was made with that in mind. Considering e.g. soccer games, winning 7 : 0 is certainly a bigger win than winning 2 : 1.
+One detail we can glean from the paper is that we are not limited to the three values 0, 0.5 and 1 to represent the outcome of a game. Any fractional value between 0 and 1 is fine and Glicko-2 was made with that in mind. Considering e.g. soccer games, winning 7 : 0 is certainly a bigger win than winning 2 : 1 and we might want to see that reflected in how much the ratings change afterwards.
 
-Calculating a good score for these scenarios can get involved but a neat formula that works for any positive point-based outcomes was used by the Guild Wars 2 team to calculating server ratings for their "world vs world" game mode (see `src/test/scala/sglicko2/GW2ExampleSpec.scala` and `src/test/scala/sglicko2/GW2ExampleResources.scala` for more details).
+Calculating a good score for these scenarios can get involved but a neat formula that works for any positive point-based outcome was used by the Guild Wars 2 team to calculate server ratings for their "world vs world" game mode (see `src/test/scala/sglicko2/GW2ExampleSpec.scala` and `src/test/scala/sglicko2/GW2ExampleResources.scala` for more details).
 
 Implementing the gist of that as `ScoringRules` would look like this:
 
