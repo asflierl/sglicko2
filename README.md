@@ -13,12 +13,12 @@ A small & simple implementation of the [Glicko-2 rating algorithm](http://www.gl
 
 ## Setup
 
-Version 2.0.1 is currently available for Scala 3, targetting Java 11. 
+Version 2.0.2 is currently available for Scala 3, targetting Java 11. 
 
 To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
 
 ```scala
-libraryDependencies += "eu.flierl" %% "sglicko2" % "2.0.1"
+libraryDependencies += "eu.flierl" %% "sglicko2" % "2.0.2"
 ```
 
 ## Usage
