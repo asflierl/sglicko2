@@ -55,7 +55,13 @@ Output:
  4 Becky: [ 854, 1747]
 ```
 
-As recommended in [the original Glicko paper](http://www.glicko.net/glicko/glicko.pdf), the rating of the players is reported as a 95% confidence interval here instead of using the median / middle value (rating). So in this example, we're fairly confident that Abby's actual playing strength lies somewhere between 1353 and 2246, i.e. a player's rating is the median of the probability distribution and should not be treated like an accurate measure of actual playing strength.
+ - The starting point is an empty leaderboard, since no games have been played yet and therefore no players have been recorded.
+ - Games are grouped into "rating periods" of time intervals of your choice, i.e. all games that have been played in a day, a week, a season etc. — whatever makes sense for the particular kind of game being played.
+ - After each rating period, the evaluation of each player changes according to the games that have been played, even for the ones who didn't play during that particular rating period (but played in previous ones): the uncertainty (deviation) of their rating increases.
+ - In other words, conceptually, the rating function `glicko2` takes a leaderboard and a set of games during a rating period and produces an updated leaderboard, i.e. `glicko2: Leaderboard ⨯ RatingPeriod → Leaderboard`.
+ - The papers on [Glicko-2](http://www.glicko.net/glicko/glicko.pdf) and its predecessor, [Glicko](http://www.glicko.net/glicko/glicko.pdf), contain a lot of details on the usage of the system and are a highly recommended read.
+ 
+ *A note on the output of the code above:* as recommended in the [Glicko paper](http://www.glicko.net/glicko/glicko.pdf), the rating of the players is reported as a 95% confidence interval here instead of using the median / middle value (rating). So in this example, we're fairly confident that Abby's actual playing strength lies somewhere between 1353 and 2246, i.e. a player's rating is the median of the probability distribution and should not be treated like an accurate measure of actual playing strength.
 
 
 ### Changing parameters
