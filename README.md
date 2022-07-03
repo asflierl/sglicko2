@@ -13,12 +13,12 @@ A small & simple implementation of the [Glicko-2 rating algorithm](http://www.gl
 
 ## Setup
 
-Version 2.0.2 is currently available for Scala 3, targetting Java 11. 
+Version 3.0.0 is currently available for Scala 3, targetting Java 11. 
 
 To use this library in your [SBT](http://scala-sbt.org) project, add the following to your build definition:
 
 ```scala
-libraryDependencies += "eu.flierl" %% "sglicko2" % "2.0.2"
+libraryDependencies += "eu.flierl" %% "sglicko2" % "3.0.0"
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ import sglicko2.*, WinOrDraw.Ops.*
 @main def run: Unit = 
   given Glicko2 = Glicko2()
 
-  Leaderboard.empty[String]
+  Leaderboard.Empty
     .after(RatingPeriod(
       "Abby"  winsVs   "Becky",
       "Abby"  winsVs   "Chas",
@@ -134,27 +134,34 @@ Of course, you can always supply the `Scale` implicitly yourself, in case you do
 
 ### Identifying players
 
-Many of this library's types are parameterized with a type parameter `A` to allow for any custom type to identify players. This can be as general as a `String` or more specific like a `java.util.UUID` or your own type, e.g. a case class. The only requirement is that its implementation provides a proper equality (i.e. `.equals(...)` method) and provides an instance of `Eq[A]` (which is just an alias for `scala.CanEqual[A, A]`) to signal that values of this type can safely be compared to each other.
+Many of this library's types are parameterized with a type parameter `P` (sometimes `P2`) to allow for any custom type to identify players. This can be as general as a `String` or more specific like a `java.util.UUID` or your own type, e.g. a case class. The only requirement is that its implementation provides a proper equality (i.e. `.equals(...)` method) and provides an instance of `Eq[P]` (which is just an alias for `scala.CanEqual[P, P]`) to signal that values of this type can safely be compared to each other.
 
 The Scala standard library provides that for primitive types and some very common types. If you use your own type, you will have to provide this typeclass instance as well.
 
-**Note:** for performance reasons, the type you use to identify players should have a performant (and of course correct) implementation of `.hashCode`. Again, this is automatically the case for primitive types, `String`, `UUID` and tuples / products / case classes of these types etc. but for your own classes, some attention to this is advised.
+⚠️ For performance reasons, the type you use to identify players should have a performant (and of course correct) implementation of `.hashCode`. Again, this is automatically the case for primitive types, `String`, `UUID` and tuples / products / case classes of these types etc. but for your own classes, some attention to this is advised.
+
+ℹ️ Scoring rules define this type `P` as a type *member* instead of a type *parameter*. This allows using dependent types to infer `P` from the particular scoring rules that are used to evaluate games of type `G` without forcing `G` itself to be higher kinded. Examples of this can be found in `src/test/scala/example/variance.scala`. In case you ever need to use scoring rules for a particular type `P` yourself, there's a helper type `ScoringRules.For[-P, -G]` that you can use / summon.
 
 ### Implementing custom games and scoring rules
 
-Any type `B` can be used in a `RatingPeriod` to represent a game, as long as there is an instance of `ScoringRules[A, B]` in implicit scope, where `A` is any type you use to identify a player. The job of scoring rules is to "explain" what an outcome of a game means "in Glicko-2 terms". The Glicko-2 algorithm expects input as three values:
+Any type of game `G` can be used in a `RatingPeriod` to represent a game, as long as there is an instance of `ScoringRules[G]` in implicit scope.
+
+The job of scoring rules is to "explain" what an outcome of a game means "in Glicko-2 terms". The Glicko-2 algorithm expects input as three values:
 
  1. the player that is being rated
  2. their opponent
  3. a score for the player being rated, given as any (fractional) value between 0 and 1, where 0 is a loss, 1 is a win and 0.5 is a draw
+
+
 
 #### Provided implementation
 
 Let's look at the most basic scoring rules as an example, where either one player wins or the game is a draw. This is implemented in `src/main/scala/sglicko2/WinOrDraw.scala`:
 
 ```scala
-given [A: Eq]: ScoringRules[A, WinOrDraw[A]] with
-  def gameScores(g: WinOrDraw[A]): Iterable[(A, A, Score)] = Some(g match
+given [P2: Eq]: ScoringRules[WinOrDraw[P2]] with
+  type P = P2
+  override def gameScores(g: WinOrDraw[P]): Iterable[(P, P, Score)] = Some(g match
     case Win(winner, loser)     => (winner,  loser,   Score[1d])
     case Draw(player1, player2) => (player1, player2, Score[0.5d]))
 ```
@@ -180,8 +187,10 @@ Although, not mentioned in the paper, an interesting property of Glicko-2 is tha
 ```scala
 case class Outcome(winner: String, second: String, last: String)
 
-given ScoringRules[String, Outcome] with
-  def gameScores(o: Outcome): Iterable[(String, String, Score)] = Seq(
+given ScoringRules[Outcome] with
+  type P = String
+
+  def gameScores(o: Outcome): Iterable[(P, P, Score)] = Seq(
     (o.winner, o.second, Score[1d]),
     (o.winner, o.last,   Score[1d]),
     (o.second, o.last,   Score[1d]))
@@ -202,15 +211,17 @@ import scala.math.{sin, Pi}
 
 case class Outcome(name1: String, points1: Long, name2: String, points2: Long)
 
-given ScoringRules[String, Outcome] with
-  def gameScores(o: Outcome): Iterable[(String, String, Score)] = 
+given ScoringRules[Outcome] with
+  type P = String
+
+  def gameScores(o: Outcome): Iterable[(P, P, Score)] = 
     Some(o.name1, o.name2, rateAVsB(o.points1.toDouble, o.points2.toDouble))
 
   def rateAVsB(a: Double, b: Double) = 
     Score((sin((a / (a + b) - 0.5d) * Pi) + 1d) * 0.5d)
 ```
 
-When calculating a custom `Score` like this, be careful that your formula does not produce `NaN` values for plausible outcomes of your game. 😇
+⚠️ When calculating a custom `Score` like this, be careful that your formula does not produce `NaN` values for plausible outcomes of your game. 😇
 
 ## Enjoy!
 

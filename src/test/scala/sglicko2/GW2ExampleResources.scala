@@ -32,8 +32,9 @@ object GW2ExampleResources:
 
   private def participant(name: String, score: String) = Participant(WorldID(name.trim), score.replaceAll("\\s", "").toLong)
 
-  given ScoringRules[WorldID, Outcome] with
-    override def gameScores(o: Outcome): Iterable[(WorldID, WorldID, Score)] = 
+  given ScoringRules[Outcome] with
+    type P = WorldID
+    override def gameScores(o: Outcome): Iterable[(P, P, Score)] = 
       Array(pair(o.green, o.blue), pair(o.green, o.red), pair(o.blue, o.red))
 
     private def pair(a: Participant, b: Participant) = (a.id, b.id, rateAVsB(a.points.toDouble, b.points.toDouble))

@@ -2,7 +2,7 @@
 
 package sglicko2
 
-final case class Player[A: Eq](id: A, rating: Rating = Rating.default, deviation: Deviation = Deviation.default, 
+final case class Player[+P: Eq](id: P, rating: Rating = Rating.default, deviation: Deviation = Deviation.default, 
     volatility: Volatility = Volatility.default) derives CanEqual:
   
   def confidence95 = Interval(

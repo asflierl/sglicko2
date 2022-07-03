@@ -2,4 +2,4 @@
 
 package sglicko2
 
-final case class ScoreVsPlayer[A] private[sglicko2] (opponentID: A, score: Score)
+final case class ScoreVsPlayer[+P] private[sglicko2] (opponentID: P, score: Score)

@@ -2,4 +2,4 @@
 
 package sglicko2 
 
-type Eq[-A] = CanEqual[A, A]
+type Eq[A] = CanEqual[A, A]

@@ -15,7 +15,7 @@ final class Glicko2(val tau: Tau = Tau.default,
   private inline val ε = 0.000001d
   private inline def τ = tau.value
 
-  extension [A](inline p: Player[A])
+  extension [P](inline p: Player[P])
     // Step 1
     private inline def r: Double = Rating.toGlicko2(p.rating)
     private inline def rd: Double = Deviation.toGlicko2(p.deviation)
@@ -28,13 +28,13 @@ final class Glicko2(val tau: Tau = Tau.default,
   extension (n: Double)
     private inline def `²`: Double = n * n
 
-  def updatedRatingAndDeviationAndVolatility[A: Eq](playerID: A, matchResults: IndexedSeq[ScoreVsPlayer[A]], lookup: A => Option[Player[A]]): Player[A] =
+  def updatedRatingAndDeviationAndVolatility[P: Eq](playerID: P, matchResults: IndexedSeq[ScoreVsPlayer[P]], lookup: P => Option[Player[P]]): Player[P] =
     val default = Player(playerID, volatility = defaultVolatility)
     val player = lookup(playerID).getOrElse(default)
 
     val opponents = Array.tabulate(matchResults.size)(n => lookup(matchResults(n).opponentID).getOrElse(default))
 
-    inline def sumOverOpponentsAndMatchResults(inline f: (Player[A], ScoreVsPlayer[A]) => Double): Double =
+    inline def sumOverOpponentsAndMatchResults(inline f: (Player[P], ScoreVsPlayer[P]) => Double): Double =
       var n = 0
       var s = 0d
       while n < matchResults.size do
@@ -95,7 +95,7 @@ final class Glicko2(val tau: Tau = Tau.default,
     // Step 8
     Player(playerID, Rating.fromGlicko2(`µ'`), Deviation.fromGlicko2(`φ'`), Volatility(`σ'`))
 
-  def updatedDeviation[A: Eq](player: Player[A]): Player[A] =
+  def updatedDeviation[P: Eq](player: Player[P]): Player[P] =
     // Step 7
     val `φ'` = sqrt(player.φ.`²` + player.σ.`²`)
 
