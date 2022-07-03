@@ -24,7 +24,7 @@ libraryDependencies += "eu.flierl" %% "sglicko2" % "3.0.0"
 ## Usage
 
 ### Basics
-Here's a simple, runnable example on how the library can be used. You can [experiment with it right in your browser (using Scastie)](https://scastie.scala-lang.org/asflierl/e7d2vFTpTFqxq85sIx6WDQ).
+Here's a simple, runnable example on how the library can be used. You can [experiment with it right in your browser (using Scastie)](https://scastie.scala-lang.org/asflierl/QQz5d60qTAmaZiPL7kZ2kA).
 
 ```scala
 import sglicko2.*, WinOrDraw.Ops.*
