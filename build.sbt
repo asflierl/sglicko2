@@ -2,10 +2,10 @@ import xerial.sbt.Sonatype._
 
 inThisBuild(Seq(
   organization := "eu.flierl",
-  version := "2.0.2",
+  version := "3.0.0",
   versionScheme := Some("semver-spec"),
   scalaVersion := "3.1.3",
-  scalacOptions := Seq("-source:3.1", "-language:strictEquality", "-new-syntax", "-unchecked", "-deprecation", "-encoding", "UTF-8", "-java-output-version:11"),
+  scalacOptions := Seq("-source:3.1", "-feature", "-language:strictEquality", "-new-syntax", "-unchecked", "-deprecation", "-encoding", "UTF-8", "-java-output-version:11"),
   githubWorkflowPublishTargetBranches := Nil,
   logBuffered := true))
 
@@ -15,6 +15,7 @@ lazy val sglicko2 = project.in(file(".")).enablePlugins(AutomateHeaderPlugin).se
   sonatypeProjectHosting := Some(GitHubHosting("asflierl", "sglicko2", "andreas@flierl.eu")),
   publishTo := sonatypePublishToBundle.value,
   turbo := true,
+  Test / scalacOptions += "-language:implicitConversions",
   Test / testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "html", "html.toc", "!pandoc", "specs2ThreadsNb", cpus.toString),
   libraryDependencies ++= Seq("core", "matcher", "matcher-extra", "scalacheck", "html") map (m => "org.specs2" %% s"specs2-$m" % "5.0.1" % Test),
   libraryDependencies ++= Seq("org.scalacheck" %% "scalacheck" % "1.16.0" % Test))

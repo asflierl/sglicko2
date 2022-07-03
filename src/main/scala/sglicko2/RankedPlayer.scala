@@ -2,4 +2,4 @@
 
 package sglicko2
 
-final case class RankedPlayer[A : Eq](rank: Rank, player: Player[A])
+final case class RankedPlayer[+P: Eq](rank: Rank, player: Player[P])

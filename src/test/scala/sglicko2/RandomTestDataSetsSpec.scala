@@ -30,7 +30,7 @@ class RandomTestDataSetsSpec extends Specification with ScalaCheck:
 
   def ex3 = forAll(containerOfN[ArraySeq, Game](1000, genGame(newIDs(1000)))) { g =>
     given Glicko2 = Glicko2()
-    val empty = RatingPeriod.empty[ID, WinOrDraw[ID]]
+    val empty = RatingPeriod.empty[ID]
 
     val method1 = empty.withGames(g*)
     val method2 = g.sliding(100, 100).toSeq.foldLeft(empty)((akku, el) => akku.withGames(el*))
@@ -38,7 +38,7 @@ class RandomTestDataSetsSpec extends Specification with ScalaCheck:
     method1.games.view.mapValues(_.toSet).toMap should ===(method2.games.view.mapValues(_.toSet).toMap)
   }
 
-  def leaderboardProperty[A](f: ((Config, Leaderboard[ID])) => Result) = prop(f)
+  def leaderboardProperty(f: ((Config, Leaderboard[ID])) => Result) = prop(f)
 
 object Generators:
   final case class ID(raw: String) derives Eq
@@ -74,7 +74,7 @@ object Generators:
 
   def newIDs(numberOfIDs: Int): Vector[ID] = (1 to numberOfIDs).view.map(n => ID(s"player #$n")).toVector
 
-  def genRatingPeriod(config: Config): Gen[RatingPeriod[ID, WinOrDraw[ID]]] =
+  def genRatingPeriod(config: Config): Gen[RatingPeriod[ID]] =
     for
       numberOfGames <- chooseNum(config.minNumberOfRatingPeriods, config.maxNumberOfGames)
       games <- listOfN(numberOfGames, genGame(config.ids))
