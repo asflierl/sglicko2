@@ -1,5 +1,6 @@
 -Xmx1g
 -Xss1M
--XX:+UseG1GC
+-XX:+UseZGC
+-XX:SoftMaxHeapSize=512m
+-XX:ZUncommitDelay=10
 -XX:MaxInlineLevel=20
--XX:MaxGCPauseMillis=50

@@ -7,6 +7,7 @@ inThisBuild(Seq(
   scalaVersion := "3.1.3",
   scalacOptions := Seq("-source:3.1", "-feature", "-language:strictEquality", "-new-syntax", "-unchecked", "-deprecation", "-encoding", "UTF-8", "-java-output-version:11"),
   githubWorkflowPublishTargetBranches := Nil,
+  githubWorkflowJavaVersions := Seq(JavaSpec.temurin("17")),
   logBuffered := true))
 
 lazy val sglicko2 = project.in(file(".")).enablePlugins(AutomateHeaderPlugin).settings(licensing).settings(
@@ -22,7 +23,7 @@ lazy val sglicko2 = project.in(file(".")).enablePlugins(AutomateHeaderPlugin).se
 
 lazy val benchmark = project.dependsOn(sglicko2).enablePlugins(JmhPlugin, BuildInfoPlugin, AutomateHeaderPlugin).settings(licensing).settings(
   fork := true,
-  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=1", "-XX:MaxInlineLevel=20"),
+  javaOptions := Seq("-Dfile.encoding=UTF-8", "-Duser.country=US", "-Duser.language=en", "-Xms4g", "-Xmx4g", "-Xss1m", "-XX:+UseZGC", "-XX:MaxInlineLevel=20"),
   publish / skip := true,
   Jmh / bspEnabled := false,
   libraryDependencies ++= Seq("core", "generic", "parser").map(m => "io.circe" %% s"circe-$m" % "0.14.2"),
